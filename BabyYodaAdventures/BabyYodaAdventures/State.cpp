@@ -2,6 +2,38 @@
 
 /////////////////////////////////////////////////
 // 
+//		PROTECTED METHODS
+//
+/////////////////////////////////////////////////
+
+
+// Initialization
+
+/**
+	Loads all key binds for specific state
+	and creates an std::map of supported keys and their codes
+*/
+void State::initKeyBinds(std::string pathToConfig)
+{
+	std::ifstream ifs;
+	ifs.open(pathToConfig);
+	if (ifs.is_open())
+	{
+		std::string key_name;
+		std::string supported_key;
+		while (ifs >> key_name >> supported_key)
+		{
+			m_keyBinds[key_name] = m_supportedKeys->at(supported_key);
+		}
+
+	}
+	ifs.close();
+}
+
+
+
+/////////////////////////////////////////////////
+// 
 //		PUBLIC METHODS
 //
 /////////////////////////////////////////////////
@@ -10,7 +42,7 @@
 //		Constructors
 //
 
-State::State(std::shared_ptr<sf::RenderWindow> renderWindow, std::map<std::string, int>* supportedKeys)
+State::State(std::shared_ptr<sf::RenderWindow> renderWindow, std::map<std::string, sf::Keyboard::Key>* supportedKeys)
 {
 	m_renderWindow = renderWindow;
 	m_close = false;
@@ -51,7 +83,7 @@ bool State::needToBeClosed() const
 
 void State::checkForClose()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+	if (sf::Keyboard::isKeyPressed(m_keyBinds.at("Escape")))
 	{
 		m_close = true;
 	}

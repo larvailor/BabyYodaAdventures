@@ -18,7 +18,7 @@ private:
 
 	std::stack<std::shared_ptr<State>> m_states;
 
-	std::map<std::string, int> m_supportedKeys;
+	std::map<std::string, sf::Keyboard::Key> m_supportedKeys;
 
 
 

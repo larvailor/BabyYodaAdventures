@@ -2,23 +2,9 @@
 
 /////////////////////////////////////////////////
 // 
-//		PROTECTED METHODS
+//		PRIVATE METHODS
 //
 /////////////////////////////////////////////////
-
-//-----------------------------------------------
-//		Initialization
-//
-
-void GameState::initKeyBinds()
-{
-	m_keyBinds.emplace("MOVE_UP", m_supportedKeys->at("W"));
-	m_keyBinds.emplace("MOVE_LEFT", m_supportedKeys->at("A"));
-	m_keyBinds.emplace("MOVE_DOWN", m_supportedKeys->at("S"));
-	m_keyBinds.emplace("MOVE_RIGHT", m_supportedKeys->at("D"));
-}
-
-
 
 //-----------------------------------------------
 //		Update
@@ -28,16 +14,16 @@ void GameState::handleInput(const float& frameTime)
 {
 	checkForClose();
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(m_keyBinds.at("MOVE_UP"))))
+	if (sf::Keyboard::isKeyPressed(m_keyBinds.at("MOVE_UP")))
 		m_player.move(frameTime, 0.f, -1.f);
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(m_keyBinds.at("MOVE_LEFT"))))
+	if (sf::Keyboard::isKeyPressed(m_keyBinds.at("MOVE_LEFT")))
 		m_player.move(frameTime, -1.f, 0.f);
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(m_keyBinds.at("MOVE_DOWN"))))
+	if (sf::Keyboard::isKeyPressed(m_keyBinds.at("MOVE_DOWN")))
 		m_player.move(frameTime, 0.f, 1.f);
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(m_keyBinds.at("MOVE_RIGHT"))))
+	if (sf::Keyboard::isKeyPressed(m_keyBinds.at("MOVE_RIGHT")))
 		m_player.move(frameTime, 1.f, 0.f);
 }
 
@@ -53,10 +39,10 @@ void GameState::handleInput(const float& frameTime)
 //		Constructors
 //
 
-GameState::GameState(std::shared_ptr<sf::RenderWindow> renderWindow, std::map<std::string, int>* supportedKeys)
+GameState::GameState(std::shared_ptr<sf::RenderWindow> renderWindow, std::map<std::string, sf::Keyboard::Key>* supportedKeys)
 	: State(renderWindow, supportedKeys)
 {
-	initKeyBinds();
+	initKeyBinds("Config/GameState_KeyBinds.ini");
 
 	std::cout << "GameState constructor called" << std::endl;
 }

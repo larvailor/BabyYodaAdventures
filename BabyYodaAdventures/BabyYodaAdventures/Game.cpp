@@ -43,13 +43,25 @@ void Game::initWindow()
 	m_renderWindow->setVerticalSyncEnabled(vertical_sync_enabled);
 }
 
+/**
+	Loads all supported keys from supported_keys.ini file 
+	and creates an std::map of supported keys and their codes
+*/
 void Game::initKeys()
 {
-	m_supportedKeys.emplace("Escape", sf::Keyboard::Escape);
-	m_supportedKeys.emplace("W", sf::Keyboard::W);
-	m_supportedKeys.emplace("A", sf::Keyboard::A);
-	m_supportedKeys.emplace("S", sf::Keyboard::S);
-	m_supportedKeys.emplace("D", sf::Keyboard::D);
+	std::ifstream ifs;
+	ifs.open("Config/SupportedKeys.ini");
+	if (ifs.is_open())
+	{
+		std::string key_name;
+		int key_code;
+		while (ifs >> key_name >> key_code)
+		{
+			m_supportedKeys[key_name] = static_cast<sf::Keyboard::Key>(key_code);
+		}
+
+	}
+	ifs.close();
 }
 
 void Game::initStates()
@@ -115,7 +127,7 @@ void Game::calculateFrameTime()
 	m_frameTime = m_frameTimeClock.restart().asSeconds();
 
 	//system("cls");
-	std::cout << "Frame time: " << m_frameTime << std::endl;
+	//std::cout << "Frame time: " << m_frameTime << std::endl;
 }
 
 

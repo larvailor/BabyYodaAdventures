@@ -1,19 +1,11 @@
-#ifndef GAME_STATE_HPP
-#define GAME_STATE_HPP
+#ifndef MAIN_MENU_STATE_HPP
+#define MAIN_MENU_STATE_HPP
 
 #include "State.hpp"
 
-class GameState : public State
+class MainMenuState : public State
 {
 private:
-	/////////////////////
-	// Variables
-	//
-
-	Entity m_player;
-
-
-
 	/////////////////////
 	// Methods
 	//
@@ -29,11 +21,11 @@ public:
 
 	// Constructors
 
-	GameState(std::shared_ptr<sf::RenderWindow> renderWindow, std::map<std::string, sf::Keyboard::Key>* supportedKeys);
+	MainMenuState(std::shared_ptr<sf::RenderWindow> renderWindow, std::map<std::string, sf::Keyboard::Key>* supportedKeys);
 
 	// Destructors
 
-	virtual ~GameState();
+	~MainMenuState();
 
 	// Update
 

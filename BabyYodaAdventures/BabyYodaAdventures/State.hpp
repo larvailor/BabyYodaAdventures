@@ -11,8 +11,8 @@ protected:
 	//
 
 	std::shared_ptr<sf::RenderWindow> m_renderWindow;
-	std::map<std::string, int>* m_supportedKeys;
-	std::map<std::string, int> m_keyBinds;
+	std::map<std::string, sf::Keyboard::Key>* m_supportedKeys;
+	std::map<std::string, sf::Keyboard::Key> m_keyBinds;
 	bool m_close;
 
 	// Resources
@@ -27,7 +27,7 @@ protected:
 
 	// Initialization
 
-	virtual void initKeyBinds() = 0;
+	virtual void initKeyBinds(std::string path_to_config);
 
 	// Udate
 
@@ -44,7 +44,7 @@ public:
 
 	// Constructors
 
-	State(std::shared_ptr<sf::RenderWindow> renderWindow, std::map<std::string, int>* supportedKeys);
+	State(std::shared_ptr<sf::RenderWindow> renderWindow, std::map<std::string, sf::Keyboard::Key>* supportedKeys);
 
 	// Destructors
 
