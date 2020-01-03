@@ -6,6 +6,13 @@
 class GameState : public State
 {
 private:
+	/////////////////////
+	// Methods
+	//
+
+	// Udate
+
+	void handleInput(const float& frameTime);
 
 public:
 	/////////////////////
@@ -20,7 +27,7 @@ public:
 
 	virtual ~GameState();
 
-	// Udate
+	// Update
 
 	void update(const float& frameTime);
 
@@ -30,7 +37,7 @@ public:
 
 	// Managing state
 
-	void endState();
+	void finalizeState();
 };
 
 #endif

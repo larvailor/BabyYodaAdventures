@@ -80,13 +80,25 @@ void Game::pollEvents()
 }
 
 /**
-	Tooks the top item in stack of states and calls its update method
+	Tooks the top item on the stack of states and calls its update method.
+	If the state should be closed, then calls its finalize method and pops from stack.
+	If there are no states, then calls to close method on render window
 */
 void Game::updateStates()
 {
 	if (!m_states.empty())
 	{
 		m_states.top()->update(m_frameTime);
+
+		if (m_states.top()->needToBeClosed())
+		{
+			m_states.top()->finalizeState();
+			m_states.pop();
+		}
+	}
+	else
+	{
+		m_renderWindow->close();
 	}
 }
 
@@ -98,8 +110,8 @@ void Game::calculateFrameTime()
 {
 	m_frameTime = m_frameTimeClock.restart().asSeconds();
 
-	system("cls");
-	std::cout << "Frame time: " << m_frameTime << std::endl;
+	//system("cls");
+	//std::cout << "Frame time: " << m_frameTime << std::endl;
 }
 
 
@@ -128,7 +140,6 @@ void Game::renderStates()
 		m_states.top()->render(m_renderWindow);
 	}
 }
-
 
 
 

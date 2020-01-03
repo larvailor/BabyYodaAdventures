@@ -16,13 +16,28 @@
 
 class State
 {
-private:
+protected:
 	/////////////////////
 	// Variables
 	//
 
 	std::shared_ptr<sf::RenderWindow> m_renderWindow;
 	std::vector<std::shared_ptr<sf::Texture>> m_textures;
+	bool m_close;
+
+
+
+	/////////////////////
+	// Methods
+	//
+
+	// Udate
+
+	virtual void handleInput(const float& frameTime) = 0;
+
+	// Managing state
+
+	virtual void checkForClose();
 
 public:
 	/////////////////////
@@ -37,6 +52,11 @@ public:
 
 	virtual ~State();
 
+	//Accessors
+		// getters
+
+	bool needToBeClosed() const;
+
 	// Udate
 
 	virtual void update(const float& frameTime) = 0;
@@ -47,7 +67,7 @@ public:
 
 	// Managing state
 
-	virtual void endState() = 0;
+	virtual void finalizeState() = 0;
 };
 
 #endif
