@@ -17,6 +17,8 @@ private:
 	std::unique_ptr<sf::RenderWindow> m_renderWindow;
 	std::unique_ptr<sf::Event> m_event;
 
+	sf::Clock m_frameTimeClock;
+	float m_frameTime;
 
 
 	/////////////////////
@@ -31,6 +33,8 @@ private:
 	// Update
 
 	void update();
+	void pollEvents();
+	void calculateFrameTime();
 
 	// Render
 

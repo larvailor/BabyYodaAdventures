@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "Game.hpp"
 
 /////////////////////////////////////////////////
@@ -28,6 +30,11 @@ void Game::initEvent()
 
 void Game::update()
 {
+	pollEvents();
+}
+
+void Game::pollEvents()
+{
 	while (m_renderWindow->pollEvent(*m_event))
 	{
 		switch (m_event->type)
@@ -37,6 +44,18 @@ void Game::update()
 			break;
 		}
 	}
+}
+
+/**
+	Calculates how much time is needed to update and render one frame
+	and stores the result in private m_frameTime member
+*/
+void Game::calculateFrameTime()
+{
+	m_frameTime = m_frameTimeClock.restart().asSeconds();
+
+	system("cls");
+	std::cout << "Frame time: " << m_frameTime << std::endl;
 }
 
 
@@ -93,6 +112,8 @@ void Game::run()
 	{
 		update();
 		render();
+
+		calculateFrameTime();
 	}
 }
 
