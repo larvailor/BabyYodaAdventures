@@ -4,6 +4,8 @@
 #include <iostream>
 #include <memory>
 #include <vector>
+#include <map>
+#include <stack> 
 #include <fstream>
 
 #include "SFML/Graphics.hpp"
@@ -19,6 +21,7 @@ private:
 	// Variables
 	//
 
+	std::shared_ptr<sf::RenderWindow> m_renderWindow;
 	std::vector<std::shared_ptr<sf::Texture>> m_textures;
 
 public:
@@ -28,7 +31,7 @@ public:
 
 	// Constructors
 
-	State();
+	State(std::shared_ptr<sf::RenderWindow> renderWindow);
 
 	// Destructors
 
@@ -36,11 +39,15 @@ public:
 
 	// Udate
 
-	virtual void update() = 0;
+	virtual void update(const float& frameTime) = 0;
 
 	// Render
 
-	virtual void render() = 0;
+	virtual void render(std::shared_ptr<sf::RenderTarget> renderTarget = nullptr) = 0;
+
+	// Managing state
+
+	virtual void endState() = 0;
 };
 
 #endif

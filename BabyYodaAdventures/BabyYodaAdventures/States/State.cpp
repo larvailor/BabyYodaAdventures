@@ -10,8 +10,10 @@
 //		Constructors
 //
 
-State::State()
-= default;
+State::State(std::shared_ptr<sf::RenderWindow> renderWindow)
+{
+	m_renderWindow = renderWindow;
+}
 
 
 

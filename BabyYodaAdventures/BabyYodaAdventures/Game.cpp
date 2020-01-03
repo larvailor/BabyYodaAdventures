@@ -38,14 +38,20 @@ void Game::initWindow()
 
 	// Setting up window
 
-	m_renderWindow = std::make_unique<sf::RenderWindow>(video_mode, title, sf::Style::Titlebar | sf::Style::Close);
+	m_renderWindow = std::make_shared<sf::RenderWindow>(video_mode, title, sf::Style::Titlebar | sf::Style::Close);
 	m_renderWindow->setFramerateLimit(framerate_limit);
 	m_renderWindow->setVerticalSyncEnabled(vertical_sync_enabled);
 }
 
 void Game::initEvent()
 {
-	m_event = std::make_unique<sf::Event>();
+	m_event = std::make_shared<sf::Event>();
+}
+
+void Game::initStates()
+{
+	auto state = std::make_shared<GameState>(m_renderWindow);
+	m_states.push(std::move(state));
 }
 
 
@@ -57,6 +63,7 @@ void Game::initEvent()
 void Game::update()
 {
 	pollEvents();
+	updateStates();
 }
 
 void Game::pollEvents()
@@ -69,6 +76,17 @@ void Game::pollEvents()
 			this->m_renderWindow->close();
 			break;
 		}
+	}
+}
+
+/**
+	Tooks the top item in stack of states and calls its update method
+*/
+void Game::updateStates()
+{
+	if (!m_states.empty())
+	{
+		m_states.top()->update(m_frameTime);
 	}
 }
 
@@ -94,10 +112,23 @@ void Game::render()
 {
 	m_renderWindow->clear();
 
-	// draw all stuff hers
+	// draw all stuff here
+	renderStates();
 
 	m_renderWindow->display();
 }
+
+/**
+	Tooks the top item in stack of states and calls its render method
+*/
+void Game::renderStates()
+{
+	if (!m_states.empty())
+	{
+		m_states.top()->render(m_renderWindow);
+	}
+}
+
 
 
 
@@ -115,6 +146,7 @@ Game::Game()
 {
 	initWindow();
 	initEvent();
+	initStates();
 }
 
 
@@ -142,6 +174,3 @@ void Game::run()
 		calculateFrameTime();
 	}
 }
-
-
-
