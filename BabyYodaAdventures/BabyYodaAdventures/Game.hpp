@@ -11,12 +11,14 @@ private:
 	//
 
 	std::shared_ptr<sf::RenderWindow> m_renderWindow;
-	std::shared_ptr<sf::Event> m_event;
+	sf::Event m_event;
 
 	sf::Clock m_frameTimeClock;
 	float m_frameTime;
 
 	std::stack<std::shared_ptr<State>> m_states;
+
+	std::map<std::string, int> m_supportedKeys;
 
 
 
@@ -27,7 +29,7 @@ private:
 	// Initialization
 
 	void initWindow();
-	void initEvent();
+	void initKeys();
 	void initStates();
 
 	// Update

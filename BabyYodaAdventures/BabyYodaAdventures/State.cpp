@@ -10,10 +10,11 @@
 //		Constructors
 //
 
-State::State(std::shared_ptr<sf::RenderWindow> renderWindow)
+State::State(std::shared_ptr<sf::RenderWindow> renderWindow, std::map<std::string, int>* supportedKeys)
 {
 	m_renderWindow = renderWindow;
 	m_close = false;
+	m_supportedKeys = supportedKeys;
 
 	std::cout << "State constructor called" << std::endl;
 }

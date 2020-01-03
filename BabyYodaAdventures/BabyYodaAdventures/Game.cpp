@@ -43,14 +43,18 @@ void Game::initWindow()
 	m_renderWindow->setVerticalSyncEnabled(vertical_sync_enabled);
 }
 
-void Game::initEvent()
+void Game::initKeys()
 {
-	m_event = std::make_shared<sf::Event>();
+	m_supportedKeys.emplace("Escape", sf::Keyboard::Escape);
+	m_supportedKeys.emplace("W", sf::Keyboard::W);
+	m_supportedKeys.emplace("A", sf::Keyboard::A);
+	m_supportedKeys.emplace("S", sf::Keyboard::S);
+	m_supportedKeys.emplace("D", sf::Keyboard::D);
 }
 
 void Game::initStates()
 {
-	auto state = std::make_shared<GameState>(m_renderWindow);
+	auto state = std::make_shared<GameState>(m_renderWindow, &m_supportedKeys);
 	m_states.push(std::move(state));
 }
 
@@ -68,9 +72,9 @@ void Game::update()
 
 void Game::pollEvents()
 {
-	while (m_renderWindow->pollEvent(*m_event))
+	while (m_renderWindow->pollEvent(m_event))
 	{
-		switch (m_event->type)
+		switch (m_event.type)
 		{
 		case sf::Event::Closed:
 			this->m_renderWindow->close();
@@ -156,7 +160,7 @@ void Game::renderStates()
 Game::Game()
 {
 	initWindow();
-	initEvent();
+	initKeys();
 	initStates();
 }
 

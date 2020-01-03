@@ -11,14 +11,23 @@ protected:
 	//
 
 	std::shared_ptr<sf::RenderWindow> m_renderWindow;
-	std::vector<std::shared_ptr<sf::Texture>> m_textures;
+	std::map<std::string, int>* m_supportedKeys;
+	std::map<std::string, int> m_keyBinds;
 	bool m_close;
 
+	// Resources
+
+	std::vector<std::shared_ptr<sf::Texture>> m_textures;
+	
 
 
 	/////////////////////
 	// Methods
 	//
+
+	// Initialization
+
+	virtual void initKeyBinds() = 0;
 
 	// Udate
 
@@ -35,7 +44,7 @@ public:
 
 	// Constructors
 
-	State(std::shared_ptr<sf::RenderWindow> renderWindow);
+	State(std::shared_ptr<sf::RenderWindow> renderWindow, std::map<std::string, int>* supportedKeys);
 
 	// Destructors
 

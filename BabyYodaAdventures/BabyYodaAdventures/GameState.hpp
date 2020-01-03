@@ -13,9 +13,14 @@ private:
 	Entity m_player;
 
 
+
 	/////////////////////
 	// Methods
 	//
+
+	// Initialization
+
+	void initKeyBinds();
 
 	// Udate
 
@@ -28,7 +33,7 @@ public:
 
 	// Constructors
 
-	GameState(std::shared_ptr<sf::RenderWindow> renderWindow);
+	GameState(std::shared_ptr<sf::RenderWindow> renderWindow, std::map<std::string, int>* supportedKeys);
 
 	// Destructors
 

@@ -30,8 +30,7 @@ protected:
 
 	// Update
 
-	virtual void handleInput(const float& frameTime);
-	virtual void move(const float& frameTime, const float dirX, const float dirY);
+	virtual void handleInput(const float& frameTime); // TODO: now not in use
 
 public:
 	/////////////////////
@@ -49,6 +48,7 @@ public:
 	// Udate
 
 	virtual void update(const float& frameTime);
+	virtual void move(const float& frameTime, const float dirX, const float dirY);
 
 	// Render
 
