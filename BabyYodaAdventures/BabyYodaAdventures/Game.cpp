@@ -147,7 +147,7 @@ void Game::render()
 }
 
 /**
-	Tooks the top item in stack of states and calls its render method
+	Tooks the top item on the stack of states and calls its render method
 */
 void Game::renderStates()
 {
