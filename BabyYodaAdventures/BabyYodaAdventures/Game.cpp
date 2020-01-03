@@ -10,9 +10,37 @@
 //		Initialization
 //
 
+/**
+	Loads configuration from window.ini file.
+	Sets up default if failed to load
+*/
 void Game::initWindow()
 {
-	m_renderWindow = std::make_unique<sf::RenderWindow>(sf::VideoMode(1000, 800), "Baby Yoda Adventures", sf::Style::Titlebar | sf::Style::Close);
+	// Setting default values
+
+	std::string title = "Baby Yoda Adventures";
+	sf::VideoMode video_mode(1000, 800);
+	unsigned framerate_limit = 60;
+	bool vertical_sync_enabled = false;
+
+	// Reading config from file
+
+	std::ifstream ifs;
+	ifs.open("Config/window.ini");
+	if (ifs.is_open())
+	{
+		std::getline(ifs, title);
+		ifs >> video_mode.width >> video_mode.height;
+		ifs >> framerate_limit;
+		ifs >> vertical_sync_enabled;
+	}
+	ifs.close();
+
+	// Setting up window
+
+	m_renderWindow = std::make_unique<sf::RenderWindow>(video_mode, title, sf::Style::Titlebar | sf::Style::Close);
+	m_renderWindow->setFramerateLimit(framerate_limit);
+	m_renderWindow->setVerticalSyncEnabled(vertical_sync_enabled);
 }
 
 void Game::initEvent()
