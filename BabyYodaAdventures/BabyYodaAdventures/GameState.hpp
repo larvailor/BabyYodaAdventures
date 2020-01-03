@@ -7,6 +7,13 @@ class GameState : public State
 {
 private:
 	/////////////////////
+	// Variables
+	//
+
+	Entity m_player;
+
+
+	/////////////////////
 	// Methods
 	//
 

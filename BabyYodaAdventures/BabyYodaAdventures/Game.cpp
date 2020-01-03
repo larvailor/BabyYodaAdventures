@@ -111,7 +111,7 @@ void Game::calculateFrameTime()
 	m_frameTime = m_frameTimeClock.restart().asSeconds();
 
 	//system("cls");
-	//std::cout << "Frame time: " << m_frameTime << std::endl;
+	std::cout << "Frame time: " << m_frameTime << std::endl;
 }
 
 

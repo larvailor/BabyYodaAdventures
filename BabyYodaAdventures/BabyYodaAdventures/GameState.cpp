@@ -35,6 +35,8 @@ GameState::~GameState()
 void GameState::update(const float& frameTime)
 {
 	handleInput(frameTime);
+
+	m_player.update(frameTime);
 }
 
 void GameState::handleInput(const float& frameTime)
@@ -50,7 +52,7 @@ void GameState::handleInput(const float& frameTime)
 
 void GameState::render(std::shared_ptr<sf::RenderTarget> renderTarget)
 {
-	// TBD
+	m_player.render(renderTarget);
 }
 
 
