@@ -2,9 +2,9 @@
 
 int main()
 {
-	auto game = std::make_unique<Game>();
+	Game game;
 
-	game->run();
+	game.run();
 
 	return 0;
 }
