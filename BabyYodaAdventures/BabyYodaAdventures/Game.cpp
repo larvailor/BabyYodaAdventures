@@ -71,13 +71,13 @@ void Game::initSupportedKeys()
 }
 
 /**
-	Pushes the first game state into the stack of states.
+	Pushes the first game scene into the stack of scenes.
 	Should be called only when all supported keys were loaded!
 */
-void Game::initStates()
+void Game::initScenes()
 {
-	auto state = std::make_shared<MainMenuState>(m_renderWindow, &m_supportedKeys);
-	m_states.push(std::move(state));
+	auto scene = std::make_shared<Scene_Game>(m_renderWindow, &m_supportedKeys);
+	m_scenes.push(std::move(scene));
 }
 
 
@@ -92,7 +92,7 @@ void Game::initStates()
 void Game::update()
 {
 	pollEvents();
-	updateStates();
+	updateScenes();
 }
 
 void Game::pollEvents()
@@ -109,20 +109,20 @@ void Game::pollEvents()
 }
 
 /**
-	Tooks the top item on the stack of states and calls its update method.
-	If the state should be closed, then calls its finalize method and pops from stack.
-	If there are no states, then calls to close method on render window
+	Tooks the top item on the stack of scenes and calls its update method.
+	If the scene should be closed, then calls its finalize method and pops from stack.
+	If there are no scenes, then calls to close method on render window
 */
-void Game::updateStates()
+void Game::updateScenes()
 {
-	if (!m_states.empty())
+	if (!m_scenes.empty())
 	{
-		m_states.top()->update(m_frameTime);
+		m_scenes.top()->update(m_frameTime);
 
-		if (m_states.top()->needToBeClosed())
+		if (m_scenes.top()->needToBeClosed())
 		{
-			m_states.top()->finalizeState();
-			m_states.pop();
+			m_scenes.top()->finalizeScene();
+			m_scenes.pop();
 		}
 	}
 	else
@@ -160,19 +160,19 @@ void Game::render()
 	m_renderWindow->clear();
 
 	// render all stuff here
-	renderStates();
+	renderScenes();
 
 	m_renderWindow->display();
 }
 
 /**
-	Tooks the top item on the stack of states and calls its render method
+	Tooks the top item on the stack of scenes and calls its render method
 */
-void Game::renderStates()
+void Game::renderScenes()
 {
-	if (!m_states.empty())
+	if (!m_scenes.empty())
 	{
-		m_states.top()->render();
+		m_scenes.top()->render();
 	}
 }
 
@@ -192,7 +192,7 @@ Game::Game()
 {
 	initWindow();
 	initSupportedKeys();
-	initStates();
+	initScenes();
 }
 
 

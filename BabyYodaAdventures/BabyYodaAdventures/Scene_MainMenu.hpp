@@ -1,10 +1,10 @@
-#ifndef MAIN_MENU_STATE_HPP
-#define MAIN_MENU_STATE_HPP
+#ifndef SCENE_MAIN_MENU_HPP
+#define SCENE_MAIN_MENU_HPP
 
-#include "State.hpp"
+#include "Scene.hpp"
 #include "Button.hpp"
 
-class MainMenuState : public State
+class Scene_MainMenu : public Scene
 {
 private:
 	/////////////////////
@@ -38,11 +38,11 @@ public:
 
 	// Constructors
 
-	MainMenuState(std::shared_ptr<sf::RenderWindow> &renderWindow, std::map<std::string, sf::Keyboard::Key> *supportedKeys);
+	Scene_MainMenu(std::shared_ptr<sf::RenderWindow> &renderWindow, std::map<std::string, sf::Keyboard::Key> *supportedKeys);
 
 	// Destructors
 
-	~MainMenuState();
+	~Scene_MainMenu();
 
 	// Update
 
@@ -52,9 +52,9 @@ public:
 
 	void render(std::shared_ptr<sf::RenderTarget> renderTarget = nullptr);
 
-	// Managing state
+	// Managing scene
 
-	void finalizeState();
+	void finalizeScene();
 };
 
 #endif

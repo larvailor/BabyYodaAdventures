@@ -15,18 +15,18 @@ constexpr auto SUPPORTED_KEYS_CONFIG_PATH = "Config/SupportedKeys.ini";
 
 
 //-----------------------------------------------
-//		GameState
+//		Scene_GameScene
 //
 
-constexpr auto GAME_STATE_KEY_BINDS_PATH = "Config/GameState_KeyBinds.ini";
+constexpr auto SCENE_GAME_KEY_BINDS_PATH = "Config/Scene_Game_KeyBinds.ini";
 
 
 
 //-----------------------------------------------
-//		MainMenuState
+//		Scene_MainMenu
 //
 
-constexpr auto MAIN_MENU_STATE_KEY_BINDS_PATH = "Config/MainMenuState_KeyBinds.ini";
-constexpr auto MAIN_MENU_STATE_FONT_PATH = "Resources/Fonts/Polybius1981.ttf";
+constexpr auto SCENE_MAIN_MENU_KEY_BINDS_PATH = "Config/Scene_MainMenu_KeyBinds.ini";
+constexpr auto SCENE_MAIN_MENU_FONT_PATH = "Resources/Fonts/Polybius1981.ttf";
 
 #endif

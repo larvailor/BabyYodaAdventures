@@ -35,7 +35,7 @@ Button::Button(
 	m_text.setFont(*m_font);
 	m_text.setString(text);
 	m_text.setFillColor(sf::Color::White);
-	m_text.setCharacterSize(64);
+	m_text.setCharacterSize(78);
 	m_text.setPosition(
 		m_button.getPosition().x + (m_button.getGlobalBounds().width / 2.f) - (m_text.getGlobalBounds().width / 2.f),
 		m_button.getPosition().y + (m_button.getGlobalBounds().height / 2.f) - m_text.getGlobalBounds().height / 2.f
@@ -95,11 +95,9 @@ void Button::update(const sf::Vector2f &mousePosition)
 	{
 	case BTN_IDLE:
 		m_text.setFillColor(m_idleColor);
-		m_text.setScale(sf::Vector2f(1.f, 1.f));
 		break;
 	case BTN_HOVER:
 		m_text.setFillColor(m_hoverColor);
-		m_text.setScale(sf::Vector2f(1.2f, 1.2f));
 		break;
 	case BTN_ACTIVE:
 		m_text.setFillColor(m_activeColor);

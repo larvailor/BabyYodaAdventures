@@ -1,4 +1,4 @@
-#include "State.hpp"
+#include "Scene.hpp"
 
 /////////////////////////////////////////////////
 // 
@@ -11,10 +11,10 @@
 //
 
 /**
-	Loads all key binds for specific state
+	Loads all key binds for specific scene
 	and creates an std::map of supported keys and their codes
 */
-void State::initKeyBinds(std::string pathToConfig)
+void Scene::initKeyBinds(std::string pathToConfig)
 {
 	std::ifstream ifs;
 	ifs.open(pathToConfig);
@@ -30,17 +30,17 @@ void State::initKeyBinds(std::string pathToConfig)
 	}
 	else
 	{
-		std::cout << "ERROR::State::initKeyBinds failed to load key binds " << pathToConfig << std::endl;
+		std::cout << "ERROR::Scene::initKeyBinds failed to load key binds " << pathToConfig << std::endl;
 	}
 	ifs.close();
 }
 
-void State::initFont(std::string pathToFont)
+void Scene::initFont(std::string pathToFont)
 {
 	m_font = std::make_shared<sf::Font>();
 	if (!m_font->loadFromFile(pathToFont))
 	{
-		std::cout << "ERROR::State::initFont failed to load font " << pathToFont << std::endl;
+		std::cout << "ERROR::Scene::initFont failed to load font " << pathToFont << std::endl;
 	}
 }
 
@@ -50,7 +50,7 @@ void State::initFont(std::string pathToFont)
 //		Update
 //
 
-void State::updateMousePositions()
+void Scene::updateMousePositions()
 {
 	m_mousePosScreen = sf::Mouse::getPosition();
 	m_mousePosWindow = sf::Mouse::getPosition(*m_renderWindow);
@@ -69,10 +69,10 @@ void State::updateMousePositions()
 //		Constructors
 //
 
-State::State(std::shared_ptr<sf::RenderWindow> &renderWindow, std::map<std::string, sf::Keyboard::Key> *supportedKeys)
+Scene::Scene(std::shared_ptr<sf::RenderWindow> &renderWindow, std::map<std::string, sf::Keyboard::Key> *supportedKeys)
 	: m_renderWindow(renderWindow), m_supportedKeys(supportedKeys)
 {
-	std::cout << "State constructor called" << std::endl;
+	std::cout << "Scene constructor called" << std::endl;
 
 	m_close = false;
 }
@@ -83,9 +83,9 @@ State::State(std::shared_ptr<sf::RenderWindow> &renderWindow, std::map<std::stri
 //		Destructors
 //
 
-State::~State()
+Scene::~Scene()
 {
-	std::cout << "State destructor called" << std::endl;
+	std::cout << "Scene destructor called" << std::endl;
 }
 
 
@@ -96,7 +96,7 @@ State::~State()
 
 //		Getters
 
-bool State::needToBeClosed() const
+bool Scene::needToBeClosed() const
 {
 	return m_close;
 }
@@ -104,10 +104,10 @@ bool State::needToBeClosed() const
 
 
 //-----------------------------------------------
-//		Managing state
+//		Managing scene
 //
 
-void State::checkForClose()
+void Scene::checkForClose()
 {
 	if (sf::Keyboard::isKeyPressed(m_keyBinds.at("Escape")))
 	{

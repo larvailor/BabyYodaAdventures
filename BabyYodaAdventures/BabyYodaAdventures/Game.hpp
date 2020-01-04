@@ -1,8 +1,8 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
-#include "GameState.hpp"
-#include "MainMenuState.hpp"
+#include "Scene_Game.hpp"
+#include "Scene_MainMenu.hpp"
 
 class Game
 {
@@ -17,7 +17,7 @@ private:
 	sf::Clock m_frameTimeClock;
 	float m_frameTime;
 
-	std::stack<std::shared_ptr<State>> m_states;
+	std::stack<std::shared_ptr<Scene>> m_scenes;
 
 	std::map<std::string, sf::Keyboard::Key> m_supportedKeys;
 
@@ -31,19 +31,19 @@ private:
 
 	void initWindow();
 	void initSupportedKeys();
-	void initStates();
+	void initScenes();
 
 	// Update
 
 	void update();
 	void pollEvents();
-	void updateStates();
+	void updateScenes();
 	void calculateFrameTime();
 
 	// Render
 
 	void render();
-	void renderStates();
+	void renderScenes();
 
 public:
 	/////////////////////

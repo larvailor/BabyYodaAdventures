@@ -1,4 +1,6 @@
-#include "GameState.hpp"
+#include "Scene_Game.hpp"
+
+#include "ConfigHelper.hpp"
 
 /////////////////////////////////////////////////
 // 
@@ -10,7 +12,7 @@
 //		Update
 //
 
-void GameState::handleInput(const float &frameTime)
+void Scene_Game::handleInput(const float &frameTime)
 {
 	checkForClose();
 
@@ -39,12 +41,12 @@ void GameState::handleInput(const float &frameTime)
 //		Constructors
 //
 
-GameState::GameState(std::shared_ptr<sf::RenderWindow> &renderWindow, std::map<std::string, sf::Keyboard::Key> *supportedKeys)
-	: State(renderWindow, supportedKeys)
+Scene_Game::Scene_Game(std::shared_ptr<sf::RenderWindow> &renderWindow, std::map<std::string, sf::Keyboard::Key> *supportedKeys)
+	: Scene(renderWindow, supportedKeys)
 {
-	std::cout << "GameState constructor called" << std::endl;
+	std::cout << "Scene_Game constructor called" << std::endl;
 
-	initKeyBinds("Config/GameState_KeyBinds.ini");
+	initKeyBinds(SCENE_GAME_KEY_BINDS_PATH);
 }
 
 
@@ -52,9 +54,9 @@ GameState::GameState(std::shared_ptr<sf::RenderWindow> &renderWindow, std::map<s
 //		Destructors
 //
 
-GameState::~GameState()
+Scene_Game::~Scene_Game()
 {
-	std::cout << "GameState destructor called" << std::endl;
+	std::cout << "Scene_Game destructor called" << std::endl;
 }
 
 
@@ -63,7 +65,7 @@ GameState::~GameState()
 //		Update
 //
 
-void GameState::update(const float &frameTime)
+void Scene_Game::update(const float &frameTime)
 {
 	updateMousePositions();
 	handleInput(frameTime);
@@ -77,7 +79,7 @@ void GameState::update(const float &frameTime)
 //		Render
 //
 
-void GameState::render(std::shared_ptr<sf::RenderTarget> renderTarget)
+void Scene_Game::render(std::shared_ptr<sf::RenderTarget> renderTarget)
 {
 	if (renderTarget == nullptr)
 	{
@@ -92,10 +94,10 @@ void GameState::render(std::shared_ptr<sf::RenderTarget> renderTarget)
 
 
 //-----------------------------------------------
-//		Managing state
+//		Managing scene
 //
 
-void GameState::finalizeState()
+void Scene_Game::finalizeScene()
 {
-	std::cout << "GameState finalizeState called" << std::endl;
+	std::cout << "Scene_Game finalizeScene called" << std::endl;
 }

@@ -1,9 +1,9 @@
-#ifndef GAME_STATE_HPP
-#define GAME_STATE_HPP
+#ifndef SCENE_GAME_HPP
+#define SCENE_GAME_HPP
 
-#include "State.hpp"
+#include "Scene.hpp"
 
-class GameState : public State
+class Scene_Game : public Scene
 {
 private:
 	/////////////////////
@@ -29,11 +29,11 @@ public:
 
 	// Constructors
 
-	GameState(std::shared_ptr<sf::RenderWindow> &renderWindow, std::map<std::string, sf::Keyboard::Key> *supportedKeys);
+	Scene_Game(std::shared_ptr<sf::RenderWindow> &renderWindow, std::map<std::string, sf::Keyboard::Key> *supportedKeys);
 
 	// Destructors
 
-	virtual ~GameState();
+	virtual ~Scene_Game();
 
 	// Update
 
@@ -43,9 +43,9 @@ public:
 
 	void render(std::shared_ptr<sf::RenderTarget> renderTarget = nullptr);
 
-	// Managing state
+	// Managing scene
 
-	void finalizeState();
+	void finalizeScene();
 };
 
 #endif

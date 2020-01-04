@@ -1,4 +1,4 @@
-#include "MainMenuState.hpp"
+#include "Scene_MainMenu.hpp"
 
 #include "ConfigHelper.hpp"
 #include "Button.hpp"
@@ -13,7 +13,7 @@
 //		Initialization
 //
 
-void MainMenuState::initButtons()
+void Scene_MainMenu::initButtons()
 {
 	m_startGameBtn = std::make_unique<Button>(
 		100.f, 100.f, 200.f, 50.f,
@@ -28,12 +28,12 @@ void MainMenuState::initButtons()
 //		Update
 //
 
-void MainMenuState::handleInput(const float &frameTime)
+void Scene_MainMenu::handleInput(const float &frameTime)
 {
 	checkForClose();
 }
 
-void MainMenuState::updateButtons()
+void Scene_MainMenu::updateButtons()
 {
 	m_startGameBtn->update(m_mousePosView);
 }
@@ -44,7 +44,7 @@ void MainMenuState::updateButtons()
 //		Render
 //
 
-void MainMenuState::renderButtons(std::shared_ptr<sf::RenderTarget>& renderTarget)
+void Scene_MainMenu::renderButtons(std::shared_ptr<sf::RenderTarget>& renderTarget)
 {
 	m_startGameBtn->render(renderTarget);
 }
@@ -61,13 +61,13 @@ void MainMenuState::renderButtons(std::shared_ptr<sf::RenderTarget>& renderTarge
 //		Constructors
 //
 
-MainMenuState::MainMenuState(std::shared_ptr<sf::RenderWindow> &renderWindow, std::map<std::string, sf::Keyboard::Key> *supportedKeys)
-	: State(renderWindow, supportedKeys)
+Scene_MainMenu::Scene_MainMenu(std::shared_ptr<sf::RenderWindow> &renderWindow, std::map<std::string, sf::Keyboard::Key> *supportedKeys)
+	: Scene(renderWindow, supportedKeys)
 {
-	std::cout << "MainMenuState constructor called" << std::endl;
+	std::cout << "Scene_MainMenu constructor called" << std::endl;
 
-	initKeyBinds(MAIN_MENU_STATE_KEY_BINDS_PATH);
-	initFont(MAIN_MENU_STATE_FONT_PATH);
+	initKeyBinds(SCENE_MAIN_MENU_KEY_BINDS_PATH);
+	initFont(SCENE_MAIN_MENU_FONT_PATH);
 	initButtons();
 }
 
@@ -76,16 +76,16 @@ MainMenuState::MainMenuState(std::shared_ptr<sf::RenderWindow> &renderWindow, st
 //		Destructors
 //
 
-MainMenuState::~MainMenuState()
+Scene_MainMenu::~Scene_MainMenu()
 {
-	std::cout << "MainMenuState destructor called" << std::endl;
+	std::cout << "Scene_MainMenu destructor called" << std::endl;
 }
 
 //-----------------------------------------------
 //		Update
 //
 
-void MainMenuState::update(const float &frameTime)
+void Scene_MainMenu::update(const float &frameTime)
 {
 	updateMousePositions();
 	handleInput(frameTime);
@@ -98,7 +98,7 @@ void MainMenuState::update(const float &frameTime)
 //		Render
 //
 
-void MainMenuState::render(std::shared_ptr<sf::RenderTarget> renderTarget)
+void Scene_MainMenu::render(std::shared_ptr<sf::RenderTarget> renderTarget)
 {
 	if (renderTarget == nullptr)
 	{
@@ -110,10 +110,10 @@ void MainMenuState::render(std::shared_ptr<sf::RenderTarget> renderTarget)
 
 
 //-----------------------------------------------
-//		Managing state
+//		Managing scene
 //
 
-void MainMenuState::finalizeState()
+void Scene_MainMenu::finalizeScene()
 {
-	std::cout << "MainMenuState finalizeState called" << std::endl;
+	std::cout << "Scene_MainMenu finalizeScene called" << std::endl;
 }
