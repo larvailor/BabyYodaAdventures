@@ -10,21 +10,6 @@
 /////////////////////////////////////////////////
 
 //-----------------------------------------------
-//		Initialization
-//
-
-void Scene_MainMenu::initButtons()
-{
-	m_startGameBtn = std::make_unique<Button>(
-		100.f, 100.f, 200.f, 50.f,
-		m_font, "Start Game",
-		sf::Color::White, sf::Color::Cyan, sf::Color::Magenta
-		);
-}
-
-
-
-//-----------------------------------------------
 //		Update
 //
 
@@ -35,7 +20,10 @@ void Scene_MainMenu::handleInput(const float &frameTime)
 
 void Scene_MainMenu::updateButtons()
 {
-	m_startGameBtn->update(m_mousePosView);
+	for (auto button = m_buttons.begin(); button != m_buttons.end(); button++)
+	{
+		(*button).second->update(m_mousePosView);
+	}
 }
 
 
@@ -46,7 +34,10 @@ void Scene_MainMenu::updateButtons()
 
 void Scene_MainMenu::renderButtons(std::shared_ptr<sf::RenderTarget>& renderTarget)
 {
-	m_startGameBtn->render(renderTarget);
+	for (auto button = m_buttons.begin(); button != m_buttons.end(); button++)
+	{
+		(*button).second->render(renderTarget);
+	}
 }
 
 
@@ -61,14 +52,14 @@ void Scene_MainMenu::renderButtons(std::shared_ptr<sf::RenderTarget>& renderTarg
 //		Constructors
 //
 
-Scene_MainMenu::Scene_MainMenu(std::shared_ptr<sf::RenderWindow> &renderWindow, std::map<std::string, sf::Keyboard::Key> *supportedKeys)
+Scene_MainMenu::Scene_MainMenu(std::shared_ptr<sf::RenderWindow> &renderWindow, const std::map<std::string, sf::Keyboard::Key> *const supportedKeys)
 	: Scene(renderWindow, supportedKeys)
 {
 	std::cout << "Scene_MainMenu constructor called" << std::endl;
 
-	initKeyBinds(SCENE_MAIN_MENU_KEY_BINDS_PATH);
+	initKeyBinds(SCENE_MAIN_MENU_KEY_BINDS_PATH, supportedKeys);
 	initFont(SCENE_MAIN_MENU_FONT_PATH);
-	initButtons();
+	initButtons(SCENE_MAIN_MENU_BUTTONS_PATH);
 }
 
 

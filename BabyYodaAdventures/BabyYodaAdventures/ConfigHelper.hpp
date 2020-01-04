@@ -18,7 +18,7 @@ constexpr auto SUPPORTED_KEYS_CONFIG_PATH = "Config/SupportedKeys.ini";
 //		Scene_GameScene
 //
 
-constexpr auto SCENE_GAME_KEY_BINDS_PATH = "Config/Scene_Game_KeyBinds.ini";
+constexpr auto SCENE_GAME_KEY_BINDS_PATH = "Config/Scenes/Game/Scene_Game_KeyBinds.ini";
 
 
 
@@ -26,7 +26,8 @@ constexpr auto SCENE_GAME_KEY_BINDS_PATH = "Config/Scene_Game_KeyBinds.ini";
 //		Scene_MainMenu
 //
 
-constexpr auto SCENE_MAIN_MENU_KEY_BINDS_PATH = "Config/Scene_MainMenu_KeyBinds.ini";
+constexpr auto SCENE_MAIN_MENU_KEY_BINDS_PATH = "Config/Scenes/MainMenu/Scene_MainMenu_KeyBinds.ini";
 constexpr auto SCENE_MAIN_MENU_FONT_PATH = "Resources/Fonts/Polybius1981.ttf";
+constexpr auto SCENE_MAIN_MENU_BUTTONS_PATH = "Config/Scenes/MainMenu/Scene_MainMenu_Buttons.ini";
 
 #endif

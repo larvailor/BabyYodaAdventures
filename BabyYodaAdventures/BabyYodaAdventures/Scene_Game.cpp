@@ -41,12 +41,12 @@ void Scene_Game::handleInput(const float &frameTime)
 //		Constructors
 //
 
-Scene_Game::Scene_Game(std::shared_ptr<sf::RenderWindow> &renderWindow, std::map<std::string, sf::Keyboard::Key> *supportedKeys)
+Scene_Game::Scene_Game(std::shared_ptr<sf::RenderWindow> &renderWindow, const std::map<std::string, sf::Keyboard::Key> *const supportedKeys)
 	: Scene(renderWindow, supportedKeys)
 {
 	std::cout << "Scene_Game constructor called" << std::endl;
 
-	initKeyBinds(SCENE_GAME_KEY_BINDS_PATH);
+	initKeyBinds(SCENE_GAME_KEY_BINDS_PATH, supportedKeys);
 }
 
 

@@ -29,7 +29,7 @@ public:
 
 	// Constructors
 
-	Scene_Game(std::shared_ptr<sf::RenderWindow> &renderWindow, std::map<std::string, sf::Keyboard::Key> *supportedKeys);
+	Scene_Game(std::shared_ptr<sf::RenderWindow> &renderWindow, const std::map<std::string, sf::Keyboard::Key> *const supportedKeys);
 
 	// Destructors
 

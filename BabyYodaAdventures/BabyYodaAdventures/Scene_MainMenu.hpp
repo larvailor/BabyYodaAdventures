@@ -2,7 +2,6 @@
 #define SCENE_MAIN_MENU_HPP
 
 #include "Scene.hpp"
-#include "Button.hpp"
 
 class Scene_MainMenu : public Scene
 {
@@ -17,10 +16,6 @@ private:
 	/////////////////////
 	// Methods
 	//
-
-	// Initialization
-
-	void initButtons();
 
 	// Udate
 
@@ -38,7 +33,7 @@ public:
 
 	// Constructors
 
-	Scene_MainMenu(std::shared_ptr<sf::RenderWindow> &renderWindow, std::map<std::string, sf::Keyboard::Key> *supportedKeys);
+	Scene_MainMenu(std::shared_ptr<sf::RenderWindow> &renderWindow, const std::map<std::string, sf::Keyboard::Key> *const supportedKeys);
 
 	// Destructors
 

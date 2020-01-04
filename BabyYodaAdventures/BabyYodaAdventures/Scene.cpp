@@ -10,27 +10,23 @@
 //		Initialization
 //
 
-/**
-	Loads all key binds for specific scene
-	and creates an std::map of supported keys and their codes
-*/
-void Scene::initKeyBinds(std::string pathToConfig)
+
+void Scene::initKeyBinds(std::string pathToKeyBinsIni, const std::map<std::string, sf::Keyboard::Key> *const supportedKeys)
 {
 	std::ifstream ifs;
-	ifs.open(pathToConfig);
+	ifs.open(pathToKeyBinsIni);
 	if (ifs.is_open())
 	{
 		std::string key_name;
 		std::string supported_key;
 		while (ifs >> key_name >> supported_key)
 		{
-			m_keyBinds[key_name] = m_supportedKeys->at(supported_key);
+			m_keyBinds[key_name] = supportedKeys->at(supported_key);
 		}
-
 	}
 	else
 	{
-		std::cout << "ERROR::Scene::initKeyBinds failed to load key binds " << pathToConfig << std::endl;
+		std::cout << "ERROR::Scene::initKeyBinds failed to load key binds " << pathToKeyBinsIni << std::endl;
 	}
 	ifs.close();
 }
@@ -42,6 +38,37 @@ void Scene::initFont(std::string pathToFont)
 	{
 		std::cout << "ERROR::Scene::initFont failed to load font " << pathToFont << std::endl;
 	}
+}
+
+void Scene::initButtons(std::string pathToButtonsIni)
+{
+	std::ifstream ifs;
+	ifs.open(pathToButtonsIni);
+	if (ifs.is_open())
+	{
+		std::string buttonKeyName;
+		std::string text;
+		float x, y, width, height;
+		while (!ifs.eof())
+		{
+			std::getline(ifs, buttonKeyName);
+			if (buttonKeyName.empty()) // an empty line used as a delimiter between buttons
+			{
+				continue;
+			}
+
+			std::getline(ifs, text);
+			ifs >> x >> y >> width >> height;
+
+			auto button = std::make_shared<Button>(x, y, width, height, m_font, text, sf::Color::White, sf::Color::Cyan, sf::Color::Magenta);
+			m_buttons[buttonKeyName] = std::move(button);
+		}
+	}
+	else
+	{
+		std::cout << "ERROR::Scene::initButtons failed to load buttons " << pathToButtonsIni << std::endl;
+	}
+	ifs.close();
 }
 
 
@@ -69,8 +96,8 @@ void Scene::updateMousePositions()
 //		Constructors
 //
 
-Scene::Scene(std::shared_ptr<sf::RenderWindow> &renderWindow, std::map<std::string, sf::Keyboard::Key> *supportedKeys)
-	: m_renderWindow(renderWindow), m_supportedKeys(supportedKeys)
+Scene::Scene(std::shared_ptr<sf::RenderWindow> &renderWindow, const std::map<std::string, sf::Keyboard::Key> *const supportedKeys)
+	: m_renderWindow(renderWindow)
 {
 	std::cout << "Scene constructor called" << std::endl;
 
