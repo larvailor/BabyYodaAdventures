@@ -1,6 +1,7 @@
 #include "MainMenuState.hpp"
 
 #include "ConfigHelper.hpp"
+#include "Button.hpp"
 
 /////////////////////////////////////////////////
 // 
@@ -9,12 +10,43 @@
 /////////////////////////////////////////////////
 
 //-----------------------------------------------
+//		Initialization
+//
+
+void MainMenuState::initButtons()
+{
+	m_startGameBtn = std::make_unique<Button>(
+		100.f, 100.f, 200.f, 50.f,
+		m_font, "Start Game",
+		sf::Color::White, sf::Color::Cyan, sf::Color::Magenta
+		);
+}
+
+
+
+//-----------------------------------------------
 //		Update
 //
 
 void MainMenuState::handleInput(const float &frameTime)
 {
 	checkForClose();
+}
+
+void MainMenuState::updateButtons()
+{
+	m_startGameBtn->update(m_mousePosView);
+}
+
+
+
+//-----------------------------------------------
+//		Render
+//
+
+void MainMenuState::renderButtons(std::shared_ptr<sf::RenderTarget>& renderTarget)
+{
+	m_startGameBtn->render(renderTarget);
 }
 
 
@@ -32,10 +64,11 @@ void MainMenuState::handleInput(const float &frameTime)
 MainMenuState::MainMenuState(std::shared_ptr<sf::RenderWindow> &renderWindow, std::map<std::string, sf::Keyboard::Key> *supportedKeys)
 	: State(renderWindow, supportedKeys)
 {
+	std::cout << "MainMenuState constructor called" << std::endl;
+
 	initKeyBinds(MAIN_MENU_STATE_KEY_BINDS_PATH);
 	initFont(MAIN_MENU_STATE_FONT_PATH);
-
-	std::cout << "MainMenuState constructor called" << std::endl;
+	initButtons();
 }
 
 
@@ -56,6 +89,7 @@ void MainMenuState::update(const float &frameTime)
 {
 	updateMousePositions();
 	handleInput(frameTime);
+	updateButtons();
 }
 
 
@@ -66,7 +100,11 @@ void MainMenuState::update(const float &frameTime)
 
 void MainMenuState::render(std::shared_ptr<sf::RenderTarget> renderTarget)
 {
-	// TBD
+	if (renderTarget == nullptr)
+	{
+		renderTarget = m_renderWindow;
+	}
+	renderButtons(renderTarget);
 }
 
 

@@ -2,17 +2,34 @@
 #define MAIN_MENU_STATE_HPP
 
 #include "State.hpp"
+#include "Button.hpp"
 
 class MainMenuState : public State
 {
 private:
 	/////////////////////
+	// Variables
+	//
+
+	std::unique_ptr<Button> m_startGameBtn;
+
+
+	/////////////////////
 	// Methods
 	//
+
+	// Initialization
+
+	void initButtons();
 
 	// Udate
 
 	void handleInput(const float &frameTime);
+	void updateButtons();
+
+	// Render
+
+	void renderButtons(std::shared_ptr<sf::RenderTarget> &renderTarget);
 
 public:
 	/////////////////////

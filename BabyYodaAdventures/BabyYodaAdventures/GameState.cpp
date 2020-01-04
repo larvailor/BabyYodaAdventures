@@ -42,9 +42,9 @@ void GameState::handleInput(const float &frameTime)
 GameState::GameState(std::shared_ptr<sf::RenderWindow> &renderWindow, std::map<std::string, sf::Keyboard::Key> *supportedKeys)
 	: State(renderWindow, supportedKeys)
 {
-	initKeyBinds("Config/GameState_KeyBinds.ini");
-
 	std::cout << "GameState constructor called" << std::endl;
+
+	initKeyBinds("Config/GameState_KeyBinds.ini");
 }
 
 

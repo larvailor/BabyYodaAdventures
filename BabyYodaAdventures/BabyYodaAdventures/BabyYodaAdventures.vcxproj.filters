@@ -13,6 +13,9 @@
     <Filter Include="Config">
       <UniqueIdentifier>{6e48560e-f2e0-4063-8937-1781a8685eef}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Buttons">
+      <UniqueIdentifier>{1b28d9a2-1ab1-4755-934c-830832196bd0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Entity.cpp">
@@ -33,6 +36,9 @@
     <ClCompile Include="Game.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Core\Buttons</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.hpp">
@@ -52,6 +58,9 @@
     </ClInclude>
     <ClInclude Include="ConfigHelper.hpp">
       <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.hpp">
+      <Filter>Core\Buttons</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

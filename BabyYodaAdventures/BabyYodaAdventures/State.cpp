@@ -28,12 +28,17 @@ void State::initKeyBinds(std::string pathToConfig)
 		}
 
 	}
+	else
+	{
+		std::cout << "ERROR::State::initKeyBinds failed to load key binds " << pathToConfig << std::endl;
+	}
 	ifs.close();
 }
 
 void State::initFont(std::string pathToFont)
 {
-	if (!m_font.loadFromFile(pathToFont))
+	m_font = std::make_shared<sf::Font>();
+	if (!m_font->loadFromFile(pathToFont))
 	{
 		std::cout << "ERROR::State::initFont failed to load font " << pathToFont << std::endl;
 	}
@@ -67,9 +72,9 @@ void State::updateMousePositions()
 State::State(std::shared_ptr<sf::RenderWindow> &renderWindow, std::map<std::string, sf::Keyboard::Key> *supportedKeys)
 	: m_renderWindow(renderWindow), m_supportedKeys(supportedKeys)
 {
-	m_close = false;
-
 	std::cout << "State constructor called" << std::endl;
+
+	m_close = false;
 }
 
 

@@ -28,7 +28,7 @@ protected:
 	
 		// fonts
 
-	sf::Font m_font;
+	std::shared_ptr<sf::Font> m_font;
 
 
 	/////////////////////

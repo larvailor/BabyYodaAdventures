@@ -63,6 +63,10 @@ void Game::initSupportedKeys()
 		}
 
 	}
+	else
+	{
+		std::cout << "ERROR::Game::initSupportedKeys failed to load supported keys" << std::endl;
+	}
 	ifs.close();
 }
 
