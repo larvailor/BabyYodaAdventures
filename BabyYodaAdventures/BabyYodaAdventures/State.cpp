@@ -6,8 +6,9 @@
 //
 /////////////////////////////////////////////////
 
-
-// Initialization
+//-----------------------------------------------
+//		Initialization
+//
 
 /**
 	Loads all key binds for specific state
@@ -28,6 +29,27 @@ void State::initKeyBinds(std::string pathToConfig)
 
 	}
 	ifs.close();
+}
+
+void State::initFont(std::string pathToFont)
+{
+	if (!m_font.loadFromFile(pathToFont))
+	{
+		std::cout << "ERROR::State::initFont failed to load font " << pathToFont << std::endl;
+	}
+}
+
+
+
+//-----------------------------------------------
+//		Update
+//
+
+void State::updateMousePositions()
+{
+	m_mousePosScreen = sf::Mouse::getPosition();
+	m_mousePosWindow = sf::Mouse::getPosition(*m_renderWindow);
+	m_mousePosView = m_renderWindow->mapPixelToCoords(sf::Mouse::getPosition(*m_renderWindow));
 }
 
 

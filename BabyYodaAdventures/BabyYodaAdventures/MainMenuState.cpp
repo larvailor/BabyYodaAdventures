@@ -1,5 +1,7 @@
 #include "MainMenuState.hpp"
 
+#include "ConfigHelper.hpp"
+
 /////////////////////////////////////////////////
 // 
 //		PRIVATE METHODS
@@ -30,7 +32,8 @@ void MainMenuState::handleInput(const float &frameTime)
 MainMenuState::MainMenuState(std::shared_ptr<sf::RenderWindow> &renderWindow, std::map<std::string, sf::Keyboard::Key> *supportedKeys)
 	: State(renderWindow, supportedKeys)
 {
-	initKeyBinds("Config/MainMenuState_KeyBinds.ini");
+	initKeyBinds(MAIN_MENU_STATE_KEY_BINDS_PATH);
+	initFont(MAIN_MENU_STATE_FONT_PATH);
 
 	std::cout << "MainMenuState constructor called" << std::endl;
 }
@@ -51,6 +54,7 @@ MainMenuState::~MainMenuState()
 
 void MainMenuState::update(const float &frameTime)
 {
+	updateMousePositions();
 	handleInput(frameTime);
 }
 

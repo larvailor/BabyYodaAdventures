@@ -15,10 +15,20 @@ protected:
 	std::map<std::string, sf::Keyboard::Key> m_keyBinds;
 	bool m_close;
 
-	// Resources
+	// Mouse positions
+	
+	sf::Vector2i m_mousePosScreen;
+	sf::Vector2i m_mousePosWindow;
+	sf::Vector2f m_mousePosView;
 
+	// Resources
+		// textures
+		
 	std::vector<std::shared_ptr<sf::Texture>> m_textures;
 	
+		// fonts
+
+	sf::Font m_font;
 
 
 	/////////////////////
@@ -27,11 +37,13 @@ protected:
 
 	// Initialization
 
-	virtual void initKeyBinds(std::string path_to_config);
+	virtual void initKeyBinds(std::string pathToConfig);
+	virtual void initFont(std::string pathToFont);
 
 	// Udate
 
 	virtual void handleInput(const float &frameTime) = 0;
+	virtual void updateMousePositions();
 
 	// Managing state
 

@@ -65,6 +65,7 @@ GameState::~GameState()
 
 void GameState::update(const float &frameTime)
 {
+	updateMousePositions();
 	handleInput(frameTime);
 
 	m_player.update(frameTime);

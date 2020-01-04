@@ -72,7 +72,7 @@ void Game::initSupportedKeys()
 */
 void Game::initStates()
 {
-	auto state = std::make_shared<GameState>(m_renderWindow, &m_supportedKeys);
+	auto state = std::make_shared<MainMenuState>(m_renderWindow, &m_supportedKeys);
 	m_states.push(std::move(state));
 }
 
