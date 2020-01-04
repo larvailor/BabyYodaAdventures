@@ -1,5 +1,7 @@
 #include "Game.hpp"
 
+#include "ConfigHelper.hpp"
+
 /////////////////////////////////////////////////
 // 
 //		PRIVATE METHODS
@@ -11,7 +13,7 @@
 //
 
 /**
-	Loads configuration from window.ini file.
+	Loads window configuration from window.ini file.
 	Sets up default if failed to load
 */
 void Game::initWindow()
@@ -26,7 +28,7 @@ void Game::initWindow()
 	// Reading config from file
 
 	std::ifstream ifs;
-	ifs.open("Config/window.ini");
+	ifs.open(WINDOW_CONFIG_PATH);
 	if (ifs.is_open())
 	{
 		std::getline(ifs, title);
@@ -44,13 +46,13 @@ void Game::initWindow()
 }
 
 /**
-	Loads all supported keys from supported_keys.ini file 
+	Loads all supported keys from SupportedKeys.ini file 
 	and creates an std::map of supported keys and their codes
 */
-void Game::initKeys()
+void Game::initSupportedKeys()
 {
 	std::ifstream ifs;
-	ifs.open("Config/SupportedKeys.ini");
+	ifs.open(SUPPORTED_KEYS_CONFIG_PATH);
 	if (ifs.is_open())
 	{
 		std::string key_name;
@@ -64,6 +66,10 @@ void Game::initKeys()
 	ifs.close();
 }
 
+/**
+	Pushes the first game state into the stack of states.
+	Should be called only when all supported keys were loaded!
+*/
 void Game::initStates()
 {
 	auto state = std::make_shared<GameState>(m_renderWindow, &m_supportedKeys);
@@ -76,6 +82,9 @@ void Game::initStates()
 //		Update
 //
 
+/*
+	Main game update method. Calls to all other update methods
+*/
 void Game::update()
 {
 	pollEvents();
@@ -136,11 +145,17 @@ void Game::calculateFrameTime()
 //		Render
 //
 
+/**
+	Main game render method.
+	1. Clears the main window
+	2. Calls to all render methods
+	3. Displays the result
+*/
 void Game::render()
 {
 	m_renderWindow->clear();
 
-	// draw all stuff here
+	// render all stuff here
 	renderStates();
 
 	m_renderWindow->display();
@@ -172,7 +187,7 @@ void Game::renderStates()
 Game::Game()
 {
 	initWindow();
-	initKeys();
+	initSupportedKeys();
 	initStates();
 }
 
@@ -191,6 +206,10 @@ Game::~Game()
 //		Else methods
 //
 
+/*
+	Game loop. Calls to the main update and render methods and
+	calculates the real frame time
+*/
 void Game::run()
 {
 	while (m_renderWindow->isOpen())

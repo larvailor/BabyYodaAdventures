@@ -30,7 +30,7 @@ private:
 	// Initialization
 
 	void initWindow();
-	void initKeys();
+	void initSupportedKeys();
 	void initStates();
 
 	// Update
