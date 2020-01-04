@@ -10,7 +10,7 @@
 //		Update
 //
 
-void MainMenuState::handleInput(const float& frameTime)
+void MainMenuState::handleInput(const float &frameTime)
 {
 	checkForClose();
 }
@@ -27,7 +27,7 @@ void MainMenuState::handleInput(const float& frameTime)
 //		Constructors
 //
 
-MainMenuState::MainMenuState(std::shared_ptr<sf::RenderWindow> renderWindow, std::map<std::string, sf::Keyboard::Key>* supportedKeys)
+MainMenuState::MainMenuState(std::shared_ptr<sf::RenderWindow> &renderWindow, std::map<std::string, sf::Keyboard::Key> *supportedKeys)
 	: State(renderWindow, supportedKeys)
 {
 	initKeyBinds("Config/MainMenuState_KeyBinds.ini");
@@ -49,7 +49,7 @@ MainMenuState::~MainMenuState()
 //		Update
 //
 
-void MainMenuState::update(const float& frameTime)
+void MainMenuState::update(const float &frameTime)
 {
 	handleInput(frameTime);
 }
@@ -62,10 +62,7 @@ void MainMenuState::update(const float& frameTime)
 
 void MainMenuState::render(std::shared_ptr<sf::RenderTarget> renderTarget)
 {
-	if (renderTarget == nullptr)
-	{
-		renderTarget = m_renderWindow;
-	}
+	// TBD
 }
 
 

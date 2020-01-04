@@ -10,7 +10,7 @@
 //		Update
 //
 
-void GameState::handleInput(const float& frameTime)
+void GameState::handleInput(const float &frameTime)
 {
 	checkForClose();
 
@@ -39,7 +39,7 @@ void GameState::handleInput(const float& frameTime)
 //		Constructors
 //
 
-GameState::GameState(std::shared_ptr<sf::RenderWindow> renderWindow, std::map<std::string, sf::Keyboard::Key>* supportedKeys)
+GameState::GameState(std::shared_ptr<sf::RenderWindow> &renderWindow, std::map<std::string, sf::Keyboard::Key> *supportedKeys)
 	: State(renderWindow, supportedKeys)
 {
 	initKeyBinds("Config/GameState_KeyBinds.ini");
@@ -63,7 +63,7 @@ GameState::~GameState()
 //		Update
 //
 
-void GameState::update(const float& frameTime)
+void GameState::update(const float &frameTime)
 {
 	handleInput(frameTime);
 
@@ -80,10 +80,12 @@ void GameState::render(std::shared_ptr<sf::RenderTarget> renderTarget)
 {
 	if (renderTarget == nullptr)
 	{
-		renderTarget = m_renderWindow;
+		m_player.render(m_renderWindow);
 	}
-
-	m_player.render(renderTarget);
+	else
+	{
+		m_player.render(renderTarget);
+	}
 }
 
 

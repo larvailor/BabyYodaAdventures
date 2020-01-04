@@ -168,7 +168,7 @@ void Game::renderStates()
 {
 	if (!m_states.empty())
 	{
-		m_states.top()->render(m_renderWindow);
+		m_states.top()->render();
 	}
 }
 

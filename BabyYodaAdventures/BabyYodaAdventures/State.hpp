@@ -11,7 +11,7 @@ protected:
 	//
 
 	std::shared_ptr<sf::RenderWindow> m_renderWindow;
-	std::map<std::string, sf::Keyboard::Key>* m_supportedKeys;
+	std::map<std::string, sf::Keyboard::Key> *m_supportedKeys;
 	std::map<std::string, sf::Keyboard::Key> m_keyBinds;
 	bool m_close;
 
@@ -31,7 +31,7 @@ protected:
 
 	// Udate
 
-	virtual void handleInput(const float& frameTime) = 0;
+	virtual void handleInput(const float &frameTime) = 0;
 
 	// Managing state
 
@@ -44,7 +44,7 @@ public:
 
 	// Constructors
 
-	State(std::shared_ptr<sf::RenderWindow> renderWindow, std::map<std::string, sf::Keyboard::Key>* supportedKeys);
+	State(std::shared_ptr<sf::RenderWindow> &renderWindow, std::map<std::string, sf::Keyboard::Key> *supportedKeys);
 
 	// Destructors
 
@@ -57,7 +57,7 @@ public:
 
 	// Udate
 
-	virtual void update(const float& frameTime) = 0;
+	virtual void update(const float &frameTime) = 0;
 
 	// Render
 
