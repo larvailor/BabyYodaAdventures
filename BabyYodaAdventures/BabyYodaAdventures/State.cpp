@@ -42,11 +42,10 @@ void State::initKeyBinds(std::string pathToConfig)
 //		Constructors
 //
 
-State::State(std::shared_ptr<sf::RenderWindow> renderWindow, std::map<std::string, sf::Keyboard::Key>* supportedKeys)
+State::State(std::shared_ptr<sf::RenderWindow> &renderWindow, std::map<std::string, sf::Keyboard::Key> *supportedKeys)
+	: m_renderWindow(renderWindow), m_supportedKeys(supportedKeys)
 {
-	m_renderWindow = renderWindow;
 	m_close = false;
-	m_supportedKeys = supportedKeys;
 
 	std::cout << "State constructor called" << std::endl;
 }

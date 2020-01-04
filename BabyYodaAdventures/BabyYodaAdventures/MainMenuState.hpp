@@ -12,7 +12,7 @@ private:
 
 	// Udate
 
-	void handleInput(const float& frameTime);
+	void handleInput(const float &frameTime);
 
 public:
 	/////////////////////
@@ -21,7 +21,7 @@ public:
 
 	// Constructors
 
-	MainMenuState(std::shared_ptr<sf::RenderWindow> renderWindow, std::map<std::string, sf::Keyboard::Key>* supportedKeys);
+	MainMenuState(std::shared_ptr<sf::RenderWindow> &renderWindow, std::map<std::string, sf::Keyboard::Key> *supportedKeys);
 
 	// Destructors
 
@@ -29,7 +29,7 @@ public:
 
 	// Update
 
-	void update(const float& frameTime);
+	void update(const float &frameTime);
 
 	// Render
 
