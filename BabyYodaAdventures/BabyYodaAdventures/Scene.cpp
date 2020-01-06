@@ -84,6 +84,28 @@ void Scene::updateMousePositions()
 	m_mousePosView = m_renderWindow->mapPixelToCoords(sf::Mouse::getPosition(*m_renderWindow));
 }
 
+void Scene::updateButtons()
+{
+	for (auto button = m_buttons.begin(); button != m_buttons.end(); button++)
+	{
+		(*button).second->update(m_mousePosView);
+	}
+}
+
+
+
+//-----------------------------------------------
+//		Render
+//
+
+void Scene::renderButtons(std::shared_ptr<sf::RenderTarget>& renderTarget)
+{
+	for (auto button = m_buttons.begin(); button != m_buttons.end(); button++)
+	{
+		(*button).second->render(renderTarget);
+	}
+}
+
 
 
 /////////////////////////////////////////////////

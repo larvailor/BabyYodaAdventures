@@ -18,28 +18,6 @@ void Scene_MainMenu::handleInput(const float &frameTime)
 	checkForClose();
 }
 
-void Scene_MainMenu::updateButtons()
-{
-	for (auto button = m_buttons.begin(); button != m_buttons.end(); button++)
-	{
-		(*button).second->update(m_mousePosView);
-	}
-}
-
-
-
-//-----------------------------------------------
-//		Render
-//
-
-void Scene_MainMenu::renderButtons(std::shared_ptr<sf::RenderTarget>& renderTarget)
-{
-	for (auto button = m_buttons.begin(); button != m_buttons.end(); button++)
-	{
-		(*button).second->render(renderTarget);
-	}
-}
-
 
 
 /////////////////////////////////////////////////
@@ -79,8 +57,8 @@ Scene_MainMenu::~Scene_MainMenu()
 void Scene_MainMenu::update(const float &frameTime)
 {
 	updateMousePositions();
-	handleInput(frameTime);
 	updateButtons();
+	handleInput(frameTime);
 }
 
 

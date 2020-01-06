@@ -76,11 +76,8 @@ void Game::initSupportedKeys()
 */
 void Game::initScenes()
 {
-	auto scene = std::make_shared<Scene_Game>(m_renderWindow, &m_supportedKeys);
+	auto scene = std::make_shared<Scene_MainMenu>(m_renderWindow, &m_supportedKeys);
 	m_scenes.push(std::move(scene));
-
-	auto scene2 = std::make_shared<Scene_MainMenu>(m_renderWindow, &m_supportedKeys);
-	m_scenes.push(std::move(scene2));
 }
 
 

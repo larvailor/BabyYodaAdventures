@@ -104,12 +104,14 @@ protected:
 
 	virtual void handleInput(const float &frameTime) = 0;
 	virtual void updateMousePositions();
+	virtual void updateButtons();
 
 	//-----------------------------------------------
 	//		Managing scene
 	//
 
 	virtual void checkForClose();
+	virtual void renderButtons(std::shared_ptr<sf::RenderTarget>& renderTarget);
 
 public:
 	/////////////////////////////////////////////////

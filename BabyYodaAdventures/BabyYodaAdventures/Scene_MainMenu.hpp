@@ -13,6 +13,7 @@ private:
 	std::unique_ptr<Button> m_startGameBtn;
 
 
+
 	/////////////////////
 	// Methods
 	//
@@ -20,11 +21,6 @@ private:
 	// Udate
 
 	void handleInput(const float &frameTime);
-	void updateButtons();
-
-	// Render
-
-	void renderButtons(std::shared_ptr<sf::RenderTarget> &renderTarget);
 
 public:
 	/////////////////////
