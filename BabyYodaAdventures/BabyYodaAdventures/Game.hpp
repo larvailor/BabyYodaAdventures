@@ -11,15 +11,15 @@ private:
 	// Variables
 	//
 
-	std::shared_ptr<sf::RenderWindow> m_renderWindow;
+	shared<sf::RenderWindow> m_renderWindow;
 	sf::Event m_event;
 
 	sf::Clock m_frameTimeClock;
 	float m_frameTime;
 
-	std::stack<std::shared_ptr<Scene>> m_scenes;
+	shared_stack<shared<Scene>> m_scenes;
 
-	std::map<std::string, sf::Keyboard::Key> m_supportedKeys;
+	shared_map<std::string, sf::Keyboard::Key> m_supportedKeys;
 
 
 

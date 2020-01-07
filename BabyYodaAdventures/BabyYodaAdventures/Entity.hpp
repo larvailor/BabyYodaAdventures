@@ -2,11 +2,9 @@
 #define ENTITY_HPP
 
 #include <iostream>
-#include <memory>
-#include <vector>
-#include <map>
-#include <stack> 
 #include <fstream>
+
+#include "Types.hpp"
 
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
@@ -52,7 +50,7 @@ public:
 
 	// Render
 
-	virtual void render(std::shared_ptr<sf::RenderTarget> renderTarget = nullptr);
+	virtual void render(shared<sf::RenderTarget> renderTarget = nullptr);
 };
 
 #endif

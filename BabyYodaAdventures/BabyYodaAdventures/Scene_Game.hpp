@@ -20,7 +20,7 @@ private:
 
 	// Udate
 
-	void handleInput(const float &frameTime);
+	void handleInput(const float& frameTime);
 
 public:
 	/////////////////////
@@ -29,7 +29,11 @@ public:
 
 	// Constructors
 
-	Scene_Game(std::shared_ptr<sf::RenderWindow> &renderWindow, const std::map<std::string, sf::Keyboard::Key> *const supportedKeys);
+	Scene_Game(
+		shared<sf::RenderWindow>& renderWindow,
+		shared_stack<shared<Scene>>& scenes,
+		const shared_map<std::string, sf::Keyboard::Key>& supportedKeys
+	);
 
 	// Destructors
 
@@ -37,11 +41,11 @@ public:
 
 	// Update
 
-	void update(const float &frameTime);
+	void update(const float& frameTime);
 
 	// Render
 
-	void render(std::shared_ptr<sf::RenderTarget> renderTarget = nullptr);
+	void render(shared<sf::RenderTarget> renderTarget = nullptr);
 
 	// Managing scene
 

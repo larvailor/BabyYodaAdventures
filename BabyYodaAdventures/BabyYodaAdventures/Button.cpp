@@ -15,7 +15,7 @@ Button::Button(
 	float y,
 	float width,
 	float height,
-	std::shared_ptr<sf::Font> &font,
+	shared<sf::Font>& font,
 	std::string text,
 	sf::Color idleColor,
 	sf::Color hoverColor,
@@ -74,7 +74,7 @@ bool Button::isPressed() const
 //		Update
 //
 
-void Button::update(const sf::Vector2f &mousePosition)
+void Button::update(const sf::Vector2f& mousePosition)
 {
 	// Idle
 	m_buttonState = BTN_IDLE;
@@ -111,8 +111,7 @@ void Button::update(const sf::Vector2f &mousePosition)
 //		Render
 //
 
-void Button::render(std::shared_ptr<sf::RenderTarget> &renderTarget)
+void Button::render(shared<sf::RenderTarget>& renderTarget)
 {
-	//renderTarget->draw(m_button);
 	renderTarget->draw(m_text);
 }

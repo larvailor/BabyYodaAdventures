@@ -2,7 +2,8 @@
 #define BUTTON_HPP
 
 #include <iostream>
-#include <memory>
+
+#include "Types.hpp"
 
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
@@ -30,7 +31,7 @@ protected:
 	// Resources
 		// fonts
 
-	std::shared_ptr<sf::Font> m_font;
+	shared<sf::Font> m_font;
 
 public:
 	/////////////////////
@@ -40,7 +41,7 @@ public:
 	// Constructors
 
 	Button(float x, float y, float width, float height,
-		std::shared_ptr<sf::Font> &font, std::string text,
+		shared<sf::Font>& font, std::string text,
 		sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor);
 
 	// Destructors
@@ -54,11 +55,11 @@ public:
 
 	// Update
 
-	void update(const sf::Vector2f &mousePosition);
+	void update(const sf::Vector2f& mousePosition);
 
 	// Render
 
-	void render(std::shared_ptr<sf::RenderTarget> &renderTarget);
+	void render(shared<sf::RenderTarget>& renderTarget);
 };
 
 #endif

@@ -12,7 +12,7 @@
 //		Update
 //
 
-void Scene_Game::handleInput(const float &frameTime)
+void Scene_Game::handleInput(const float& frameTime)
 {
 	checkForClose();
 
@@ -41,12 +41,16 @@ void Scene_Game::handleInput(const float &frameTime)
 //		Constructors
 //
 
-Scene_Game::Scene_Game(std::shared_ptr<sf::RenderWindow> &renderWindow, const std::map<std::string, sf::Keyboard::Key> *const supportedKeys)
-	: Scene(renderWindow, supportedKeys)
+Scene_Game::Scene_Game(
+	shared<sf::RenderWindow>& renderWindow,
+	shared_stack<shared<Scene>>& scenes,
+	const shared_map<std::string, sf::Keyboard::Key>& supportedKeys
+)
+	: Scene(renderWindow, scenes, supportedKeys)
 {
 	std::cout << "Scene_Game constructor called" << std::endl;
 
-	initKeyBinds(SCENE_GAME_KEY_BINDS_PATH, supportedKeys);
+	initKeyBinds(SCENE_GAME_KEY_BINDS_PATH);
 }
 
 
@@ -65,7 +69,7 @@ Scene_Game::~Scene_Game()
 //		Update
 //
 
-void Scene_Game::update(const float &frameTime)
+void Scene_Game::update(const float& frameTime)
 {
 	updateMousePositions();
 	handleInput(frameTime);
@@ -79,7 +83,7 @@ void Scene_Game::update(const float &frameTime)
 //		Render
 //
 
-void Scene_Game::render(std::shared_ptr<sf::RenderTarget> renderTarget)
+void Scene_Game::render(shared<sf::RenderTarget> renderTarget)
 {
 	if (renderTarget == nullptr)
 	{

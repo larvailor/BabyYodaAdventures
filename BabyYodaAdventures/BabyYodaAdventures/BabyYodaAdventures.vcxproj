@@ -145,6 +145,7 @@
     <ClInclude Include="Scene_Game.hpp" />
     <ClInclude Include="Scene_MainMenu.hpp" />
     <ClInclude Include="Scene.hpp" />
+    <ClInclude Include="Types.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

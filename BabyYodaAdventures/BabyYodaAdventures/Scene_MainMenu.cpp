@@ -3,6 +3,8 @@
 #include "ConfigHelper.hpp"
 #include "Button.hpp"
 
+#include "Scene_Game.hpp"
+
 /////////////////////////////////////////////////
 // 
 //		PRIVATE METHODS
@@ -13,9 +15,20 @@
 //		Update
 //
 
-void Scene_MainMenu::handleInput(const float &frameTime)
+void Scene_MainMenu::handleInput(const float& frameTime)
 {
 	checkForClose();
+
+	if (m_buttons["START_GAME"]->isPressed())
+	{
+		auto gameScene = std::make_shared<Scene_Game>(m_renderWindow, m_scenes, m_supportedKeys);
+		m_scenes->push(std::move(gameScene));
+	}
+
+	if (m_buttons["END_GAME"]->isPressed())
+	{
+		m_close = true;
+	}
 }
 
 
@@ -30,12 +43,16 @@ void Scene_MainMenu::handleInput(const float &frameTime)
 //		Constructors
 //
 
-Scene_MainMenu::Scene_MainMenu(std::shared_ptr<sf::RenderWindow> &renderWindow, const std::map<std::string, sf::Keyboard::Key> *const supportedKeys)
-	: Scene(renderWindow, supportedKeys)
+Scene_MainMenu::Scene_MainMenu(
+	shared<sf::RenderWindow>& renderWindow,
+	shared_stack<shared<Scene>>& scenes,
+	const shared_map<std::string, sf::Keyboard::Key>& supportedKeys
+)
+	: Scene(renderWindow, scenes, supportedKeys)
 {
 	std::cout << "Scene_MainMenu constructor called" << std::endl;
 
-	initKeyBinds(SCENE_MAIN_MENU_KEY_BINDS_PATH, supportedKeys);
+	initKeyBinds(SCENE_MAIN_MENU_KEY_BINDS_PATH);
 	initFont(SCENE_MAIN_MENU_FONT_PATH);
 	initButtons(SCENE_MAIN_MENU_BUTTONS_PATH);
 }
@@ -54,7 +71,7 @@ Scene_MainMenu::~Scene_MainMenu()
 //		Update
 //
 
-void Scene_MainMenu::update(const float &frameTime)
+void Scene_MainMenu::update(const float& frameTime)
 {
 	updateMousePositions();
 	updateButtons();
@@ -67,7 +84,7 @@ void Scene_MainMenu::update(const float &frameTime)
 //		Render
 //
 
-void Scene_MainMenu::render(std::shared_ptr<sf::RenderTarget> renderTarget)
+void Scene_MainMenu::render(shared<sf::RenderTarget> renderTarget)
 {
 	if (renderTarget == nullptr)
 	{

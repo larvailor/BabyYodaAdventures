@@ -11,7 +11,7 @@
 //
 
 
-void Scene::initKeyBinds(std::string pathToKeyBinsIni, const std::map<std::string, sf::Keyboard::Key> *const supportedKeys)
+void Scene::initKeyBinds(std::string pathToKeyBinsIni)
 {
 	std::ifstream ifs;
 	ifs.open(pathToKeyBinsIni);
@@ -21,7 +21,7 @@ void Scene::initKeyBinds(std::string pathToKeyBinsIni, const std::map<std::strin
 		std::string supported_key;
 		while (ifs >> key_name >> supported_key)
 		{
-			m_keyBinds[key_name] = supportedKeys->at(supported_key);
+			m_keyBinds[key_name] = m_supportedKeys->at(supported_key);
 		}
 	}
 	else
@@ -98,7 +98,7 @@ void Scene::updateButtons()
 //		Render
 //
 
-void Scene::renderButtons(std::shared_ptr<sf::RenderTarget>& renderTarget)
+void Scene::renderButtons(shared<sf::RenderTarget>& renderTarget)
 {
 	for (auto button = m_buttons.begin(); button != m_buttons.end(); button++)
 	{
@@ -118,8 +118,12 @@ void Scene::renderButtons(std::shared_ptr<sf::RenderTarget>& renderTarget)
 //		Constructors
 //
 
-Scene::Scene(std::shared_ptr<sf::RenderWindow> &renderWindow, const std::map<std::string, sf::Keyboard::Key> *const supportedKeys)
-	: m_renderWindow(renderWindow)
+Scene::Scene(
+	shared<sf::RenderWindow>& renderWindow,
+	shared_stack<shared<Scene>>& scenes,
+	const shared_map<std::string, sf::Keyboard::Key>& supportedKeys
+)
+	: m_renderWindow(renderWindow), m_scenes(scenes), m_supportedKeys(supportedKeys)
 {
 	std::cout << "Scene constructor called" << std::endl;
 

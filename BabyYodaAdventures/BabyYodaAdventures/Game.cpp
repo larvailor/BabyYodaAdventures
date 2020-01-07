@@ -51,6 +51,8 @@ void Game::initWindow()
 */
 void Game::initSupportedKeys()
 {
+	m_supportedKeys = std::make_shared<std::map<std::string, sf::Keyboard::Key>>();
+
 	std::ifstream ifs;
 	ifs.open(SUPPORTED_KEYS_CONFIG_PATH);
 	if (ifs.is_open())
@@ -59,7 +61,7 @@ void Game::initSupportedKeys()
 		int key_code;
 		while (ifs >> key_name >> key_code)
 		{
-			m_supportedKeys[key_name] = static_cast<sf::Keyboard::Key>(key_code);
+			m_supportedKeys.get()->emplace(key_name, static_cast<sf::Keyboard::Key>(key_code));
 		}
 
 	}
@@ -76,8 +78,10 @@ void Game::initSupportedKeys()
 */
 void Game::initScenes()
 {
-	auto scene = std::make_shared<Scene_MainMenu>(m_renderWindow, &m_supportedKeys);
-	m_scenes.push(std::move(scene));
+	m_scenes = std::make_shared<std::stack<shared<Scene>>>();
+
+	auto scene = std::make_shared<Scene_MainMenu>(m_renderWindow, m_scenes, m_supportedKeys);
+	m_scenes.get()->push(std::move(scene));
 }
 
 
@@ -115,14 +119,14 @@ void Game::pollEvents()
 */
 void Game::updateScenes()
 {
-	if (!m_scenes.empty())
+	if (!m_scenes.get()->empty())
 	{
-		m_scenes.top()->update(m_frameTime);
+		m_scenes.get()->top()->update(m_frameTime);
 
-		if (m_scenes.top()->needToBeClosed())
+		if (m_scenes.get()->top()->needToBeClosed())
 		{
-			m_scenes.top()->finalizeScene();
-			m_scenes.pop();
+			m_scenes.get()->top()->finalizeScene();
+			m_scenes.get()->pop();
 		}
 	}
 	else
@@ -170,9 +174,9 @@ void Game::render()
 */
 void Game::renderScenes()
 {
-	if (!m_scenes.empty())
+	if (!m_scenes.get()->empty())
 	{
-		m_scenes.top()->render();
+		m_scenes.get()->top()->render();
 	}
 }
 

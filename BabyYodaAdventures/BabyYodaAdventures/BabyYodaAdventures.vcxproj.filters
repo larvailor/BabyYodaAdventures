@@ -19,6 +19,9 @@
     <Filter Include="Core\Resources\Buttons">
       <UniqueIdentifier>{1b28d9a2-1ab1-4755-934c-830832196bd0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Types">
+      <UniqueIdentifier>{ba5f311b-e67e-465a-9041-232186b6f5e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Entity.cpp">
@@ -64,6 +67,9 @@
     </ClInclude>
     <ClInclude Include="Scene_Game.hpp">
       <Filter>Core\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Types.hpp">
+      <Filter>Core\Types</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

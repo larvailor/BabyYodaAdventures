@@ -63,7 +63,7 @@ void Entity::move(const float& frameTime, const float dirX, const float dirY)
 //		Render
 //
 
-void Entity::render(std::shared_ptr<sf::RenderTarget> renderTarget)
+void Entity::render(shared<sf::RenderTarget> renderTarget)
 {
 	renderTarget->draw(m_rectShape);
 }
