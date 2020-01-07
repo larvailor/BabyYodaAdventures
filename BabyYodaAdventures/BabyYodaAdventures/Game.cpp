@@ -21,9 +21,11 @@ void Game::initWindow()
 	// Setting default values
 
 	std::string title = "Baby Yoda Adventures";
-	sf::VideoMode video_mode(1000, 800);
-	unsigned framerate_limit = 60;
-	bool vertical_sync_enabled = false;
+	sf::VideoMode videoMode = sf::VideoMode::getDesktopMode();
+	unsigned fps = 60;
+	bool verticalSync = false;
+	bool fullScreen = false;
+	sf::Uint32 style = sf::Style::Titlebar | sf::Style::Close;
 
 	// Reading config from file
 
@@ -32,17 +34,20 @@ void Game::initWindow()
 	if (ifs.is_open())
 	{
 		std::getline(ifs, title);
-		ifs >> video_mode.width >> video_mode.height;
-		ifs >> framerate_limit;
-		ifs >> vertical_sync_enabled;
+		ifs >> videoMode.width >> videoMode.height;
+		ifs >> fps;
+		ifs >> verticalSync;
+		ifs >> fullScreen;
 	}
 	ifs.close();
 
+	if (fullScreen) { style = sf::Style::Fullscreen; }
+
 	// Setting up window
 
-	m_renderWindow = std::make_shared<sf::RenderWindow>(video_mode, title, sf::Style::Titlebar | sf::Style::Close);
-	m_renderWindow->setFramerateLimit(framerate_limit);
-	m_renderWindow->setVerticalSyncEnabled(vertical_sync_enabled);
+	m_renderWindow = std::make_shared<sf::RenderWindow>(videoMode, title, style);
+	m_renderWindow->setFramerateLimit(fps);
+	m_renderWindow->setVerticalSyncEnabled(verticalSync);
 }
 
 /**
