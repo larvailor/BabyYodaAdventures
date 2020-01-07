@@ -12,6 +12,33 @@
 /////////////////////////////////////////////////
 
 //-----------------------------------------------
+//		Initialization
+//
+
+void Scene_MainMenu::initBackground()
+{
+	m_background.setSize(
+		sf::Vector2f(
+			static_cast<float>(m_renderWindow->getSize().x),
+			static_cast<float>(m_renderWindow->getSize().y)
+		)
+	);
+
+	if (!m_backgroundTexture.loadFromFile(SCENE_MAIN_MENU_BACKGROUND_PATH))
+	{
+		std::cout << "ERROR::Scene_MainMenu::initBackground could not load background " << SCENE_MAIN_MENU_BACKGROUND_PATH << std::endl;
+		m_background.setFillColor(sf::Color::Black);
+	}
+	else
+	{
+		m_background.setTexture(&m_backgroundTexture);
+	}
+
+}
+
+
+
+//-----------------------------------------------
 //		Update
 //
 
@@ -29,6 +56,17 @@ void Scene_MainMenu::handleInput(const float& frameTime)
 	{
 		m_close = true;
 	}
+}
+
+
+
+//-----------------------------------------------
+//		Update
+//
+
+void Scene_MainMenu::renderBackground()
+{
+	m_renderWindow->draw(m_background);
 }
 
 
@@ -52,6 +90,7 @@ Scene_MainMenu::Scene_MainMenu(
 {
 	std::cout << "Scene_MainMenu constructor called" << std::endl;
 
+	initBackground();
 	initKeyBinds(SCENE_MAIN_MENU_KEY_BINDS_PATH);
 	initFont(SCENE_MAIN_MENU_FONT_PATH);
 	initButtons(SCENE_MAIN_MENU_BUTTONS_PATH);
@@ -90,6 +129,7 @@ void Scene_MainMenu::render(shared<sf::RenderTarget> renderTarget)
 	{
 		renderTarget = m_renderWindow;
 	}
+	renderBackground();
 	renderButtons(renderTarget);
 }
 

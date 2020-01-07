@@ -16,31 +16,53 @@ Button::Button(
 	float width,
 	float height,
 	shared<sf::Font>& font,
+	int fontSize,
 	std::string text,
 	sf::Color idleColor,
 	sf::Color hoverColor,
 	sf::Color activeColor
-) : m_font(font), m_idleColor(idleColor), m_hoverColor(hoverColor), m_activeColor(activeColor)
+) :
+	m_font(font),
+	m_idleColor(idleColor),
+	m_hoverColor(hoverColor),
+	m_activeColor(activeColor),
+	m_buttonState(BTN_IDLE)
 {
 	std::cout << "Button constructor called" << std::endl;
+
+	// Text on button
+	m_text.setFont(*m_font);
+	m_text.setString(text);
+	m_text.setCharacterSize(fontSize);
 
 	// Button
 	m_button.setPosition(sf::Vector2f(x, y));
 	m_button.setSize(sf::Vector2f(width, height));
 
-	// Button state
-	m_buttonState = BTN_IDLE;
+	if (width == -1)
+	{
+		m_button.setSize(sf::Vector2f(m_text.getGlobalBounds().width + 10, m_button.getGlobalBounds().height));
+	}
+	if (height == -1)
+	{
+		m_button.setSize(sf::Vector2f(m_button.getGlobalBounds().width, m_text.getGlobalBounds().height + 10));
+	}
 
-	// Text on button
-	m_text.setFont(*m_font);
-	m_text.setString(text);
 	m_text.setFillColor(sf::Color::White);
-	m_text.setCharacterSize(78);
-	m_text.setPosition(
-		m_button.getPosition().x + (m_button.getGlobalBounds().width / 2.f) - (m_text.getGlobalBounds().width / 2.f),
-		m_button.getPosition().y + (m_button.getGlobalBounds().height / 2.f) - m_text.getGlobalBounds().height / 2.f
+
+	m_text.setOrigin(
+		sf::Vector2f(
+			m_text.getLocalBounds().left + m_text.getLocalBounds().width / 2.f,
+			m_text.getLocalBounds().top + m_text.getLocalBounds().height / 2.f
+		)
 	);
 
+	m_text.setPosition(
+		sf::Vector2f(
+			m_button.getPosition().x + (m_button.getGlobalBounds().width / 2.f),
+			m_button.getPosition().y + (m_button.getGlobalBounds().height / 2.f)
+		)
+	);
 }
 
 
@@ -80,7 +102,7 @@ void Button::update(const sf::Vector2f& mousePosition)
 	m_buttonState = BTN_IDLE;
 
 	// Hover
-	if (m_text.getGlobalBounds().contains(mousePosition))
+	if (m_button.getGlobalBounds().contains(mousePosition))
 	{
 		m_buttonState = BTN_HOVER;
 
@@ -113,5 +135,6 @@ void Button::update(const sf::Vector2f& mousePosition)
 
 void Button::render(shared<sf::RenderTarget>& renderTarget)
 {
+	//renderTarget->draw(m_button);
 	renderTarget->draw(m_text);
 }

@@ -46,21 +46,35 @@ void Scene::initButtons(std::string pathToButtonsIni)
 	ifs.open(pathToButtonsIni);
 	if (ifs.is_open())
 	{
-		std::string buttonKeyName;
-		std::string text;
+		std::string buttonKeyName, text;
 		float x, y, width, height;
+		int r, g, b, a;
+		sf::Color colorIdle, colorHover, colorActive;
+		int fontSize;
+
 		while (!ifs.eof())
 		{
 			std::getline(ifs, buttonKeyName);
-			if (buttonKeyName.empty()) // an empty line used as a delimiter between buttons
-			{
-				continue;
-			}
+
+			// an empty line used as a delimiter between buttons
+			if (buttonKeyName.empty()) { continue; }
 
 			std::getline(ifs, text);
-			ifs >> x >> y >> width >> height;
 
-			auto button = std::make_shared<Button>(x, y, width, height, m_font, text, sf::Color::White, sf::Color::Cyan, sf::Color::Magenta);
+			ifs >> x >> y >> width >> height;
+			
+			ifs >> r >> g >> b >> a;
+			colorIdle = sf::Color(r, g, b, a);
+
+			ifs >> r >> g >> b >> a;
+			colorHover = sf::Color(r, g, b, a);
+
+			ifs >> r >> g >> b >> a;
+			colorActive = sf::Color(r, g, b, a);
+
+			ifs >> fontSize;
+
+			auto button = std::make_shared<Button>(x, y, width, height, m_font, fontSize, text, colorIdle, colorHover, colorActive);
 			m_buttons[buttonKeyName] = std::move(button);
 		}
 	}

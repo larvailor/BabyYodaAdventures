@@ -7,12 +7,27 @@ class Scene_MainMenu : public Scene
 {
 private:
 	/////////////////////
+	// Variables
+	//
+
+	sf::RectangleShape m_background;
+	sf::Texture m_backgroundTexture;
+
+
+	/////////////////////
 	// Methods
 	//
+
+	// Initialization
+
+	void initBackground();
 
 	// Udate
 
 	void handleInput(const float& frameTime);
+
+	// Render
+	void renderBackground();
 
 public:
 	/////////////////////

@@ -41,7 +41,7 @@ public:
 	// Constructors
 
 	Button(float x, float y, float width, float height,
-		shared<sf::Font>& font, std::string text,
+		shared<sf::Font>& font, int fontSize, std::string text,
 		sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor);
 
 	// Destructors
