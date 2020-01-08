@@ -21,6 +21,15 @@ private:
 
 	shared_map<std::string, sf::Keyboard::Key> m_supportedKeys;
 
+	// Debug
+	sf::Clock m_fpsClock;
+
+	sf::Font m_debugFont;
+	sf::Text m_debugFrameTime;
+	sf::Text m_debugFps;
+	int m_fpsCounter;
+	int m_fps;
+
 
 
 	/////////////////////
@@ -32,6 +41,7 @@ private:
 	void initWindow();
 	void initSupportedKeys();
 	void initScenes();
+	void initDebugVars();
 
 	// Update
 
@@ -39,11 +49,13 @@ private:
 	void pollEvents();
 	void updateScenes();
 	void calculateFrameTime();
+	void calculateFps();
 
 	// Render
 
 	void render();
 	void renderScenes();
+	void renderDebugInfo();
 
 public:
 	/////////////////////

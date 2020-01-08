@@ -89,7 +89,26 @@ void Game::initScenes()
 	m_scenes.get()->push(std::move(scene));
 }
 
+void Game::initDebugVars()
+{
+	// Frame time
+	m_debugFont.loadFromFile("Resources/Fonts/star_wars.otf");
+	m_debugFrameTime = sf::Text();
+	m_debugFrameTime.setFont(m_debugFont);
+	m_debugFrameTime.setCharacterSize(16);
+	m_debugFrameTime.setFillColor(sf::Color::White);
+	m_debugFrameTime.setPosition(5, 5);
 
+	// Fps
+	m_fps = 0;
+
+	m_debugFps = sf::Text();
+	m_debugFps.setFont(m_debugFont);
+	m_debugFps.setCharacterSize(16);
+	m_debugFps.setFillColor(sf::Color::White);
+	m_debugFps.setPosition(5, 20);
+
+}
 
 //-----------------------------------------------
 //		Update
@@ -145,13 +164,24 @@ void Game::updateScenes()
 */
 void Game::calculateFrameTime()
 {
+	m_debugFrameTime.setString("FT: " + std::to_string(m_frameTime));
 	m_frameTime = m_frameTimeClock.restart().asSeconds();
-
-	//system("cls");
-	//std::cout << "Frame time: " << m_frameTime << std::endl;
 }
 
-
+/**
+	Calculates how much times the scene was redrawn in one second
+*/
+void Game::calculateFps()
+{
+	m_fpsCounter++;
+	if (m_fpsClock.getElapsedTime().asSeconds() > 1)
+	{
+		m_fps = m_fpsCounter;
+		m_fpsCounter = 0;
+		m_debugFps.setString("FPS: " + std::to_string(m_fps));
+		m_fpsClock.restart();
+	}
+}
 
 //-----------------------------------------------
 //		Render
@@ -170,6 +200,8 @@ void Game::render()
 	// render all stuff here
 	renderScenes();
 
+	renderDebugInfo();
+
 	m_renderWindow->display();
 }
 
@@ -184,6 +216,14 @@ void Game::renderScenes()
 	}
 }
 
+void Game::renderDebugInfo()
+{
+	// Frame time
+	m_renderWindow->draw(m_debugFrameTime);
+
+	// Fps
+	m_renderWindow->draw(m_debugFps);
+}
 
 
 /////////////////////////////////////////////////
@@ -201,6 +241,8 @@ Game::Game()
 	initWindow();
 	initSupportedKeys();
 	initScenes();
+
+	initDebugVars();
 }
 
 
@@ -230,5 +272,6 @@ void Game::run()
 		render();
 
 		calculateFrameTime();
+		calculateFps();
 	}
 }
