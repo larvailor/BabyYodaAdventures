@@ -14,8 +14,6 @@
 
 void Scene_Game::handleInput(const float& frameTime)
 {
-	checkForClose();
-
 	if (sf::Keyboard::isKeyPressed(m_keyBinds.at("MOVE_UP")))
 		m_player.move(frameTime, 0.f, -1.f);
 
@@ -27,6 +25,9 @@ void Scene_Game::handleInput(const float& frameTime)
 
 	if (sf::Keyboard::isKeyPressed(m_keyBinds.at("MOVE_RIGHT")))
 		m_player.move(frameTime, 1.f, 0.f);
+
+	if (sf::Keyboard::isKeyPressed(m_keyBinds.at("ESCAPE")))
+		quitScene();
 }
 
 

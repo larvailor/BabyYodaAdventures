@@ -130,7 +130,6 @@ void Game::updateScenes()
 
 		if (m_scenes.get()->top()->needToBeClosed())
 		{
-			m_scenes.get()->top()->finalizeScene();
 			m_scenes.get()->pop();
 		}
 	}

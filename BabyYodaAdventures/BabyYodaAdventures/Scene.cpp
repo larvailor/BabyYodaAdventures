@@ -122,6 +122,17 @@ void Scene::renderButtons(shared<sf::RenderTarget>& renderTarget)
 
 
 
+//-----------------------------------------------
+//		Managing scene
+//
+
+void Scene::quitScene()
+{
+	m_quit = true;
+}
+
+
+
 /////////////////////////////////////////////////
 // 
 //		PUBLIC METHODS
@@ -136,12 +147,12 @@ Scene::Scene(
 	shared<sf::RenderWindow>& renderWindow,
 	shared_stack<shared<Scene>>& scenes,
 	const shared_map<std::string, sf::Keyboard::Key>& supportedKeys
-)
-	: m_renderWindow(renderWindow), m_scenes(scenes), m_supportedKeys(supportedKeys)
+) :
+	m_renderWindow(renderWindow),
+	m_scenes(scenes),
+	m_supportedKeys(supportedKeys)
 {
 	std::cout << "Scene constructor called" << std::endl;
-
-	m_close = false;
 }
 
 
@@ -165,19 +176,5 @@ Scene::~Scene()
 
 bool Scene::needToBeClosed() const
 {
-	return m_close;
-}
-
-
-
-//-----------------------------------------------
-//		Managing scene
-//
-
-void Scene::checkForClose()
-{
-	if (sf::Keyboard::isKeyPressed(m_keyBinds.at("Escape")))
-	{
-		m_close = true;
-	}
+	return m_quit;
 }

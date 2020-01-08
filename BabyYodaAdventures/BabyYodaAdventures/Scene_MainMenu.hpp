@@ -20,7 +20,7 @@ private:
 
 	// Initialization
 
-	void initBackground();
+	void initBackground(std::string pathToBackground);
 
 	// Udate
 
@@ -53,10 +53,6 @@ public:
 	// Render
 
 	void render(shared<sf::RenderTarget> renderTarget = nullptr);
-
-	// Managing scene
-
-	void finalizeScene();
 };
 
 #endif

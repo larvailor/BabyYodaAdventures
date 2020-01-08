@@ -49,8 +49,8 @@ protected:
 	//		Scene state
 	//
 
-	/* Indicates should the scene be completed or not */
-	bool m_close;
+	/* Indicates should the scene be closed or not */
+	bool m_quit = false;
 
 	/* A global stack that is used for managing scenes */
 	shared_stack<shared<Scene>> m_scenes;
@@ -118,7 +118,7 @@ protected:
 	//		Managing scene
 	//
 
-	virtual void checkForClose();
+	virtual void quitScene();
 	virtual void renderButtons(shared<sf::RenderTarget>& renderTarget);
 
 public:
@@ -163,12 +163,6 @@ public:
 	//
 
 	virtual void render(shared<sf::RenderTarget> renderTarget = nullptr) = 0;
-
-	//-----------------------------------------------
-	//		Managing state
-	//
-
-	virtual void finalizeScene() = 0;
 };
 
 #endif

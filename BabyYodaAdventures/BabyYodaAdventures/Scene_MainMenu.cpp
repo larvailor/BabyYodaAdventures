@@ -15,7 +15,7 @@
 //		Initialization
 //
 
-void Scene_MainMenu::initBackground()
+void Scene_MainMenu::initBackground(std::string pathToBackground)
 {
 	m_background.setSize(
 		sf::Vector2f(
@@ -24,9 +24,9 @@ void Scene_MainMenu::initBackground()
 		)
 	);
 
-	if (!m_backgroundTexture.loadFromFile(SCENE_MAIN_MENU_BACKGROUND_PATH))
+	if (!m_backgroundTexture.loadFromFile(pathToBackground))
 	{
-		std::cout << "ERROR::Scene_MainMenu::initBackground could not load background " << SCENE_MAIN_MENU_BACKGROUND_PATH << std::endl;
+		std::cout << "ERROR::Scene_MainMenu::initBackground could not load background " << pathToBackground << std::endl;
 		m_background.setFillColor(sf::Color::Black);
 	}
 	else
@@ -44,8 +44,6 @@ void Scene_MainMenu::initBackground()
 
 void Scene_MainMenu::handleInput(const float& frameTime)
 {
-	checkForClose();
-
 	if (m_buttons["START_GAME"]->isPressed())
 	{
 		auto gameScene = std::make_shared<Scene_Game>(m_renderWindow, m_scenes, m_supportedKeys);
@@ -54,7 +52,7 @@ void Scene_MainMenu::handleInput(const float& frameTime)
 
 	if (m_buttons["END_GAME"]->isPressed())
 	{
-		m_close = true;
+		quitScene();
 	}
 }
 
@@ -90,7 +88,7 @@ Scene_MainMenu::Scene_MainMenu(
 {
 	std::cout << "Scene_MainMenu constructor called" << std::endl;
 
-	initBackground();
+	initBackground(SCENE_MAIN_MENU_BACKGROUND_PATH);
 	initKeyBinds(SCENE_MAIN_MENU_KEY_BINDS_PATH);
 	initFont(SCENE_MAIN_MENU_FONT_PATH);
 	initButtons(SCENE_MAIN_MENU_BUTTONS_PATH);
@@ -131,15 +129,4 @@ void Scene_MainMenu::render(shared<sf::RenderTarget> renderTarget)
 	}
 	renderBackground();
 	renderButtons(renderTarget);
-}
-
-
-
-//-----------------------------------------------
-//		Managing scene
-//
-
-void Scene_MainMenu::finalizeScene()
-{
-	std::cout << "Scene_MainMenu finalizeScene called" << std::endl;
 }
