@@ -22,6 +22,9 @@
     <Filter Include="Core\Types">
       <UniqueIdentifier>{ba5f311b-e67e-465a-9041-232186b6f5e7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Scenes\Helpers">
+      <UniqueIdentifier>{cc7a3d89-05a8-4cb8-9cde-826b04ed9af1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Entity.cpp">
@@ -44,6 +47,12 @@
     </ClCompile>
     <ClCompile Include="Scene_Game.cpp">
       <Filter>Core\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="BabyYoda.cpp">
+      <Filter>Core\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="TexturesLoader.cpp">
+      <Filter>Core\Scenes\Helpers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +79,12 @@
     </ClInclude>
     <ClInclude Include="Types.hpp">
       <Filter>Core\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="BabyYoda.hpp">
+      <Filter>Core\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="TexturesLoader.hpp">
+      <Filter>Core\Scenes\Helpers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

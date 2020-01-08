@@ -7,11 +7,18 @@
 /////////////////////////////////////////////////
 
 //-----------------------------------------------
-//		Update
+//		Initialization
+//
 
-void Entity::handleInput(const float& frameTime)
+void Entity::initTextures(shared<sf::Texture>& texture)
 {
+	m_texture = texture;
+}
 
+void Entity::initSprite(const float& startX, const float& startY)
+{
+	m_sprite = std::make_unique<sf::Sprite>(*m_texture);
+	m_sprite->setPosition(startX, startY);
 }
 
 
@@ -26,10 +33,10 @@ void Entity::handleInput(const float& frameTime)
 //		Constructors
 //
 
-Entity::Entity()
+Entity::Entity(const float& startX, const float& startY, shared<sf::Texture>& texture)
 {
-	m_rectShape.setSize(sf::Vector2f(100.f, 100.f));
-	m_speed = 500.f;
+	initTextures(texture);
+	initSprite(startX, startY);
 }
 
 
@@ -44,26 +51,49 @@ Entity::~Entity()
 
 
 //-----------------------------------------------
-//		Update
+//		Accessors
 //
 
-void Entity::update(const float& frameTime)
+	// Getters
+
+float Entity::getX() const
 {
-	handleInput(frameTime);
+	return m_sprite->getPosition().x;
 }
 
-
-void Entity::move(const float& frameTime, const float dirX, const float dirY)
+float Entity::getY() const
 {
-	m_rectShape.move(dirX * m_speed * frameTime, dirY * m_speed * frameTime);
+	return m_sprite->getPosition().y;
+}
+
+sf::Vector2f Entity::getPos() const
+{
+	return m_sprite->getPosition();
+}
+
+	// Setters
+
+void Entity::setX(const float& x)
+{
+	m_sprite->setPosition(x, m_posY);
+}
+
+void Entity::setY(const float& y)
+{
+	m_sprite->setPosition(m_posX, y);
+}
+
+void Entity::setPos(const sf::Vector2f& pos)
+{
+	m_sprite->setPosition(pos);
 }
 
 
 //-----------------------------------------------
-//		Render
+//		Update
 //
 
-void Entity::render(shared<sf::RenderTarget> renderTarget)
+void Entity::move(const float& frameTime, const float dirX, const float dirY)
 {
-	renderTarget->draw(m_rectShape);
+	m_sprite->move(dirX * m_speed * frameTime, dirY * m_speed * frameTime);
 }

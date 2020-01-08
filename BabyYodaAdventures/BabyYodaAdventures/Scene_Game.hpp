@@ -6,28 +6,49 @@
 class Scene_Game : public Scene
 {
 private:
-	/////////////////////
-	// Variables
+	/////////////////////////////////////////////////
+	// 
+	//		VARIABLES
+	//
+	/////////////////////////////////////////////////
+
+	unique<BabyYoda> m_babyYoda;
+
+
+
+	/////////////////////////////////////////////////
+	// 
+	//		METHODS
+	//
+	/////////////////////////////////////////////////
+
+	//-----------------------------------------------
+	//		Initialization
 	//
 
-	Entity m_player;
+	/**
+		TODO: should be rebuild
+	*/
+	void initTextures();
+	void initEntities();
 
-
-
-	/////////////////////
-	// Methods
+	//-----------------------------------------------
+	//		Update
 	//
-
-	// Udate
 
 	void handleInput(const float& frameTime);
 
-public:
-	/////////////////////
-	// Methods
-	//
 
-	// Constructors
+public:
+	/////////////////////////////////////////////////
+	// 
+	//		METHODS
+	//
+	/////////////////////////////////////////////////
+
+	//-----------------------------------------------
+	//		Constructors
+	//
 
 	Scene_Game(
 		shared<sf::RenderWindow>& renderWindow,
@@ -35,21 +56,23 @@ public:
 		const shared_map<std::string, sf::Keyboard::Key>& supportedKeys
 	);
 
-	// Destructors
+	//-----------------------------------------------
+	//		Destructors
+	//
 
 	virtual ~Scene_Game();
 
-	// Update
+	//-----------------------------------------------
+	//		Update
+	//
 
 	void update(const float& frameTime);
 
-	// Render
+	//-----------------------------------------------
+	//		Render
+	//
 
 	void render(shared<sf::RenderTarget> renderTarget = nullptr);
-
-	// Managing scene
-
-	void finalizeScene();
 };
 
 #endif

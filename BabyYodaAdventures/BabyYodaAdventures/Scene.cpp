@@ -85,6 +85,11 @@ void Scene::initButtons(std::string pathToButtonsIni)
 	ifs.close();
 }
 
+void Scene::initTextures()
+{
+	// TBD
+}
+
 
 
 //-----------------------------------------------

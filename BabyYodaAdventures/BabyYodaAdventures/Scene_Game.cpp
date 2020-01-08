@@ -9,22 +9,48 @@
 /////////////////////////////////////////////////
 
 //-----------------------------------------------
+//		Initialization
+//
+
+
+void Scene_Game::initTextures()
+{
+	auto babyYoda = std::make_shared<sf::Texture>();
+	if (!babyYoda->loadFromFile(SCENE_GAME_BABY_YODA_SPRITE_PATH))
+	{
+		std::cout << "ERROR::Scene_Game::initTextures could not load textures " << SCENE_GAME_BABY_YODA_SPRITE_PATH << std::endl;
+	}
+	m_textures["BabyYoda"] = std::move(babyYoda);
+}
+
+void Scene_Game::initEntities()
+{
+	m_babyYoda = std::make_unique<BabyYoda>(
+		m_renderWindow->getSize().x / 2.f,
+		m_renderWindow->getSize().y / 2.f,
+		m_textures.at("BabyYoda")
+		);
+}
+
+
+
+//-----------------------------------------------
 //		Update
 //
 
 void Scene_Game::handleInput(const float& frameTime)
 {
 	if (sf::Keyboard::isKeyPressed(m_keyBinds.at("MOVE_UP")))
-		m_player.move(frameTime, 0.f, -1.f);
+		m_babyYoda->move(frameTime, 0.f, -1.f);
 
 	if (sf::Keyboard::isKeyPressed(m_keyBinds.at("MOVE_LEFT")))
-		m_player.move(frameTime, -1.f, 0.f);
+		m_babyYoda->move(frameTime, -1.f, 0.f);
 
 	if (sf::Keyboard::isKeyPressed(m_keyBinds.at("MOVE_DOWN")))
-		m_player.move(frameTime, 0.f, 1.f);
+		m_babyYoda->move(frameTime, 0.f, 1.f);
 
 	if (sf::Keyboard::isKeyPressed(m_keyBinds.at("MOVE_RIGHT")))
-		m_player.move(frameTime, 1.f, 0.f);
+		m_babyYoda->move(frameTime, 1.f, 0.f);
 
 	if (sf::Keyboard::isKeyPressed(m_keyBinds.at("ESCAPE")))
 		quitScene();
@@ -52,6 +78,8 @@ Scene_Game::Scene_Game(
 	std::cout << "Scene_Game constructor called" << std::endl;
 
 	initKeyBinds(SCENE_GAME_KEY_BINDS_PATH);
+	initTextures();
+	initEntities();
 }
 
 
@@ -75,7 +103,7 @@ void Scene_Game::update(const float& frameTime)
 	updateMousePositions();
 	handleInput(frameTime);
 
-	m_player.update(frameTime);
+	m_babyYoda->update(frameTime);
 }
 
 
@@ -88,21 +116,7 @@ void Scene_Game::render(shared<sf::RenderTarget> renderTarget)
 {
 	if (renderTarget == nullptr)
 	{
-		m_player.render(m_renderWindow);
+		renderTarget = m_renderWindow;
 	}
-	else
-	{
-		m_player.render(renderTarget);
-	}
-}
-
-
-
-//-----------------------------------------------
-//		Managing scene
-//
-
-void Scene_Game::finalizeScene()
-{
-	std::cout << "Scene_Game finalizeScene called" << std::endl;
+	m_babyYoda->render(renderTarget);
 }

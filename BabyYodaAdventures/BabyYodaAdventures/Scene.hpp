@@ -3,7 +3,8 @@
 
 #include "Types.hpp"
 
-#include "Entity.hpp"
+#include "BabyYoda.hpp"
+
 #include "Button.hpp"
 
 class Scene
@@ -62,11 +63,12 @@ protected:
 		// Textures
 	
 	/**
-		A vector of textures that are used by the scene 
-		TODO: make a map of textures
+		A map of textures that are used by the scene 
+		TODO: implement
 	*/
-	shared_vector<shared<sf::Texture>> m_textures;
-	
+	// std::map<std::string, shared_map<std::string, std::map<std::string, std::vector<sf::Texture>>>> m_textures;
+	std::map<std::string, shared<sf::Texture>> m_textures;
+
 		// Fonts
 
 	/**
@@ -97,7 +99,6 @@ protected:
 		and creates an std::map of supported keys and their codes
 	*/
 	virtual void initKeyBinds(std::string pathToKeyBinsIni);
-
 	virtual void initFont(std::string pathToFont);
 
 	/**
@@ -105,6 +106,11 @@ protected:
 		Should be called after fonts were initialized
 	*/
 	virtual void initButtons(std::string pathToButtonsIni);
+
+	/**
+		TODO: rebuild and make generic with TexturesLoader
+	*/
+	virtual void initTextures();
 
 	//-----------------------------------------------
 	//		Update
