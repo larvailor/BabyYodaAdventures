@@ -25,6 +25,9 @@
     <Filter Include="Core\Scenes\Helpers">
       <UniqueIdentifier>{cc7a3d89-05a8-4cb8-9cde-826b04ed9af1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Components">
+      <UniqueIdentifier>{b0130a70-7a27-4d72-9ecc-405f2096aa9a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Entity.cpp">
@@ -53,6 +56,9 @@
     </ClCompile>
     <ClCompile Include="TexturesLoader.cpp">
       <Filter>Core\Scenes\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_Movement.cpp">
+      <Filter>Core\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +91,9 @@
     </ClInclude>
     <ClInclude Include="TexturesLoader.hpp">
       <Filter>Core\Scenes\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_Movement.hpp">
+      <Filter>Core\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

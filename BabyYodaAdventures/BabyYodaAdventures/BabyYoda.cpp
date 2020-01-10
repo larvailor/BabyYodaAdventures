@@ -7,13 +7,31 @@
 /////////////////////////////////////////////////
 
 //-----------------------------------------------
+//		Initialization
+//
+
+void BabyYoda::initComponents()
+{
+	initComponentMovement(300.f); // TODO: loading from config
+}
+
+
+
+/////////////////////////////////////////////////
+// 
+//		PUBLIC METHODS
+//
+/////////////////////////////////////////////////
+
+//-----------------------------------------------
 //		Constructors
 //
 
-BabyYoda::BabyYoda(const float& startX, const float& startY, shared<sf::Texture>& texture) :
-	Entity(startX, startY, texture)
+BabyYoda::BabyYoda(const float& startX, const float& startY, shared<sf::Texture>& texture)
 {
-	m_speed = 300.f; // TODO: load from config
+	initTextures(texture);
+	initSprite(startX, startY);
+	initComponents();
 	m_sprite->setScale(0.4f, 0.4f);
 }
 

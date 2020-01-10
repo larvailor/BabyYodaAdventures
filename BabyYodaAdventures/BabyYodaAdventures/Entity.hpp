@@ -1,16 +1,7 @@
 #ifndef ENTITY_HPP
 #define ENTITY_HPP
 
-#include <iostream>
-#include <fstream>
-
-#include "Types.hpp"
-
-#include "SFML/Graphics.hpp"
-#include "SFML/Audio.hpp"
-#include "SFML/Network.hpp"
-#include "SFML/Window.hpp"
-#include "SFML/System.hpp"
+#include "Component_Movement.hpp"
 
 class Entity
 {
@@ -35,10 +26,10 @@ protected:
 	float m_posY;
 
 	//-----------------------------------------------
-	//		Speed
+	//		Components
 	//
 
-	float m_speed;
+	unique<Component_Movement> m_componentMovement;
 
 	//-----------------------------------------------
 	//		Resources
@@ -61,6 +52,7 @@ protected:
 
 	virtual void initTextures(shared<sf::Texture>& texture);
 	virtual void initSprite(const float& startX, const float& startY);
+	virtual void initComponentMovement(const float maxVelocity);
 
 public:
 	/////////////////////////////////////////////////
@@ -73,7 +65,7 @@ public:
 	//		Constructors
 	//
 
-	Entity(const float& startX, const float& startY, shared<sf::Texture>& texture);
+	Entity();
 
 	//-----------------------------------------------
 	//		Destructors

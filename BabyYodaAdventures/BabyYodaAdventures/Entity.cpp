@@ -21,6 +21,11 @@ void Entity::initSprite(const float& startX, const float& startY)
 	m_sprite->setPosition(startX, startY);
 }
 
+void Entity::initComponentMovement(const float maxVelocity)
+{
+	m_componentMovement = std::make_unique<Component_Movement>(maxVelocity);
+}
+
 
 
 /////////////////////////////////////////////////
@@ -33,11 +38,8 @@ void Entity::initSprite(const float& startX, const float& startY)
 //		Constructors
 //
 
-Entity::Entity(const float& startX, const float& startY, shared<sf::Texture>& texture)
-{
-	initTextures(texture);
-	initSprite(startX, startY);
-}
+Entity::Entity()
+= default;
 
 
 
@@ -95,5 +97,9 @@ void Entity::setPos(const sf::Vector2f& pos)
 
 void Entity::move(const float& frameTime, const float dirX, const float dirY)
 {
-	m_sprite->move(dirX * m_speed * frameTime, dirY * m_speed * frameTime);
+	if (m_sprite && m_componentMovement)
+	{
+		m_componentMovement->move(dirX, dirY);
+		m_sprite->move(m_componentMovement->getVelocity() * frameTime);
+	}
 }
