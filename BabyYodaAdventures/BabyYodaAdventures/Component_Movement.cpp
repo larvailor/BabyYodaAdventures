@@ -10,8 +10,9 @@
 //		Constructors
 //
 
-Component_Movement::Component_Movement(float maxVelocity) :
-	m_maxVelocity(maxVelocity)
+Component_Movement::Component_Movement(float maxVelocity, shared<sf::Sprite>& sprite) :
+	m_maxVelocity(maxVelocity),
+	m_sprite(sprite)
 {
 
 }
@@ -55,8 +56,10 @@ void Component_Movement::update(const float& frameTime)
 //		Else
 //
 
-void Component_Movement::move(const float dirX, const float dirY)
+void Component_Movement::move(const float dirX, const float dirY, const float& frameTime)
 {
 	m_velocity.x = m_maxVelocity * dirX;
 	m_velocity.y = m_maxVelocity * dirY;
+
+	m_sprite->move(m_velocity * frameTime);
 }

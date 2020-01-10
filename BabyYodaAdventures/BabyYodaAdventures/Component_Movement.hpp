@@ -22,9 +22,19 @@ private:
 	//
 	/////////////////////////////////////////////////
 
+	//-----------------------------------------------
+	//		Moving
+	//
+
 	float m_maxVelocity;
 	sf::Vector2f m_velocity;
 	sf::Vector2f m_deceleration;
+
+	//-----------------------------------------------
+	//		Sprites
+	//
+
+	shared<sf::Sprite> m_sprite;
 
 	/////////////////////////////////////////////////
 	// 
@@ -43,7 +53,7 @@ public:
 	//		Constructors
 	//
 
-	Component_Movement(float maxVelocity);
+	Component_Movement(float maxVelocity, shared<sf::Sprite>& sprite);
 
 	//-----------------------------------------------
 	//		Destructors
@@ -69,7 +79,7 @@ public:
 	//		Else
 	//
 
-	void move(const float dirX, const float dirY);
+	void move(const float dirX, const float dirY, const float& frameTime);
 
 };
 #endif

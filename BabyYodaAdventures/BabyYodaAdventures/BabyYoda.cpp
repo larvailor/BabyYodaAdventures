@@ -13,6 +13,7 @@
 void BabyYoda::initComponents()
 {
 	initComponentMovement(300.f); // TODO: loading from config
+	m_sprite->setScale(0.5f, 0.5f);
 }
 
 
@@ -32,7 +33,6 @@ BabyYoda::BabyYoda(const float& startX, const float& startY, shared<sf::Texture>
 	initTextures(texture);
 	initSprite(startX, startY);
 	initComponents();
-	m_sprite->setScale(0.4f, 0.4f);
 }
 
 

@@ -16,7 +16,7 @@ protected:
 	//		Sprites
 	//
 
-	unique<sf::Sprite> m_sprite;
+	shared<sf::Sprite> m_sprite;
 
 	//-----------------------------------------------
 	//		Position
@@ -94,7 +94,7 @@ public:
 	//
 
 	virtual void update(const float& frameTime) = 0;
-	virtual void move(const float& frameTime, const float dirX, const float dirY);
+	virtual void move(const float dirX, const float dirY, const float& frameTime);
 
 	//-----------------------------------------------
 	//		Render

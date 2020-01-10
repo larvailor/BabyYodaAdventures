@@ -41,16 +41,16 @@ void Scene_Game::initEntities()
 void Scene_Game::handleInput(const float& frameTime)
 {
 	if (sf::Keyboard::isKeyPressed(m_keyBinds.at("MOVE_UP")))
-		m_babyYoda->move(frameTime, 0.f, -1.f);
+		m_babyYoda->move(0.f, -1.f, frameTime);
 
 	if (sf::Keyboard::isKeyPressed(m_keyBinds.at("MOVE_LEFT")))
-		m_babyYoda->move(frameTime, -1.f, 0.f);
+		m_babyYoda->move(-1.f, 0.f, frameTime);
 
 	if (sf::Keyboard::isKeyPressed(m_keyBinds.at("MOVE_DOWN")))
-		m_babyYoda->move(frameTime, 0.f, 1.f);
+		m_babyYoda->move(0.f, 1.f, frameTime);
 
 	if (sf::Keyboard::isKeyPressed(m_keyBinds.at("MOVE_RIGHT")))
-		m_babyYoda->move(frameTime, 1.f, 0.f);
+		m_babyYoda->move(1.f, 0.f, frameTime);
 
 	if (sf::Keyboard::isKeyPressed(m_keyBinds.at("ESCAPE")))
 		quitScene();
