@@ -52,7 +52,7 @@ protected:
 
 	virtual void initTextures(shared<sf::Texture>& texture);
 	virtual void initSprite(const float& startX, const float& startY);
-	virtual void initComponentMovement(const float maxVelocity);
+	virtual void initComponentMovement(const float maxVelocity, const float acceleration, const float deceleration);
 
 public:
 	/////////////////////////////////////////////////
@@ -94,7 +94,7 @@ public:
 	//
 
 	virtual void update(const float& frameTime) = 0;
-	virtual void move(const float dirX, const float dirY, const float& frameTime);
+	virtual void move(const DirectionXY& dirX, const DirectionXY& dirY, const float& frameTime);
 
 	//-----------------------------------------------
 	//		Render

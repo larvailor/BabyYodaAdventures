@@ -12,8 +12,19 @@
 
 void BabyYoda::initComponents()
 {
-	initComponentMovement(300.f); // TODO: loading from config
+	initComponentMovement(300.f, 0.05f, 0.05f); // TODO: loading from config
 	m_sprite->setScale(0.5f, 0.5f);
+}
+
+
+
+//-----------------------------------------------
+//		Update
+//
+
+void BabyYoda::updateComponents(const float& frameTime)
+{
+	m_componentMovement->update(frameTime);
 }
 
 
@@ -52,7 +63,12 @@ BabyYoda::~BabyYoda()
 
 void BabyYoda::update(const float& frameTime)
 {
-	// TBD
+	updateComponents(frameTime);
+}
+
+void BabyYoda::move(const DirectionXY& dirX, const DirectionXY& dirY, const float& frameTime)
+{
+	Entity::move(dirX, dirY, frameTime);
 }
 
 

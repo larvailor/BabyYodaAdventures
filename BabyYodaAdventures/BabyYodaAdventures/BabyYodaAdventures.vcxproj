@@ -145,6 +145,7 @@
     <ClInclude Include="Button.hpp" />
     <ClInclude Include="Component_Movement.hpp" />
     <ClInclude Include="ConfigHelper.hpp" />
+    <ClInclude Include="Directions.hpp" />
     <ClInclude Include="Entity.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="Scene_Game.hpp" />

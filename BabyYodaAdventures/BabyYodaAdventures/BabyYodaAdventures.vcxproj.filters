@@ -95,5 +95,8 @@
     <ClInclude Include="Component_Movement.hpp">
       <Filter>Core\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Directions.hpp">
+      <Filter>Core\Types</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

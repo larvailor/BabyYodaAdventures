@@ -18,6 +18,12 @@ private:
 
 	void initComponents();
 
+	//-----------------------------------------------
+	//		Update
+	//
+
+	void updateComponents(const float& frameTime);
+
 public:
 	/////////////////////////////////////////////////
 	// 
@@ -42,6 +48,7 @@ public:
 	//
 
 	void update(const float& frameTime);
+	void move(const DirectionXY& dirX, const DirectionXY& dirY, const float& frameTime);
 
 	//-----------------------------------------------
 	//		Render
