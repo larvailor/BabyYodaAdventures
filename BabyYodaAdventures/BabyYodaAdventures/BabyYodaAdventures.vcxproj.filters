@@ -104,5 +104,8 @@
     <ClInclude Include="Component_Animation.hpp">
       <Filter>Core\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Config_Scene_Game.hpp">
+      <Filter>Config</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

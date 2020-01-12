@@ -1,6 +1,7 @@
 #include "Scene_Game.hpp"
 
 #include "ConfigHelper.hpp"
+#include "Config_Scene_Game.hpp"
 
 /////////////////////////////////////////////////
 // 
@@ -16,9 +17,9 @@
 void Scene_Game::initTextures()
 {
 	auto babyYoda = std::make_shared<sf::Texture>();
-	if (!babyYoda->loadFromFile(SCENE_GAME_BABY_YODA_SPRITE_PATH))
+	if (!babyYoda->loadFromFile(SCENE_GAME_BABY_YODA_TEXTURESHEET_PATH))
 	{
-		std::cout << "ERROR::Scene_Game::initTextures could not load textures " << SCENE_GAME_BABY_YODA_SPRITE_PATH << std::endl;
+		std::cout << "ERROR::Scene_Game::initTextures could not load textures " << SCENE_GAME_BABY_YODA_TEXTURESHEET_PATH << std::endl;
 	}
 	m_textures["BabyYoda"] = std::move(babyYoda);
 }

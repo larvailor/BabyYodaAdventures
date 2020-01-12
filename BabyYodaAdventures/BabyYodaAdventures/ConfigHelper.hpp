@@ -12,18 +12,6 @@
 constexpr auto WINDOW_CONFIG_PATH = "Config/window.ini";
 constexpr auto SUPPORTED_KEYS_CONFIG_PATH = "Config/SupportedKeys.ini";
 
-
-
-//-----------------------------------------------
-//		Scene_GameScene
-//
-
-constexpr auto SCENE_GAME_KEY_BINDS_PATH = "Config/Scenes/Game/Scene_Game_KeyBinds.ini";
-constexpr auto SCENE_GAME_SPRITES_DIR_PATH = "Resources/Images/Game/Sprites";
-constexpr auto SCENE_GAME_BABY_YODA_SPRITE_PATH = "Resources/Images/Game/Sprites/BabyYoda/Idle/Santa.png";
-
-
-
 //-----------------------------------------------
 //		Scene_MainMenu
 //

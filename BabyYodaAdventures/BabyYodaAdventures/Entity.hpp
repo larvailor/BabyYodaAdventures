@@ -39,7 +39,7 @@ protected:
 
 		// Textures
 
-	shared<sf::Texture> m_texture;
+	shared<sf::Texture> m_textureSheet;
 
 	/////////////////////////////////////////////////
 	// 
@@ -51,10 +51,11 @@ protected:
 	//		Initialization
 	//
 
-	virtual void initTextures(shared<sf::Texture>& texture);
+	virtual void initTextureSheet(shared<sf::Texture>& texture);
 	virtual void initSprite(const float& startX, const float& startY);
+	/* TODO: loading from .ini file */
 	virtual void createComponentMovement(const float maxVelocity, const float acceleration, const float deceleration);
-	virtual void createComponentAnimation(shared<sf::Texture>& textureSheet);
+	virtual void createComponentAnimation(std::string pathToAnimationsIni);
 
 public:
 	/////////////////////////////////////////////////

@@ -33,7 +33,7 @@ private:
 
 		shared<sf::Sprite> m_sprite;
 		shared<sf::Texture> m_textureSheet;
-		float m_animationTimer;
+		float m_oneFrameAnimationTime;
 		float m_timer;
 		int m_width;
 		int m_height;
@@ -48,15 +48,15 @@ private:
 		////////////////////////////////////////////////
 
 		Animation(
-			shared<sf::Sprite> sprite, shared<sf::Texture>& textureSheet,
-			float animationTimer,
+			shared<sf::Sprite>& sprite, shared<sf::Texture>& textureSheet,
+			float animationTime,
 			int startFrameX, int startFrameY,
 			int framesX, int framesY,
 			int width, int height
 		) :
 			m_sprite(sprite),
 			m_textureSheet(textureSheet),
-			m_animationTimer(animationTimer),
+			m_oneFrameAnimationTime(animationTime / framesX),
 			m_width(width),
 			m_height(height),
 			m_timer(0.f)
@@ -73,10 +73,10 @@ private:
 		//		Update
 		//
 
-		void play(const float& frameTime)
+		void update(const float& frameTime)
 		{
-			m_timer += 10.f * frameTime;
-			if (m_timer > m_animationTimer)
+			m_timer += frameTime;
+			if (m_timer > m_oneFrameAnimationTime)
 			{
 				m_timer = 0.f;
 
@@ -135,13 +135,13 @@ public:
 
 	void addAnimation(
 		const std::string key,
-		float animationTimer,
+		float animationTime,
 		int startFrameX, int startFrameY,
 		int framesX, int framesY,
 		int width, int height
 	);
 
-	void play(const std::string key, const float& frameTime);
+	void update(const std::string key, const float& frameTime);
 };
 
 #endif

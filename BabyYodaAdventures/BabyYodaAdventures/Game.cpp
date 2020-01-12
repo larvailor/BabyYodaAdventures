@@ -1,5 +1,7 @@
 #include "Game.hpp"
 
+#include <fstream>
+
 #include "ConfigHelper.hpp"
 
 /////////////////////////////////////////////////

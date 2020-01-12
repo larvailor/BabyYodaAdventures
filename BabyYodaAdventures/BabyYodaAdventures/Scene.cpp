@@ -1,5 +1,7 @@
 #include "Scene.hpp"
 
+#include <fstream>
+
 /////////////////////////////////////////////////
 // 
 //		PROTECTED METHODS

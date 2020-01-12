@@ -48,8 +48,8 @@ void Component_Animation::addAnimation(
 		);
 }
 
-void Component_Animation::play(const std::string key, const float& frameTime)
+void Component_Animation::update(const std::string key, const float& frameTime)
 {
-	m_animations[key]->play(frameTime);
+	m_animations[key]->update(frameTime);
 }
 

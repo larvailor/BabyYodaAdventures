@@ -1,24 +1,12 @@
 #include "BabyYoda.hpp"
 
+#include "Config_Scene_Game.hpp"
+
 /////////////////////////////////////////////////
 // 
 //		PRIVATE METHODS
 //
 /////////////////////////////////////////////////
-
-//-----------------------------------------------
-//		Initialization
-//
-
-void BabyYoda::createComponents()
-{
-	createComponentMovement(300.f, 0.05f, 0.05f); // TODO: loading from config
-	createComponentAnimation(m_texture);
-
-	m_componentAnimation->addAnimation("IDLE", 1.f, 0, 0, 10, 0, 64, 72);
-}
-
-
 
 //-----------------------------------------------
 //		Update
@@ -27,7 +15,7 @@ void BabyYoda::createComponents()
 void BabyYoda::updateComponents(const float& frameTime)
 {
 	m_componentMovement->update(frameTime);
-	m_componentAnimation->play("IDLE", frameTime);
+	m_componentAnimation->update("IDLE", frameTime);
 }
 
 
@@ -44,9 +32,11 @@ void BabyYoda::updateComponents(const float& frameTime)
 
 BabyYoda::BabyYoda(const float& startX, const float& startY, shared<sf::Texture>& textureSheet)
 {
-	initTextures(textureSheet);
+	initTextureSheet(textureSheet);
 	initSprite(startX, startY);
-	createComponents();
+
+	createComponentMovement(300.f, 0.05f, 0.05f); // TODO: loading from config
+	createComponentAnimation(SCENE_GAME_BABY_YODA_ANIMATIONS_PATH);
 }
 
 
