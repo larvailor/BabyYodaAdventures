@@ -16,7 +16,7 @@ private:
 	//		Initialization
 	//
 
-	void initComponents();
+	void createComponents();
 
 	//-----------------------------------------------
 	//		Update
@@ -35,7 +35,7 @@ public:
 	//		Constructors
 	//
 
-	BabyYoda(const float& startX, const float& startY, shared<sf::Texture>& texture);
+	BabyYoda(const float& startX, const float& startY, shared<sf::Texture>& textureSheet);
 
 	//-----------------------------------------------
 	//		Destructors

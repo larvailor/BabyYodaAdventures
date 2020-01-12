@@ -21,9 +21,14 @@ void Entity::initSprite(const float& startX, const float& startY)
 	m_sprite->setPosition(startX, startY);
 }
 
-void Entity::initComponentMovement(const float maxVelocity, const float reachMaxVelocityTime, const float reachZeroVelocityTime)
+void Entity::createComponentMovement(const float maxVelocity, const float reachMaxVelocityTime, const float reachZeroVelocityTime)
 {
 	m_componentMovement = std::make_unique<Component_Movement>(maxVelocity, reachMaxVelocityTime, reachZeroVelocityTime, m_sprite);
+}
+
+void Entity::createComponentAnimation(shared<sf::Texture>& textureSheet)
+{
+	m_componentAnimation = std::make_unique<Component_Animation>(m_sprite, textureSheet);
 }
 
 

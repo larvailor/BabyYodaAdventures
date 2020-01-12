@@ -2,6 +2,7 @@
 #define ENTITY_HPP
 
 #include "Component_Movement.hpp"
+#include "Component_Animation.hpp"
 
 class Entity
 {
@@ -30,6 +31,7 @@ protected:
 	//
 
 	unique<Component_Movement> m_componentMovement;
+	unique<Component_Animation> m_componentAnimation;
 
 	//-----------------------------------------------
 	//		Resources
@@ -38,7 +40,6 @@ protected:
 		// Textures
 
 	shared<sf::Texture> m_texture;
-
 
 	/////////////////////////////////////////////////
 	// 
@@ -52,7 +53,8 @@ protected:
 
 	virtual void initTextures(shared<sf::Texture>& texture);
 	virtual void initSprite(const float& startX, const float& startY);
-	virtual void initComponentMovement(const float maxVelocity, const float acceleration, const float deceleration);
+	virtual void createComponentMovement(const float maxVelocity, const float acceleration, const float deceleration);
+	virtual void createComponentAnimation(shared<sf::Texture>& textureSheet);
 
 public:
 	/////////////////////////////////////////////////

@@ -60,6 +60,9 @@
     <ClCompile Include="Component_Movement.cpp">
       <Filter>Core\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Component_Animation.cpp">
+      <Filter>Core\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.hpp">
@@ -97,6 +100,9 @@
     </ClInclude>
     <ClInclude Include="Directions.hpp">
       <Filter>Core\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_Animation.hpp">
+      <Filter>Core\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

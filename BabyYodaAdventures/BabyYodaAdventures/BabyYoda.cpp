@@ -2,7 +2,7 @@
 
 /////////////////////////////////////////////////
 // 
-//		PUBLIC METHODS
+//		PRIVATE METHODS
 //
 /////////////////////////////////////////////////
 
@@ -10,10 +10,12 @@
 //		Initialization
 //
 
-void BabyYoda::initComponents()
+void BabyYoda::createComponents()
 {
-	initComponentMovement(300.f, 0.05f, 0.05f); // TODO: loading from config
-	m_sprite->setScale(0.5f, 0.5f);
+	createComponentMovement(300.f, 0.05f, 0.05f); // TODO: loading from config
+	createComponentAnimation(m_texture);
+
+	m_componentAnimation->addAnimation("IDLE", 1.f, 0, 0, 10, 0, 64, 72);
 }
 
 
@@ -25,6 +27,7 @@ void BabyYoda::initComponents()
 void BabyYoda::updateComponents(const float& frameTime)
 {
 	m_componentMovement->update(frameTime);
+	m_componentAnimation->play("IDLE", frameTime);
 }
 
 
@@ -39,11 +42,11 @@ void BabyYoda::updateComponents(const float& frameTime)
 //		Constructors
 //
 
-BabyYoda::BabyYoda(const float& startX, const float& startY, shared<sf::Texture>& texture)
+BabyYoda::BabyYoda(const float& startX, const float& startY, shared<sf::Texture>& textureSheet)
 {
-	initTextures(texture);
+	initTextures(textureSheet);
 	initSprite(startX, startY);
-	initComponents();
+	createComponents();
 }
 
 
