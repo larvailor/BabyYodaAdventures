@@ -61,7 +61,7 @@ private:
 			m_height(height),
 			m_timer(0.f)
 		{
-			m_startRect = sf::IntRect(startFrameX, startFrameY, width, height);
+			m_startRect = sf::IntRect(startFrameX * width, startFrameY * height, width, height);
 			m_currRect = m_startRect;
 			m_endRect = sf::IntRect(framesX * width, framesY * height, width, height);
 

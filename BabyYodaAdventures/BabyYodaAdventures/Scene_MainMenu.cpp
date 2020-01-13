@@ -1,6 +1,6 @@
 #include "Scene_MainMenu.hpp"
 
-#include "ConfigHelper.hpp"
+#include "Config_Scene_MainMenu.hpp"
 #include "Button.hpp"
 
 #include "Scene_Game.hpp"

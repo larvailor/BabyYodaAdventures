@@ -148,6 +148,7 @@
     <ClInclude Include="Component_Movement.hpp" />
     <ClInclude Include="ConfigHelper.hpp" />
     <ClInclude Include="Config_Scene_Game.hpp" />
+    <ClInclude Include="Config_Scene_MainMenu.hpp" />
     <ClInclude Include="Directions.hpp" />
     <ClInclude Include="Entity.hpp" />
     <ClInclude Include="Game.hpp" />
