@@ -50,6 +50,7 @@ void Component_Animation::addAnimation(
 
 void Component_Animation::update(const std::string key, const float& frameTime)
 {
-	m_animations[key]->update(frameTime);
+	if (m_animations.count(key))
+		m_animations[key]->update(frameTime);
 }
 

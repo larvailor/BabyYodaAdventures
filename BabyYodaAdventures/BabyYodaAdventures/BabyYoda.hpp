@@ -13,10 +13,18 @@ private:
 	/////////////////////////////////////////////////
 
 	//-----------------------------------------------
+	//		Initialization
+	//
+
+	void initSprite(const float& startX, const float& startY);
+
+	//-----------------------------------------------
 	//		Update
 	//
 
 	void updateComponents(const float& frameTime);
+	void updateComponentMovement(const float& frameTime);
+	void updateComponentAnimation(const float& frameTime);
 
 public:
 	/////////////////////////////////////////////////
