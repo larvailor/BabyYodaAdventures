@@ -34,6 +34,7 @@ BabyYoda::BabyYoda(const float& startX, const float& startY, shared<sf::Texture>
 {
 	initTextureSheet(textureSheet);
 	initSprite(startX, startY);
+	m_sprite->setScale(0.5f, 0.5f);
 
 	createComponentMovement(300.f, 0.05f, 0.05f); // TODO: loading from config
 	createComponentAnimation(SCENE_GAME_BABY_YODA_ANIMATIONS_PATH);
