@@ -1,12 +1,17 @@
 #ifndef DIRECTIONS_HPP
 #define DIRECTIONS_HPP
 
-enum class DirectionXY
+enum class DirectionX
+{
+	LEFT,
+	RIGHT,
+	NONE
+};
+
+enum class DirectionY
 {
 	UP,
-	LEFT,
 	DOWN,
-	RIGHT,
 	NONE
 };
 

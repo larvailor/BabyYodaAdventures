@@ -60,7 +60,7 @@ void BabyYoda::update(const float& frameTime)
 	updateComponents(frameTime);
 }
 
-void BabyYoda::move(const DirectionXY& dirX, const DirectionXY& dirY, const float& frameTime)
+void BabyYoda::move(const DirectionX& dirX, const DirectionY& dirY, const float& frameTime)
 {
 	Entity::move(dirX, dirY, frameTime);
 }

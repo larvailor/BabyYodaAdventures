@@ -137,7 +137,7 @@ void Entity::setPos(const sf::Vector2f& pos)
 //		Update
 //
 
-void Entity::move(const DirectionXY& dirX, const DirectionXY& dirY, const float& frameTime)
+void Entity::move(const DirectionX& dirX, const DirectionY& dirY, const float& frameTime)
 {
 	if (m_sprite && m_componentMovement)
 		m_componentMovement->move(dirX, dirY, frameTime);

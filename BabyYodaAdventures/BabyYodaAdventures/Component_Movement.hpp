@@ -43,6 +43,9 @@ private:
 	/* Equals to true if velocity Y should be updated because of the user input */
 	bool m_movedManuallyY;
 
+	DirectionX m_currDirectionX;
+	DirectionY m_currDirectionY;
+
 	//-----------------------------------------------
 	//		Sprites
 	//
@@ -81,6 +84,8 @@ public:
 		// Getters
 
 	sf::Vector2f getVelocity() const;
+	DirectionX getCurrDirectionX() const;
+	DirectionY getCurrDirectionY() const;
 
 	//-----------------------------------------------
 	//		Update
@@ -102,7 +107,7 @@ public:
 		because of the user input.
 		Sets m_movedManuallyX and m_movedManuallyY to true if needed
 	*/
-	void move(const DirectionXY& dirX, const DirectionXY& dirY, const float& frameTime);
+	void move(const DirectionX& dirX, const DirectionY& dirY, const float& frameTime);
 
 };
 #endif

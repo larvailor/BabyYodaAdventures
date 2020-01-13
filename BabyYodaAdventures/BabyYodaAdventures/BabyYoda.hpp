@@ -42,7 +42,7 @@ public:
 	//
 
 	void update(const float& frameTime);
-	void move(const DirectionXY& dirX, const DirectionXY& dirY, const float& frameTime);
+	void move(const DirectionX& dirX, const DirectionY& dirY, const float& frameTime);
 
 	//-----------------------------------------------
 	//		Render

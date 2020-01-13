@@ -97,7 +97,7 @@ public:
 	//
 
 	virtual void update(const float& frameTime) = 0;
-	virtual void move(const DirectionXY& dirX, const DirectionXY& dirY, const float& frameTime);
+	virtual void move(const DirectionX& dirX, const DirectionY& dirY, const float& frameTime);
 
 	//-----------------------------------------------
 	//		Render
