@@ -86,11 +86,16 @@ private:
 				}
 				else
 				{
-					m_currRect.left = m_startRect.left;
+					reset();
 				}
 
 				m_sprite->setTextureRect(m_currRect);
 			}
+		}
+
+		void reset()
+		{
+			m_currRect = m_startRect;
 		}
 	};
 
@@ -100,6 +105,7 @@ private:
 
 	shared<sf::Sprite> m_sprite;
 	std::map<std::string, unique<Animation>> m_animations;
+	std::string m_prevAnimationKey;
 
 	//-----------------------------------------------
 	//		Resources
