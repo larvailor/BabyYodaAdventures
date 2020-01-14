@@ -28,6 +28,9 @@ private:
 	void updateComponentAnimation(const float& frameTime);
 
 public:
+	// TODO: move to the attribute component
+	unsigned int m_hp;
+
 	/////////////////////////////////////////////////
 	// 
 	//		Methods

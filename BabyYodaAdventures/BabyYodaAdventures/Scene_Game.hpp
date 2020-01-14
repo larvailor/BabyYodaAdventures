@@ -3,6 +3,8 @@
 
 #include "Scene.hpp"
 
+#include "BabyYodaGUI.hpp"
+
 class Scene_Game : public Scene
 {
 private:
@@ -12,8 +14,8 @@ private:
 	//
 	/////////////////////////////////////////////////
 
-	unique<BabyYoda> m_babyYoda;
-
+	shared<BabyYoda> m_babyYoda;
+	unique<BabyYodaGUI> m_babyYodaGUI;
 
 
 	/////////////////////////////////////////////////
@@ -31,13 +33,22 @@ private:
 	*/
 	void initTextures();
 	void initEntities();
+	void initGUI();
 
 	//-----------------------------------------------
 	//		Update
 	//
 
 	void handleInput(const float& frameTime);
+	void updateEntities(const float& frameTime);
+	void updateGUI(const float& frameTime);
 
+	//-----------------------------------------------
+	//		Update
+	//
+
+	void renderEntities(shared<sf::RenderTarget>& renderTarget);
+	void renderGUI(shared<sf::RenderTarget>& renderTarget);
 
 public:
 	/////////////////////////////////////////////////

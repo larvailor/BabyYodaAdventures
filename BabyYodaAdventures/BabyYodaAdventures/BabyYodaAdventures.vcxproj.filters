@@ -28,6 +28,9 @@
     <Filter Include="Core\Components">
       <UniqueIdentifier>{b0130a70-7a27-4d72-9ecc-405f2096aa9a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\GUI">
+      <UniqueIdentifier>{4430b6c2-85e9-41fa-906b-357b85222ad0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Entity.cpp">
@@ -65,6 +68,9 @@
     </ClCompile>
     <ClCompile Include="Component_Hitbox.cpp">
       <Filter>Core\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="BabyYodaGUI.cpp">
+      <Filter>Core\GUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -115,6 +121,9 @@
     </ClInclude>
     <ClInclude Include="Component_Hitbox.hpp">
       <Filter>Core\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="BabyYodaGUI.hpp">
+      <Filter>Core\GUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

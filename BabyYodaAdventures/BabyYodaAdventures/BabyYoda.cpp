@@ -77,6 +77,7 @@ void BabyYoda::updateComponentAnimation(const float& frameTime)
 
 BabyYoda::BabyYoda(const float& startX, const float& startY, shared<sf::Texture>& textureSheet)
 {
+	m_hp = 3; // TODO: move to the attribute component
 	initTextureSheet(textureSheet);
 	initSprite(startX, startY);
 

@@ -130,6 +130,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BabyYoda.cpp" />
+    <ClCompile Include="BabyYodaGUI.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Component_Animation.cpp" />
     <ClCompile Include="Component_Hitbox.cpp" />
@@ -144,6 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BabyYoda.hpp" />
+    <ClInclude Include="BabyYodaGUI.hpp" />
     <ClInclude Include="Button.hpp" />
     <ClInclude Include="Component_Animation.hpp" />
     <ClInclude Include="Component_Hitbox.hpp" />

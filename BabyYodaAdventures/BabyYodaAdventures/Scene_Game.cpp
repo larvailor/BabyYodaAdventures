@@ -26,11 +26,16 @@ void Scene_Game::initTextures()
 
 void Scene_Game::initEntities()
 {
-	m_babyYoda = std::make_unique<BabyYoda>(
+	m_babyYoda = std::make_shared<BabyYoda>(
 		m_renderWindow->getSize().x / 2.f,
 		m_renderWindow->getSize().y / 2.f,
 		m_textures.at("BabyYoda")
 		);
+}
+
+void Scene_Game::initGUI()
+{
+	m_babyYodaGUI = std::make_unique<BabyYodaGUI>(m_babyYoda);
 }
 
 
@@ -57,6 +62,32 @@ void Scene_Game::handleInput(const float& frameTime)
 		quitScene();
 }
 
+void Scene_Game::updateEntities(const float& frameTime)
+{
+	m_babyYoda->update(frameTime);
+}
+
+void Scene_Game::updateGUI(const float& frameTime)
+{
+	m_babyYodaGUI->update(frameTime);
+}
+
+
+
+//-----------------------------------------------
+//		Render
+//
+
+void Scene_Game::renderEntities(shared<sf::RenderTarget>& renderTarget)
+{
+	m_babyYoda->render(renderTarget);
+}
+
+void Scene_Game::renderGUI(shared<sf::RenderTarget>& renderTarget)
+{
+	m_babyYodaGUI->render(renderTarget);
+}
+
 
 
 /////////////////////////////////////////////////
@@ -81,6 +112,7 @@ Scene_Game::Scene_Game(
 	initKeyBinds(SCENE_GAME_KEY_BINDS_PATH);
 	initTextures();
 	initEntities();
+	initGUI();
 }
 
 
@@ -103,8 +135,8 @@ void Scene_Game::update(const float& frameTime)
 {
 	updateMousePositions();
 	handleInput(frameTime);
-
-	m_babyYoda->update(frameTime);
+	updateEntities(frameTime);
+	updateGUI(frameTime);
 }
 
 
@@ -119,5 +151,7 @@ void Scene_Game::render(shared<sf::RenderTarget> renderTarget)
 	{
 		renderTarget = m_renderWindow;
 	}
-	m_babyYoda->render(renderTarget);
+
+	renderEntities(renderTarget);
+	renderGUI(renderTarget);
 }
