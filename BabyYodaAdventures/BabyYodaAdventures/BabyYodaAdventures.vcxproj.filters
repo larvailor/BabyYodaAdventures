@@ -13,12 +13,6 @@
     <Filter Include="Core\Scenes">
       <UniqueIdentifier>{e26064e8-8f8d-4a7f-8d91-453d39c51f73}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Resources">
-      <UniqueIdentifier>{e7ee17cf-c72d-4ee4-b34d-c76fc93dbd51}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Resources\Buttons">
-      <UniqueIdentifier>{1b28d9a2-1ab1-4755-934c-830832196bd0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\Types">
       <UniqueIdentifier>{ba5f311b-e67e-465a-9041-232186b6f5e7}</UniqueIdentifier>
     </Filter>
@@ -30,6 +24,9 @@
     </Filter>
     <Filter Include="Core\GUI">
       <UniqueIdentifier>{4430b6c2-85e9-41fa-906b-357b85222ad0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GUI\Buttons">
+      <UniqueIdentifier>{1b28d9a2-1ab1-4755-934c-830832196bd0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -43,7 +40,7 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Button.cpp">
-      <Filter>Core\Resources\Buttons</Filter>
+      <Filter>Core\GUI\Buttons</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Core\Scenes</Filter>
@@ -84,7 +81,7 @@
       <Filter>Config</Filter>
     </ClInclude>
     <ClInclude Include="Button.hpp">
-      <Filter>Core\Resources\Buttons</Filter>
+      <Filter>Core\GUI\Buttons</Filter>
     </ClInclude>
     <ClInclude Include="Scene.hpp">
       <Filter>Core\Scenes</Filter>

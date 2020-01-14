@@ -3,21 +3,23 @@
 
 #include <iostream>
 
-#include "Types.hpp"
-
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
 #include "SFML/Window.hpp"
 #include "SFML/System.hpp"
+
+#include "Types.hpp"
 
 enum ButtonStates { BTN_IDLE = 0, BTN_HOVER, BTN_ACTIVE };
 
 class Button
 {
 protected:
-	/////////////////////
-	// Variables
+	/////////////////////////////////////////////////
+	// 
+	//		VARIABLES
 	//
+	/////////////////////////////////////////////////
 
 	unsigned char m_buttonState;
 
@@ -28,36 +30,53 @@ protected:
 
 	sf::Text m_text;
 
-	// Resources
-		// fonts
+	//-----------------------------------------------
+	//		Resources
+	//
+
+		// Fonts
 
 	shared<sf::Font> m_font;
 
 public:
-	/////////////////////
-	// Methods
+	/////////////////////////////////////////////////
+	// 
+	//		METHODS
 	//
+	/////////////////////////////////////////////////
 
-	// Constructors
+	//-----------------------------------------------
+	//		Constructors
+	//
 
 	Button(float x, float y, float width, float height,
 		shared<sf::Font>& font, int fontSize, std::string text,
-		sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor);
+		sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor
+	);
 
-	// Destructors
+	//-----------------------------------------------
+	//		Destructors
+	//
 
 	virtual ~Button();
 
-	// Accessors
-		// getters
+	//-----------------------------------------------
+	//		Accessors
+	//
+		
+		// Getters
 
 	bool isPressed() const;
 
-	// Update
+	//-----------------------------------------------
+	//		Update
+	//
 
 	void update(const sf::Vector2f& mousePosition);
 
-	// Render
+	//-----------------------------------------------
+	//		Render
+	//
 
 	void render(shared<sf::RenderTarget>& renderTarget);
 };

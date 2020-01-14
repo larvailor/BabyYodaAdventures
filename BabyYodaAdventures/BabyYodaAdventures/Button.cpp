@@ -28,8 +28,6 @@ Button::Button(
 	m_activeColor(activeColor),
 	m_buttonState(BTN_IDLE)
 {
-	std::cout << "Button constructor called" << std::endl;
-
 	// Text on button
 	m_text.setFont(*m_font);
 	m_text.setString(text);
@@ -38,6 +36,7 @@ Button::Button(
 	// Button
 	m_button.setPosition(sf::Vector2f(x, y));
 	m_button.setSize(sf::Vector2f(width, height));
+	m_button.setFillColor(sf::Color::Transparent);
 
 	if (width == -1)
 	{
@@ -73,9 +72,7 @@ Button::Button(
 
 
 Button::~Button()
-{
-	std::cout << "Button destructor called" << std::endl;
-}
+= default;
 
 
 
@@ -83,7 +80,7 @@ Button::~Button()
 //		Accessors
 //
 
-//		getters
+	//	Getters
 
 bool Button::isPressed() const
 {
@@ -135,6 +132,6 @@ void Button::update(const sf::Vector2f& mousePosition)
 
 void Button::render(shared<sf::RenderTarget>& renderTarget)
 {
-	//renderTarget->draw(m_button);
+	renderTarget->draw(m_button);
 	renderTarget->draw(m_text);
 }
