@@ -3,6 +3,9 @@
 #include "ConfigHelper.hpp"
 #include "Config_Scene_Game.hpp"
 
+#include "TexturesLoader.hpp"
+
+
 /////////////////////////////////////////////////
 // 
 //		PRIVATE METHODS
@@ -16,12 +19,8 @@
 
 void Scene_Game::initTextures()
 {
-	auto babyYoda = std::make_shared<sf::Texture>();
-	if (!babyYoda->loadFromFile(SCENE_GAME_BABY_YODA_TEXTURESHEET_PATH))
-	{
-		std::cout << "ERROR::Scene_Game::initTextures could not load textures " << SCENE_GAME_BABY_YODA_TEXTURESHEET_PATH << std::endl;
-	}
-	m_textures["BabyYoda"] = std::move(babyYoda);
+	TexturesLoader::loadTexture(SCENE_GAME_BABY_YODA_TEXTURESHEET_PATH, "BabyYoda", m_textures);
+	TexturesLoader::loadTexture(SCENE_GAME_GUI_HEART_PATH, "Heart", m_textures);
 }
 
 void Scene_Game::initEntities()
@@ -35,7 +34,7 @@ void Scene_Game::initEntities()
 
 void Scene_Game::initGUI()
 {
-	m_babyYodaGUI = std::make_unique<BabyYodaGUI>(m_babyYoda);
+	m_babyYodaGUI = std::make_unique<BabyYodaGUI>(m_babyYoda, m_textures.at("Heart"));
 }
 
 

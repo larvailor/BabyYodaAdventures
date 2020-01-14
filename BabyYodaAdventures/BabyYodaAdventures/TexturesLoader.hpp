@@ -3,6 +3,8 @@
 
 #include <string>
 
+#include "SFML/Graphics.hpp"
+
 #include "Types.hpp"
 
 class TexturesLoader
@@ -30,7 +32,7 @@ public:
 	//
 	/////////////////////////////////////////////////
 
-	static std::vector<std::string> getDirectories(const std::string pathToRootDir);
+	static void loadTexture(const std::string pathToFile, std::string key, std::map<std::string, shared<sf::Texture>>& m_textures);
 };
 
 

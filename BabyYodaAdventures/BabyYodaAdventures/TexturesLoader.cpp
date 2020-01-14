@@ -1,6 +1,6 @@
 #include "TexturesLoader.hpp"
 
-
+#include <iostream>
 
 /////////////////////////////////////////////////
 // 
@@ -8,8 +8,12 @@
 //
 /////////////////////////////////////////////////
 
-std::vector<std::string> TexturesLoader::getDirectories(const std::string pathToRootDir)
+void TexturesLoader::loadTexture(const std::string pathToFile, std::string key, std::map<std::string, shared<sf::Texture>>& textures)
 {
-	// TBD
-	return std::vector<std::string>();
+	auto babyYoda = std::make_shared<sf::Texture>();
+	if (!babyYoda->loadFromFile(pathToFile))
+	{
+		std::cout << "ERROR::Scene_Game::initTextures could not load textures " << pathToFile << std::endl;
+	}
+	textures[key] = std::move(babyYoda);
 }

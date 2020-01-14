@@ -25,7 +25,6 @@ void BabyYoda::initSprite(const float& startX, const float& startY)
 //		Update
 //
 
-
 void BabyYoda::updateComponents(const float& frameTime)
 {
 	updateComponentMovement(frameTime);

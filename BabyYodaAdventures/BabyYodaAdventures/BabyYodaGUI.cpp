@@ -16,7 +16,7 @@ void BabyYodaGUI::initHp()
 	{
 		float posX = m_hearts.empty() ? 60 : m_hearts.back()->m_heart.getGlobalBounds().left + m_hearts.back()->m_heart.getGlobalBounds().width + 10;
 		float posY = m_hearts.empty() ? 60 : m_hearts.back()->m_heart.getGlobalBounds().top;
-		auto heart = std::make_unique<Heart>(posX, posY);
+		auto heart = std::make_unique<Heart>(posX, posY, m_heartTexture);
 		m_hearts.push_back(std::move(heart));
 	}
 }
@@ -38,7 +38,7 @@ void BabyYodaGUI::updateHp(const float& frameTime)
 	{
 		float posX = m_hearts.back()->m_heart.getGlobalBounds().left + m_hearts.back()->m_heart.getGlobalBounds().width + 10;
 		float posY = m_hearts.back()->m_heart.getGlobalBounds().top;
-		auto heart = std::make_unique<Heart>(posX, posY);
+		auto heart = std::make_unique<Heart>(posX, posY, m_heartTexture);
 		m_hearts.push_back(std::move(heart));
 	}
 }
@@ -69,8 +69,9 @@ void BabyYodaGUI::renderHp(shared<sf::RenderTarget>& renderTarget)
 //		Constructors
 //
 
-BabyYodaGUI::BabyYodaGUI(shared<BabyYoda>& babyYoda) :
-	m_babyYoda(babyYoda)
+BabyYodaGUI::BabyYodaGUI(shared<BabyYoda>& babyYoda, shared<sf::Texture>& heartTexture) :
+	m_babyYoda(babyYoda),
+	m_heartTexture(heartTexture)
 {
 	initHp();
 }

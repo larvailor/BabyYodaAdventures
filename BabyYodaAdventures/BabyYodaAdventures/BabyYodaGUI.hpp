@@ -27,7 +27,8 @@ private:
 		//
 		/////////////////////////////////////////////////
 
-		sf::RectangleShape m_heart; // TODO: use heart texture instead
+		shared<sf::Texture> m_heartTexture; 
+		sf::Sprite m_heart;
 
 		/////////////////////////////////////////////////
 		// 
@@ -39,11 +40,11 @@ private:
 		//		Constructors
 		//
 
-		Heart(float posX, float posY)
+		Heart(float posX, float posY, shared<sf::Texture>& heartTexture) :
+			m_heartTexture(heartTexture)
 		{
+			m_heart.setTexture(*m_heartTexture);
 			m_heart.setPosition(sf::Vector2f(posX, posY));
-			m_heart.setSize(sf::Vector2f(60, 60));
-			m_heart.setFillColor(sf::Color::Red);
 		}
 	};
 
@@ -53,6 +54,14 @@ private:
 
 	/* A vector of hearts that is used for rendering hp status */
 	std::vector<unique<Heart>> m_hearts;
+
+	//-----------------------------------------------
+	//		Attributes
+	//
+
+		// Textures
+
+	shared<sf::Texture> m_heartTexture;
 
 	/////////////////////////////////////////////////
 	// 
@@ -89,7 +98,7 @@ public:
 	//		Constructors
 	//
 
-	BabyYodaGUI(shared<BabyYoda>& babyYoda);
+	BabyYodaGUI(shared<BabyYoda>& babyYoda, shared<sf::Texture>& heartTexture);
 
 	//-----------------------------------------------
 	//		Destructors
