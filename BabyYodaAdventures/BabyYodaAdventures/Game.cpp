@@ -14,10 +14,6 @@
 //		Initialization
 //
 
-/**
-	Loads window configuration from window.ini file.
-	Sets up default if failed to load
-*/
 void Game::initWindow()
 {
 	// Setting default values
@@ -52,10 +48,6 @@ void Game::initWindow()
 	m_renderWindow->setVerticalSyncEnabled(verticalSync);
 }
 
-/**
-	Loads all supported keys from SupportedKeys.ini file 
-	and creates an std::map of supported keys and their codes
-*/
 void Game::initSupportedKeys()
 {
 	m_supportedKeys = std::make_shared<std::map<std::string, sf::Keyboard::Key>>();
@@ -79,10 +71,6 @@ void Game::initSupportedKeys()
 	ifs.close();
 }
 
-/**
-	Pushes the first game scene into the stack of scenes.
-	Should be called only when all supported keys were loaded!
-*/
 void Game::initScenes()
 {
 	m_scenes = std::make_shared<std::stack<shared<Scene>>>();
@@ -112,13 +100,12 @@ void Game::initDebugVars()
 
 }
 
+
+
 //-----------------------------------------------
 //		Update
 //
 
-/*
-	Main game update method. Calls to all other update methods
-*/
 void Game::update()
 {
 	pollEvents();
@@ -138,11 +125,6 @@ void Game::pollEvents()
 	}
 }
 
-/**
-	Tooks the top item on the stack of scenes and calls its update method.
-	If the scene should be closed, then calls its finalize method and pops from stack.
-	If there are no scenes, then calls to close method on render window
-*/
 void Game::updateScenes()
 {
 	if (!m_scenes.get()->empty())
@@ -160,19 +142,12 @@ void Game::updateScenes()
 	}
 }
 
-/**
-	Calculates how much time is needed to update and render one frame
-	and stores the result in private m_frameTime member
-*/
 void Game::calculateFrameTime()
 {
 	m_debugFrameTime.setString("FT: " + std::to_string(m_frameTime));
 	m_frameTime = m_frameTimeClock.restart().asSeconds();
 }
 
-/**
-	Calculates how much times the scene was redrawn in one second
-*/
 void Game::calculateFps()
 {
 	m_fpsCounter++;
@@ -185,16 +160,12 @@ void Game::calculateFps()
 	}
 }
 
+
+
 //-----------------------------------------------
 //		Render
 //
 
-/**
-	Main game render method.
-	1. Clears the main window
-	2. Calls to all render methods
-	3. Displays the result
-*/
 void Game::render()
 {
 	m_renderWindow->clear();
@@ -207,9 +178,6 @@ void Game::render()
 	m_renderWindow->display();
 }
 
-/**
-	Tooks the top item on the stack of scenes and calls its render method
-*/
 void Game::renderScenes()
 {
 	if (!m_scenes.get()->empty())
@@ -226,6 +194,7 @@ void Game::renderDebugInfo()
 	// Fps
 	m_renderWindow->draw(m_debugFps);
 }
+
 
 
 /////////////////////////////////////////////////
@@ -259,13 +228,9 @@ Game::~Game()
 
 
 //-----------------------------------------------
-//		Else methods
+//		Else
 //
 
-/*
-	Game loop. Calls to the main update and render methods and
-	calculates the real frame time
-*/
 void Game::run()
 {
 	while (m_renderWindow->isOpen())

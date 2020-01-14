@@ -159,7 +159,7 @@ Scene::Scene(
 	m_scenes(scenes),
 	m_supportedKeys(supportedKeys)
 {
-	std::cout << "Scene constructor called" << std::endl;
+
 }
 
 
@@ -169,9 +169,7 @@ Scene::Scene(
 //
 
 Scene::~Scene()
-{
-	std::cout << "Scene destructor called" << std::endl;
-}
+= default;
 
 
 
