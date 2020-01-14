@@ -29,12 +29,18 @@ void BabyYoda::initSprite(const float& startX, const float& startY)
 void BabyYoda::updateComponents(const float& frameTime)
 {
 	updateComponentMovement(frameTime);
+	updateComponentHitbox();
 	updateComponentAnimation(frameTime);
 }
 
 void BabyYoda::updateComponentMovement(const float& frameTime)
 {
 	m_componentMovement->update(frameTime);
+}
+
+void BabyYoda::updateComponentHitbox()
+{
+	m_componentHitbox->update();
 }
 
 void BabyYoda::updateComponentAnimation(const float& frameTime)
@@ -73,7 +79,9 @@ BabyYoda::BabyYoda(const float& startX, const float& startY, shared<sf::Texture>
 {
 	initTextureSheet(textureSheet);
 	initSprite(startX, startY);
+
 	createComponentMovement(300.f, 0.05f, 0.05f); // TODO: loading from config
+	createComponentHitbox(m_sprite, 30.f, 2.f, 105.f, 142.5f); // TODO: loading from config and use scale
 	createComponentAnimation(SCENE_GAME_BABY_YODA_ANIMATIONS_PATH);
 }
 
@@ -111,4 +119,6 @@ void BabyYoda::move(const DirectionX& dirX, const DirectionY& dirY, const float&
 void BabyYoda::render(shared<sf::RenderTarget> renderTarget)
 {
 	renderTarget->draw(*m_sprite);
+
+	m_componentHitbox->render(renderTarget);
 }

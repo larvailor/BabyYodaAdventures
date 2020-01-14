@@ -63,6 +63,9 @@
     <ClCompile Include="Component_Animation.cpp">
       <Filter>Core\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Component_Hitbox.cpp">
+      <Filter>Core\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.hpp">
@@ -109,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="Config_Scene_MainMenu.hpp">
       <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_Hitbox.hpp">
+      <Filter>Core\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

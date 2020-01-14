@@ -2,6 +2,7 @@
 #define ENTITY_HPP
 
 #include "Component_Movement.hpp"
+#include "Component_Hitbox.hpp"
 #include "Component_Animation.hpp"
 
 class Entity
@@ -31,6 +32,7 @@ protected:
 	//
 
 	unique<Component_Movement> m_componentMovement;
+	unique<Component_Hitbox> m_componentHitbox;
 	unique<Component_Animation> m_componentAnimation;
 
 	//-----------------------------------------------
@@ -53,8 +55,11 @@ protected:
 
 	virtual void initTextureSheet(shared<sf::Texture>& texture);
 	virtual void initSprite(const float& startX, const float& startY);
+
+		// Components
 	/* TODO: loading from .ini file */
 	virtual void createComponentMovement(const float maxVelocity, const float acceleration, const float deceleration);
+	virtual void createComponentHitbox(shared<sf::Sprite>& sprite, float offsetX, float offsetY, float width, float height);
 	virtual void createComponentAnimation(std::string pathToAnimationsIni);
 
 public:

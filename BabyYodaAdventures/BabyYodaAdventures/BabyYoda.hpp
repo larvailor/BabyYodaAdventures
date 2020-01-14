@@ -24,6 +24,7 @@ private:
 
 	void updateComponents(const float& frameTime);
 	void updateComponentMovement(const float& frameTime);
+	void updateComponentHitbox();
 	void updateComponentAnimation(const float& frameTime);
 
 public:
