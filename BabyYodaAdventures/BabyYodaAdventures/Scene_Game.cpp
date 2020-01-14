@@ -5,7 +5,6 @@
 
 #include "TexturesLoader.hpp"
 
-
 /////////////////////////////////////////////////
 // 
 //		PRIVATE METHODS
@@ -15,7 +14,6 @@
 //-----------------------------------------------
 //		Initialization
 //
-
 
 void Scene_Game::initTextures()
 {
@@ -106,8 +104,6 @@ Scene_Game::Scene_Game(
 )
 	: Scene(renderWindow, scenes, supportedKeys)
 {
-	std::cout << "Scene_Game constructor called" << std::endl;
-
 	initKeyBinds(SCENE_GAME_KEY_BINDS_PATH);
 	initTextures();
 	initEntities();
@@ -120,9 +116,7 @@ Scene_Game::Scene_Game(
 //
 
 Scene_Game::~Scene_Game()
-{
-	std::cout << "Scene_Game destructor called" << std::endl;
-}
+= default;
 
 
 

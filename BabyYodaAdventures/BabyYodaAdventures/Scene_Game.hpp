@@ -17,7 +17,6 @@ private:
 	shared<BabyYoda> m_babyYoda;
 	unique<BabyYodaGUI> m_babyYodaGUI;
 
-
 	/////////////////////////////////////////////////
 	// 
 	//		METHODS
@@ -28,9 +27,6 @@ private:
 	//		Initialization
 	//
 
-	/**
-		TODO: should be rebuild
-	*/
 	void initTextures();
 	void initEntities();
 	void initGUI();

@@ -86,8 +86,6 @@ Scene_MainMenu::Scene_MainMenu(
 )
 	: Scene(renderWindow, scenes, supportedKeys)
 {
-	std::cout << "Scene_MainMenu constructor called" << std::endl;
-
 	initBackground(SCENE_MAIN_MENU_BACKGROUND_PATH);
 	initKeyBinds(SCENE_MAIN_MENU_KEY_BINDS_PATH);
 	initFont(SCENE_MAIN_MENU_FONT_PATH);
@@ -95,14 +93,15 @@ Scene_MainMenu::Scene_MainMenu(
 }
 
 
+
 //-----------------------------------------------
 //		Destructors
 //
 
 Scene_MainMenu::~Scene_MainMenu()
-{
-	std::cout << "Scene_MainMenu destructor called" << std::endl;
-}
+= default;
+
+
 
 //-----------------------------------------------
 //		Update

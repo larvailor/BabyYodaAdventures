@@ -6,35 +6,49 @@
 class Scene_MainMenu : public Scene
 {
 private:
-	/////////////////////
-	// Variables
+	/////////////////////////////////////////////////
+	// 
+	//		VARIABLES
 	//
+	/////////////////////////////////////////////////
 
 	sf::RectangleShape m_background;
 	sf::Texture m_backgroundTexture;
 
-
-	/////////////////////
-	// Methods
+	/////////////////////////////////////////////////
+	// 
+	//		METHODS
 	//
+	/////////////////////////////////////////////////
 
-	// Initialization
+	//-----------------------------------------------
+	//		Initialization
+	//
 
 	void initBackground(std::string pathToBackground);
 
-	// Udate
+	//-----------------------------------------------
+	//		Update
+	//
 
 	void handleInput(const float& frameTime);
 
-	// Render
+	//-----------------------------------------------
+	//		Render
+	//
+
 	void renderBackground();
 
 public:
-	/////////////////////
-	// Methods
+	/////////////////////////////////////////////////
+	// 
+	//		METHODS
 	//
+	/////////////////////////////////////////////////
 
-	// Constructors
+	//-----------------------------------------------
+	//		Constructors
+	//
 
 	Scene_MainMenu(
 		shared<sf::RenderWindow>& renderWindow,
@@ -42,15 +56,21 @@ public:
 		const shared_map<std::string, sf::Keyboard::Key>& supportedKeys
 	);
 
-	// Destructors
+	//-----------------------------------------------
+	//		Destructors
+	//
 
 	~Scene_MainMenu();
 
-	// Update
+	//-----------------------------------------------
+	//		Update
+	//
 
 	void update(const float& frameTime);
 
-	// Render
+	//-----------------------------------------------
+	//		Render
+	//
 
 	void render(shared<sf::RenderTarget> renderTarget = nullptr);
 };
