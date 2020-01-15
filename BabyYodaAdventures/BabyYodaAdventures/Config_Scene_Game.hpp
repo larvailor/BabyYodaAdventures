@@ -13,6 +13,10 @@ constexpr auto SCENE_GAME_SMOKE_PATH = "Resources/Images/Game/Textures/Backgroun
 constexpr auto SCENE_GAME_BABY_YODA_TEXTURESHEET_PATH = "Resources/Images/Game/Textures/BabyYoda/BabyYoda_SpriteSheet.png";
 constexpr auto SCENE_GAME_BABY_YODA_ANIMATIONS_PATH = "Config/Scenes/Game/Scene_Game_BabyYoda_Animations.ini";
 
+// MagmaBall
+
+constexpr auto SCENE_GAME_MAGMABALL_TEXTURESHEET_PATH = "Resources/Images/Game/Textures/MagmaBall/MagmaBall.png";
+
 // GUI
 
 constexpr auto SCENE_GAME_GUI_HEART_PATH = "Resources/Images/Game/Textures/GUI/Heart.png";

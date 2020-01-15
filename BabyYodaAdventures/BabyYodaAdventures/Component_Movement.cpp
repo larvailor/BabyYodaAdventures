@@ -23,6 +23,20 @@ Component_Movement::Component_Movement(float maxVelocity, float reachMaxVelocity
 	m_deceleration = m_maxVelocity / reachZeroVelocityTime;
 }
 
+Component_Movement::Component_Movement(sf::Vector2f startVelocity, shared<sf::Sprite>& sprite) :
+	m_currVelocity(startVelocity),
+	m_sprite(sprite),
+	m_maxVelocity(0.f),
+	m_movedManuallyX(false),
+	m_movedManuallyY(false),
+	m_currDirectionX(DirectionX::NONE),
+	m_currDirectionY(DirectionY::NONE),
+	m_acceleration(0.f),
+	m_deceleration(0.f)
+{
+
+}
+
 
 
 //-----------------------------------------------

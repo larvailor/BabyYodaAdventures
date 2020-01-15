@@ -31,9 +31,14 @@ void Entity::createComponentMovement(const float maxVelocity, const float reachM
 	m_componentMovement = std::make_unique<Component_Movement>(maxVelocity, reachMaxVelocityTime, reachZeroVelocityTime, m_sprite);
 }
 
-void Entity::createComponentHitbox(shared<sf::Sprite>& sprite, float offsetX, float offsetY, float width, float height)
+void Entity::createComponentMovement(const sf::Vector2f startVelocity)
 {
-	m_componentHitbox = std::make_unique<Component_Hitbox>(sprite, offsetX, offsetY, width, height);
+	m_componentMovement = std::make_unique<Component_Movement>(startVelocity, m_sprite);
+}
+
+void Entity::createComponentHitbox(float offsetX, float offsetY, float width, float height)
+{
+	m_componentHitbox = std::make_unique<Component_Hitbox>(m_sprite, offsetX, offsetY, width, height);
 }
 
 void Entity::createComponentAnimation(std::string pathToAnimationsIni)

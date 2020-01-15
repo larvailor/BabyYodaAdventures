@@ -3,6 +3,7 @@
 
 #include "Scene.hpp"
 #include "BabyYodaGUI.hpp"
+#include "MagmaBall.hpp"
 
 class Scene_Game : public Scene
 {
@@ -15,6 +16,8 @@ private:
 
 	shared<BabyYoda> m_babyYoda;
 	unique<BabyYodaGUI> m_babyYodaGUI;
+
+	std::vector<unique<MagmaBall>> m_magmaBalls;
 
 	sf::RectangleShape m_background;
 	sf::RectangleShape m_smokeTop;
@@ -40,7 +43,11 @@ private:
 	//
 
 	void handleInput(const float& frameTime);
+	
 	void updateEntities(const float& frameTime);
+	void updateBabyYoda(const float& frameTime);
+	void updateMagmaBalls(const float& frameTime);
+
 	void updateGUI(const float& frameTime);
 
 	//-----------------------------------------------
@@ -48,9 +55,19 @@ private:
 	//
 
 	void renderBackground(shared<sf::RenderTarget>& renderTarget);
+
 	void renderEntities(shared<sf::RenderTarget>& renderTarget);
+	void renderBabyYoda(shared<sf::RenderTarget>& renderTarget);
+	void renderMagmaBalls(shared<sf::RenderTarget>& renderTarget);
+
 	void renderSmoke(shared<sf::RenderTarget>& renderTarget);
 	void renderGUI(shared<sf::RenderTarget>& renderTarget);
+
+	//-----------------------------------------------
+	//		Else
+	//
+
+	void createMagmaBall();
 
 public:
 	/////////////////////////////////////////////////

@@ -60,7 +60,15 @@ public:
 	//		Constructors
 	//
 
+	/**
+		Use this constructor when entity is under player control and should be moved mannually
+	*/
 	Component_Movement(float maxVelocity, float reachMaxVelocityTime, float reachZeroVelocityTime, shared<sf::Sprite>& sprite);
+	
+	/**
+		Use this constructor when entity should be moved with the same velocity during its all life	
+	*/
+	Component_Movement(sf::Vector2f startVelocity, shared<sf::Sprite>& sprite);
 
 	//-----------------------------------------------
 	//		Destructors

@@ -59,7 +59,8 @@ protected:
 		// Components
 	/* TODO: loading from .ini file */
 	virtual void createComponentMovement(const float maxVelocity, const float acceleration, const float deceleration);
-	virtual void createComponentHitbox(shared<sf::Sprite>& sprite, float offsetX, float offsetY, float width, float height);
+	virtual void createComponentMovement(const sf::Vector2f startVelocity);
+	virtual void createComponentHitbox(float offsetX, float offsetY, float width, float height);
 	virtual void createComponentAnimation(std::string pathToAnimationsIni);
 
 public:

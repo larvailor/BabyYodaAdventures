@@ -70,6 +70,9 @@
       <Filter>Core\GUI</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="MagmaBall.cpp">
+      <Filter>Core\Entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.hpp">
@@ -124,5 +127,8 @@
       <Filter>Core\GUI</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.hpp" />
+    <ClInclude Include="MagmaBall.hpp">
+      <Filter>Core\Entities</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

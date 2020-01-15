@@ -82,7 +82,7 @@ BabyYoda::BabyYoda(const float& startX, const float& startY, shared<sf::Texture>
 	initSprite(startX, startY);
 
 	createComponentMovement(300.f, 0.05f, 0.05f); // TODO: loading from config
-	createComponentHitbox(m_sprite, 30.f, 2.f, 105.f, 142.5f); // TODO: loading from config and use scale
+	createComponentHitbox(30.f, 2.f, 105.f, 142.5f); // TODO: loading from config and use scale
 	createComponentAnimation(SCENE_GAME_BABY_YODA_ANIMATIONS_PATH);
 }
 

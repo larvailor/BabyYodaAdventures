@@ -19,6 +19,7 @@
 void Scene_Game::initTextures()
 {
 	TexturesLoader::loadTexture(SCENE_GAME_BABY_YODA_TEXTURESHEET_PATH, "BabyYoda", m_textures);
+	TexturesLoader::loadTexture(SCENE_GAME_MAGMABALL_TEXTURESHEET_PATH, "MagmaBall", m_textures);
 	TexturesLoader::loadTexture(SCENE_GAME_GUI_HEART_PATH, "Heart", m_textures);
 	TexturesLoader::loadTexture(SCENE_GAME_SMOKE_PATH, "Smoke", m_textures);
 }
@@ -81,13 +82,30 @@ void Scene_Game::handleInput(const float& frameTime)
 	if (sf::Keyboard::isKeyPressed(m_keyBinds.at("MOVE_RIGHT")))
 		m_babyYoda->move(DirectionX::RIGHT, DirectionY::NONE, frameTime);
 
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		createMagmaBall();
+
 	if (sf::Keyboard::isKeyPressed(m_keyBinds.at("ESCAPE")))
 		quitScene();
 }
 
 void Scene_Game::updateEntities(const float& frameTime)
 {
+	updateBabyYoda(frameTime);
+	updateMagmaBalls(frameTime);
+}
+
+void Scene_Game::updateBabyYoda(const float& frameTime)
+{
 	m_babyYoda->update(frameTime);
+}
+
+void Scene_Game::updateMagmaBalls(const float& frameTime)
+{
+	for (auto& magmaBall : m_magmaBalls)
+	{
+		magmaBall->update(frameTime);
+	}
 }
 
 void Scene_Game::updateGUI(const float& frameTime)
@@ -108,7 +126,21 @@ void Scene_Game::renderBackground(shared<sf::RenderTarget>& renderTarget)
 
 void Scene_Game::renderEntities(shared<sf::RenderTarget>& renderTarget)
 {
+	renderBabyYoda(renderTarget);
+	renderMagmaBalls(renderTarget);
+}
+
+void Scene_Game::renderBabyYoda(shared<sf::RenderTarget>& renderTarget)
+{
 	m_babyYoda->render(renderTarget);
+}
+
+void Scene_Game::renderMagmaBalls(shared<sf::RenderTarget>& renderTarget)
+{
+	for (auto& magmaBall : m_magmaBalls)
+	{
+		magmaBall->render(renderTarget);
+	}
 }
 
 void Scene_Game::renderSmoke(shared<sf::RenderTarget>& renderTarget)
@@ -119,6 +151,18 @@ void Scene_Game::renderSmoke(shared<sf::RenderTarget>& renderTarget)
 void Scene_Game::renderGUI(shared<sf::RenderTarget>& renderTarget)
 {
 	m_babyYodaGUI->render(renderTarget);
+}
+
+
+
+//-----------------------------------------------
+//		Else
+//
+
+void Scene_Game::createMagmaBall()
+{
+	auto magmaBall = std::make_unique<MagmaBall>(m_babyYoda->getPos(), m_mousePosView, m_textures.at("MagmaBall"));
+	m_magmaBalls.push_back(std::move(magmaBall));
 }
 
 
