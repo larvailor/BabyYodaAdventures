@@ -91,6 +91,7 @@ public:
 	virtual float getX() const;
 	virtual float getY() const;
 	virtual sf::Vector2f getPos() const;
+	virtual 
 
 		// Setters
 
@@ -110,6 +111,12 @@ public:
 	//
 
 	virtual void render(shared<sf::RenderTarget> renderTarget = nullptr) = 0;
+
+	//-----------------------------------------------
+	//		Else
+	//
+
+	virtual bool intersects(const sf::FloatRect& rect);
 };
 
 #endif

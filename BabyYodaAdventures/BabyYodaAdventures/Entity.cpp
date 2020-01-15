@@ -155,3 +155,14 @@ void Entity::move(const DirectionX& dirX, const DirectionY& dirY, const float& f
 	if (m_sprite && m_componentMovement)
 		m_componentMovement->move(dirX, dirY, frameTime);
 }
+
+
+
+//-----------------------------------------------
+//		Else
+//
+
+bool Entity::intersects(const sf::FloatRect& rect)
+{
+	return m_componentHitbox->intersects(rect);
+}

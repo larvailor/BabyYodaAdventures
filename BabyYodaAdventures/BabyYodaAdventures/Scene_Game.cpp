@@ -102,9 +102,14 @@ void Scene_Game::updateBabyYoda(const float& frameTime)
 
 void Scene_Game::updateMagmaBalls(const float& frameTime)
 {
-	for (auto& magmaBall : m_magmaBalls)
+	auto magmaBallItr = m_magmaBalls.begin();
+	while (magmaBallItr != m_magmaBalls.end())
 	{
-		magmaBall->update(frameTime);
+		magmaBallItr->get()->update(frameTime);
+		if (!magmaBallItr->get()->intersects(sf::FloatRect(m_background.getPosition(), m_background.getSize())))
+			magmaBallItr = m_magmaBalls.erase(magmaBallItr);
+		else
+			magmaBallItr++;
 	}
 }
 
