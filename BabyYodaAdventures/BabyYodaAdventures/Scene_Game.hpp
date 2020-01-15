@@ -18,6 +18,7 @@ private:
 	unique<BabyYodaGUI> m_babyYodaGUI;
 
 	std::vector<unique<MagmaBall>> m_magmaBalls;
+	sf::Clock m_magmaBallTimer;
 
 	sf::RectangleShape m_background;
 	sf::RectangleShape m_smokeTop;
@@ -42,7 +43,7 @@ private:
 	//		Update
 	//
 
-	void handleInput(const float& frameTime);
+	void handleKeyInput(const float& frameTime);
 	
 	void updateEntities(const float& frameTime);
 	void updateBabyYoda(const float& frameTime);

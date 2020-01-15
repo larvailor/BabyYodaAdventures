@@ -68,7 +68,7 @@ void Scene_Game::initGUI()
 //		Update
 //
 
-void Scene_Game::handleInput(const float& frameTime)
+void Scene_Game::handleKeyInput(const float& frameTime)
 {
 	if (sf::Keyboard::isKeyPressed(m_keyBinds.at("MOVE_UP")))
 		m_babyYoda->move(DirectionX::NONE, DirectionY::UP, frameTime);
@@ -161,8 +161,13 @@ void Scene_Game::renderGUI(shared<sf::RenderTarget>& renderTarget)
 
 void Scene_Game::createMagmaBall()
 {
-	auto magmaBall = std::make_unique<MagmaBall>(m_babyYoda->getPos(), m_mousePosView, m_textures.at("MagmaBall"));
-	m_magmaBalls.push_back(std::move(magmaBall));
+	if (m_magmaBallTimer.getElapsedTime().asSeconds() > 0.2)
+	{
+		auto magmaBall = std::make_unique<MagmaBall>(m_babyYoda->getPos(), m_mousePosView, m_textures.at("MagmaBall"));
+		m_magmaBalls.push_back(std::move(magmaBall));
+
+		m_magmaBallTimer.restart().asSeconds();
+	}
 }
 
 
@@ -209,7 +214,7 @@ Scene_Game::~Scene_Game()
 void Scene_Game::update(const float& frameTime)
 {
 	updateMousePositions();
-	handleInput(frameTime);
+	handleKeyInput(frameTime);
 	updateEntities(frameTime);
 	updateGUI(frameTime);
 }

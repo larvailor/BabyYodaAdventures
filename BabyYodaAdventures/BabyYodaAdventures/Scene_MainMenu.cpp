@@ -42,7 +42,7 @@ void Scene_MainMenu::initSmoke(std::string pathToBackground)
 //		Update
 //
 
-void Scene_MainMenu::handleInput(const float& frameTime)
+void Scene_MainMenu::handleKeyInput(const float& frameTime)
 {
 	if (m_buttons["START_GAME"]->isPressed())
 	{
@@ -111,7 +111,7 @@ void Scene_MainMenu::update(const float& frameTime)
 {
 	updateMousePositions();
 	updateButtons();
-	handleInput(frameTime);
+	handleKeyInput(frameTime);
 }
 
 

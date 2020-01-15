@@ -112,7 +112,7 @@ protected:
 	//		Update
 	//
 
-	virtual void handleInput(const float& frameTime) = 0;
+	virtual void handleKeyInput(const float& frameTime) = 0;
 	virtual void updateMousePositions();
 	virtual void updateButtons();
 

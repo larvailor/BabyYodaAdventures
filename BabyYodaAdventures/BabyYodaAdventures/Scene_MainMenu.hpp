@@ -31,7 +31,7 @@ private:
 	//		Update
 	//
 
-	void handleInput(const float& frameTime);
+	void handleKeyInput(const float& frameTime);
 
 	//-----------------------------------------------
 	//		Render
