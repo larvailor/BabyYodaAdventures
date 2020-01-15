@@ -17,6 +17,9 @@ private:
 	shared<BabyYoda> m_babyYoda;
 	unique<BabyYodaGUI> m_babyYodaGUI;
 
+	sf::RectangleShape m_background;
+	sf::RectangleShape m_smokeTop;
+
 	/////////////////////////////////////////////////
 	// 
 	//		METHODS
@@ -28,7 +31,9 @@ private:
 	//
 
 	void initTextures();
+	void initBackground();
 	void initEntities();
+	void initSmoke();
 	void initGUI();
 
 	//-----------------------------------------------
@@ -40,10 +45,12 @@ private:
 	void updateGUI(const float& frameTime);
 
 	//-----------------------------------------------
-	//		Update
+	//		Render
 	//
 
+	void renderBackground(shared<sf::RenderTarget>& renderTarget);
 	void renderEntities(shared<sf::RenderTarget>& renderTarget);
+	void renderSmoke(shared<sf::RenderTarget>& renderTarget);
 	void renderGUI(shared<sf::RenderTarget>& renderTarget);
 
 public:

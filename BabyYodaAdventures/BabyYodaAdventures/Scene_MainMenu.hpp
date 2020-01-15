@@ -25,7 +25,7 @@ private:
 	//		Initialization
 	//
 
-	void initBackground(std::string pathToBackground);
+	void initSmoke(std::string pathToBackground);
 
 	//-----------------------------------------------
 	//		Update

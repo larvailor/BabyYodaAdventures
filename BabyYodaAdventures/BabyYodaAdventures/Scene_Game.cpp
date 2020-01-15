@@ -19,6 +19,19 @@ void Scene_Game::initTextures()
 {
 	TexturesLoader::loadTexture(SCENE_GAME_BABY_YODA_TEXTURESHEET_PATH, "BabyYoda", m_textures);
 	TexturesLoader::loadTexture(SCENE_GAME_GUI_HEART_PATH, "Heart", m_textures);
+	TexturesLoader::loadTexture(SCENE_GAME_SMOKE_PATH, "Smoke", m_textures);
+}
+
+void Scene_Game::initBackground()
+{
+	m_background.setSize(
+		sf::Vector2f(
+			static_cast<float>(m_renderWindow->getSize().x),
+			static_cast<float>(m_renderWindow->getSize().y)
+		)
+	);
+
+	m_background.setFillColor(sf::Color::White);
 }
 
 void Scene_Game::initEntities()
@@ -28,6 +41,18 @@ void Scene_Game::initEntities()
 		m_renderWindow->getSize().y / 2.f,
 		m_textures.at("BabyYoda")
 		);
+}
+
+void Scene_Game::initSmoke()
+{
+	m_smokeTop.setSize(
+		sf::Vector2f(
+			static_cast<float>(m_renderWindow->getSize().x),
+			static_cast<float>(m_renderWindow->getSize().y)
+		)
+	);
+
+	m_smokeTop.setTexture(m_textures["Smoke"].get());
 }
 
 void Scene_Game::initGUI()
@@ -75,9 +100,19 @@ void Scene_Game::updateGUI(const float& frameTime)
 //		Render
 //
 
+void Scene_Game::renderBackground(shared<sf::RenderTarget>& renderTarget)
+{
+	m_renderWindow->draw(m_background);
+}
+
 void Scene_Game::renderEntities(shared<sf::RenderTarget>& renderTarget)
 {
 	m_babyYoda->render(renderTarget);
+}
+
+void Scene_Game::renderSmoke(shared<sf::RenderTarget>& renderTarget)
+{
+	m_renderWindow->draw(m_smokeTop);
 }
 
 void Scene_Game::renderGUI(shared<sf::RenderTarget>& renderTarget)
@@ -106,7 +141,9 @@ Scene_Game::Scene_Game(
 {
 	initKeyBinds(SCENE_GAME_KEY_BINDS_PATH);
 	initTextures();
+	initBackground();
 	initEntities();
+	initSmoke();
 	initGUI();
 }
 
@@ -145,6 +182,8 @@ void Scene_Game::render(shared<sf::RenderTarget> renderTarget)
 		renderTarget = m_renderWindow;
 	}
 
+	renderBackground(renderTarget);
 	renderEntities(renderTarget);
+	renderSmoke(renderTarget);
 	renderGUI(renderTarget);
 }

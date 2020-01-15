@@ -6,6 +6,7 @@
 #define CONFIG_SCENE_GAME_HPP
 
 constexpr auto SCENE_GAME_KEY_BINDS_PATH = "Config/Scenes/Game/Scene_Game_KeyBinds.ini";
+constexpr auto SCENE_GAME_SMOKE_PATH = "Resources/Images/Game/Textures/Backgrounds/Scene_Game_Smoke.png";
 
 // BabyYoda
 

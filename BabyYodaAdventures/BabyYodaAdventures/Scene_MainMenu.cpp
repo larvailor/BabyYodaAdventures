@@ -15,7 +15,7 @@
 //		Initialization
 //
 
-void Scene_MainMenu::initBackground(std::string pathToBackground)
+void Scene_MainMenu::initSmoke(std::string pathToBackground)
 {
 	m_background.setSize(
 		sf::Vector2f(
@@ -86,7 +86,7 @@ Scene_MainMenu::Scene_MainMenu(
 )
 	: Scene(renderWindow, scenes, supportedKeys)
 {
-	initBackground(SCENE_MAIN_MENU_BACKGROUND_PATH);
+	initSmoke(SCENE_MAIN_MENU_BACKGROUND_PATH);
 	initKeyBinds(SCENE_MAIN_MENU_KEY_BINDS_PATH);
 	initFont(SCENE_MAIN_MENU_FONT_PATH);
 	initButtons(SCENE_MAIN_MENU_BUTTONS_PATH);
