@@ -1,15 +1,6 @@
 #ifndef COMPONENT_MOVEMENT_HPP
 #define COMPONENT_MOVEMENT_HPP
 
-#include <iostream>
-
-#include "SFML/Graphics.hpp"
-#include "SFML/Audio.hpp"
-#include "SFML/Network.hpp"
-#include "SFML/Window.hpp"
-#include "SFML/System.hpp"
-
-#include "Types.hpp"
 #include "Directions.hpp"
 
 class Component_Movement

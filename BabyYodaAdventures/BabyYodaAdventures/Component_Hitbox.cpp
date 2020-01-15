@@ -1,3 +1,4 @@
+#include "stdafx.hpp"
 #include "Component_Hitbox.hpp"
 
 /////////////////////////////////////////////////

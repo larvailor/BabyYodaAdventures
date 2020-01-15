@@ -1,14 +1,6 @@
 #ifndef COMPONENT_ANIMATION_HPP
 #define COMPONENT_ANIMATION_HPP
 
-#include "SFML/Graphics.hpp"
-#include "SFML/Audio.hpp"
-#include "SFML/Network.hpp"
-#include "SFML/Window.hpp"
-#include "SFML/System.hpp"
-
-#include "Types.hpp"
-
 class Component_Animation
 {
 private:

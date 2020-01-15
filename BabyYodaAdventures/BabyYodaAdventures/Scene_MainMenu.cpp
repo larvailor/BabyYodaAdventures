@@ -1,7 +1,7 @@
+#include "stdafx.hpp"
 #include "Scene_MainMenu.hpp"
 
 #include "Config_Scene_MainMenu.hpp"
-#include "Button.hpp"
 
 #include "Scene_Game.hpp"
 

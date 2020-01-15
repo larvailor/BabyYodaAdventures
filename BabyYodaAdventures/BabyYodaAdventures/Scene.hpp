@@ -1,10 +1,6 @@
 #ifndef SCENE_HPP
 #define SCENE_HPP
 
-#include "Types.hpp"
-
-#include "BabyYoda.hpp"
-
 #include "Button.hpp"
 
 class Scene

@@ -1,15 +1,6 @@
 #ifndef BUTTON_HPP
 #define BUTTON_HPP
 
-#include <iostream>
-
-#include "SFML/Graphics.hpp"
-#include "SFML/Audio.hpp"
-#include "SFML/Window.hpp"
-#include "SFML/System.hpp"
-
-#include "Types.hpp"
-
 enum ButtonStates { BTN_IDLE = 0, BTN_HOVER, BTN_ACTIVE };
 
 class Button

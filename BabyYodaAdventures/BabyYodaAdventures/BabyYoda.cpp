@@ -1,3 +1,4 @@
+#include "stdafx.hpp"
 #include "BabyYoda.hpp"
 
 #include "Config_Scene_Game.hpp"

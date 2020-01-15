@@ -1,12 +1,6 @@
 #ifndef TEXTURES_LOADER_HPP
 #define TEXTURES_LOADER_HPP
 
-#include <string>
-
-#include "SFML/Graphics.hpp"
-
-#include "Types.hpp"
-
 class TexturesLoader
 {
 private:

@@ -1,3 +1,4 @@
+#include "stdafx.hpp"
 #include "Scene_Game.hpp"
 
 #include "ConfigHelper.hpp"

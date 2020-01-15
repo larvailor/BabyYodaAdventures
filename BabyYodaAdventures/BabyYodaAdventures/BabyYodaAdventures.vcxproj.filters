@@ -69,6 +69,7 @@
     <ClCompile Include="BabyYodaGUI.cpp">
       <Filter>Core\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.hpp">
@@ -122,5 +123,6 @@
     <ClInclude Include="BabyYodaGUI.hpp">
       <Filter>Core\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="stdafx.hpp" />
   </ItemGroup>
 </Project>

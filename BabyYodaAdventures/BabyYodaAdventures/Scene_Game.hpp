@@ -2,7 +2,6 @@
 #define SCENE_GAME_HPP
 
 #include "Scene.hpp"
-
 #include "BabyYodaGUI.hpp"
 
 class Scene_Game : public Scene

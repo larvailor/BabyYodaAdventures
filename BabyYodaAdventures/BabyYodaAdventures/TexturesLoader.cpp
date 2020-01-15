@@ -1,6 +1,5 @@
+#include "stdafx.hpp"
 #include "TexturesLoader.hpp"
-
-#include <iostream>
 
 /////////////////////////////////////////////////
 // 

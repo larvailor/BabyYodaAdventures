@@ -1,11 +1,6 @@
 #ifndef TYPES_HPP
 #define TYPES_HPP
 
-#include <memory>
-#include <vector>
-#include <map>
-#include <stack>
-
 template<typename T>
 template<class T>
 using unique = std::unique_ptr<T>;
