@@ -1,6 +1,8 @@
 #include "stdafx.hpp"
 #include "MagmaBall.hpp"
 
+#include "Config_Scene_Game.hpp"
+
 /////////////////////////////////////////////////
 // 
 //		PRIVATE METHODS
@@ -11,25 +13,46 @@
 //		Initialization
 //
 
-sf::Vector2f MagmaBall::calculateSpeed(const sf::Vector2f& playerPos, const sf::Vector2f& mousePos, float startVelocity)
+void MagmaBall::calculateSpeed(const sf::Vector2f& playerPos, const sf::Vector2f& mousePos, float startVelocity)
 {
 	float deltaX = mousePos.x - playerPos.x;
 	float deltaY = mousePos.y - playerPos.y;
 
-	float alpha = atan(abs(deltaY) / abs(deltaX));
-	float velocityX = startVelocity * cos(alpha);
+	m_alpha = atan(abs(deltaY) / abs(deltaX));
+	m_velocityX = startVelocity * cos(m_alpha);
 	if (deltaX < 0)
 	{
-		velocityX *= -1;
+		m_velocityX *= -1;
 	}
 
-	float velocityY = startVelocity * sin(alpha);
+	m_velocityY = startVelocity * sin(m_alpha);
 	if (deltaY < 0)
 	{
-		velocityY *= -1;
+		m_velocityY *= -1;
 	}
+}
 
-	return sf::Vector2f(velocityX, velocityY);
+void MagmaBall::initSprite(const float& startX, const float& startY)
+{
+	Entity::initSprite(startX, startY);
+
+	float angle = m_alpha * 180 / 3.14;
+	float rotation = angle;
+
+	if (m_velocityX > 0 && m_velocityY < 0)
+		rotation = 270 + (90 - angle);
+	else if (m_velocityX < 0 && m_velocityY < 0)
+		rotation = 180 + angle;
+	else if (m_velocityX < 0 && m_velocityY > 0)
+		rotation = 90 + (90 - angle);
+	m_sprite->setRotation(rotation);
+
+	m_sprite->setOrigin(
+		sf::Vector2f(
+			m_sprite->getLocalBounds().left + 25,
+			m_sprite->getLocalBounds().top + 50
+		)
+	); // TODO: loading from config
 }
 
 
@@ -42,7 +65,7 @@ void MagmaBall::updateComponents(const float& frameTime)
 {
 	updateComponentMovement(frameTime);
 //	updateComponentHitbox();
-//	updateComponentAnimation(frameTime);
+	updateComponentAnimation(frameTime);
 }
 
 void MagmaBall::updateComponentMovement(const float& frameTime)
@@ -74,12 +97,13 @@ void MagmaBall::updateComponentAnimation(const float& frameTime)
 
 MagmaBall::MagmaBall(sf::Vector2f playerPos, sf::Vector2f mousePos, shared<sf::Texture>& textureSheet)
 {
+	calculateSpeed(playerPos, mousePos, 300.f);
 	initTextureSheet(textureSheet);
 	initSprite(playerPos.x, playerPos.y);
 
-	createComponentMovement(calculateSpeed(playerPos, mousePos, 300.f)); // TODO: loading from config
+	createComponentMovement(sf::Vector2f(m_velocityX, m_velocityY)); // TODO: loading from config
 	//createComponentHitbox(m_sprite, 30.f, 2.f, 105.f, 142.5f); // TODO: loading from config and use scale
-	//createComponentAnimation(SCENE_GAME_BABY_YODA_ANIMATIONS_PATH);
+	createComponentAnimation(SCENE_GAME_MAGMABALL_ANIMATIONS_PATH);
 }
 
 

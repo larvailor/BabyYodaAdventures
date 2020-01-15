@@ -14,6 +14,7 @@ private:
 
 	float m_velocityX;
 	float m_velocityY;
+	float m_alpha;
 
 	/////////////////////////////////////////////////
 	// 
@@ -25,8 +26,8 @@ private:
 	//		Initialization
 	//
 
-	sf::Vector2f calculateSpeed(const sf::Vector2f& playerPos, const sf::Vector2f& mousePos, float startSpeed);
-
+	void calculateSpeed(const sf::Vector2f& playerPos, const sf::Vector2f& mousePos, float startSpeed);
+	void initSprite(const float& startX, const float& startY);
 
 	//-----------------------------------------------
 	//		Update

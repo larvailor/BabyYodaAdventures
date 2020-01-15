@@ -15,7 +15,8 @@ constexpr auto SCENE_GAME_BABY_YODA_ANIMATIONS_PATH = "Config/Scenes/Game/Scene_
 
 // MagmaBall
 
-constexpr auto SCENE_GAME_MAGMABALL_TEXTURESHEET_PATH = "Resources/Images/Game/Textures/MagmaBall/MagmaBall.png";
+constexpr auto SCENE_GAME_MAGMABALL_TEXTURESHEET_PATH = "Resources/Images/Game/Textures/MagmaBall/MagmaBall_SpriteSheet.png";
+constexpr auto SCENE_GAME_MAGMABALL_ANIMATIONS_PATH = "Config/Scenes/Game/Scene_Game_MagmaBall_Animations.ini";
 
 // GUI
 
