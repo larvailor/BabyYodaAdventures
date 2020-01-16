@@ -108,10 +108,33 @@ void Scene_Game::updateMagmaBalls(const float& frameTime)
 	while (magmaBallItr != m_magmaBalls.end())
 	{
 		magmaBallItr->get()->update(frameTime);
+		// Check if magmaball is out of the screen
 		if (!magmaBallItr->get()->intersects(sf::FloatRect(m_background.getPosition(), m_background.getSize())))
+		{
 			magmaBallItr = m_magmaBalls.erase(magmaBallItr);
+			return;
+		}
 		else
-			magmaBallItr++;
+		{
+			static bool intersects;
+			intersects = false;
+
+			// Check if magmaball intersects with shtormtrooper
+			for (auto& shtormtrooper : m_shtormtroopers)
+			{
+				if (magmaBallItr->get()->intersects(shtormtrooper->getHitboxFloatRect()))
+				{
+					intersects = true;
+
+					shtormtrooper->m_hp--;
+					magmaBallItr = m_magmaBalls.erase(magmaBallItr);
+					break;
+				}
+			}
+			if (!intersects)
+				magmaBallItr++;
+		}
+
 	}
 }
 
@@ -120,6 +143,7 @@ void Scene_Game::updateShtormtroopers(const float& frameTime)
 	auto shtormtrooperItr = m_shtormtroopers.begin();
 	while (shtormtrooperItr != m_shtormtroopers.end())
 	{
+		// Check if a shtormtrooper alive
 		if (shtormtrooperItr->get()->m_hp <= 0)
 		{
 			shtormtrooperItr = m_shtormtroopers.erase(shtormtrooperItr);
@@ -127,7 +151,17 @@ void Scene_Game::updateShtormtroopers(const float& frameTime)
 		else
 		{
 			shtormtrooperItr->get()->update(frameTime);
-			shtormtrooperItr++;
+
+			// Check if a shtormtrooper intersects with BabyYoda
+			if (shtormtrooperItr->get()->intersects(m_babyYoda->getHitboxFloatRect()))
+			{
+				m_babyYoda->m_hp--;
+				shtormtrooperItr = m_shtormtroopers.erase(shtormtrooperItr);
+			}
+			else
+			{
+				shtormtrooperItr++;
+			}
 		}
 	}
 
@@ -196,7 +230,7 @@ void Scene_Game::renderGUI(shared<sf::RenderTarget>& renderTarget)
 
 void Scene_Game::createMagmaBall()
 {
-	if (m_magmaBallTimer.getElapsedTime().asSeconds() > 0.2)
+	if (m_magmaBallTimer.getElapsedTime().asSeconds() > 0.1)
 	{
 		auto magmaBall = std::make_unique<MagmaBall>(m_babyYoda->getPos(), m_mousePosView, m_textures.at("MagmaBall"));
 		m_magmaBalls.push_back(std::move(magmaBall));
@@ -207,21 +241,34 @@ void Scene_Game::createMagmaBall()
 
 void Scene_Game::spawnShtormtrooper()
 {
-	//auto x = std::dynamic_pointer_cast<Entity>(m_babyYoda);
-
-	//auto s = new Shtormtrooper(
-	//	sf::Vector2f(300.f, 300.f),
-	//	m_textures.at("Shtormtrooper"),
-	//	x
-	//	);
-	if (m_shtormtrooperClock.getElapsedTime().asSeconds() > 2)
+	if (m_shtormtrooperClock.getElapsedTime().asSeconds() > 1.2)
 	{
+		sf::Vector2f startPos;
+		char side = 1 + rand() % 4;
+		switch (side)
+		{
+		case 1: // Left side
+			startPos.x = -150.f;
+			startPos.y = static_cast<float>(0 + rand() % static_cast<int>(m_background.getGlobalBounds().height));
+			break;
+		case 2: // Top side
+			startPos.x = static_cast<float>(0 + rand() % static_cast<int>(m_background.getGlobalBounds().width));
+			startPos.y = -150.f;
+			break;
+		case 3: // Right side
+			startPos.x = 150.f + m_background.getGlobalBounds().width;
+			startPos.y = static_cast<float>(0 + rand() % static_cast<int>(m_background.getGlobalBounds().height));
+			break;
+		case 4: // Bottom side
+			startPos.x = static_cast<float>(0 + rand() % static_cast<int>(m_background.getGlobalBounds().width));
+			startPos.y = 150.f + m_background.getGlobalBounds().height;
+			break;
+		default:
+			break;
+		}
+
 		auto castedPtr = std::dynamic_pointer_cast<Entity>(m_babyYoda);
-		auto shtormtrooper = std::make_unique<Shtormtrooper>(
-			sf::Vector2f(300.f, 300.f),
-			m_textures.at("Shtormtrooper"),
-			castedPtr
-			);
+		auto shtormtrooper = std::make_unique<Shtormtrooper>(startPos, m_textures.at("Shtormtrooper"), castedPtr);
 		m_shtormtroopers.push_back(std::move(shtormtrooper));
 
 		m_shtormtrooperClock.restart().asSeconds();

@@ -124,6 +124,11 @@ sf::Vector2f Entity::getPos() const
 	return m_sprite ? m_sprite->getPosition() : sf::Vector2f(0, 0);
 }
 
+sf::FloatRect Entity::getHitboxFloatRect() const
+{
+	return m_componentHitbox->getHitboxFloatRect();
+}
+
 	// Setters
 
 void Entity::setX(const float& x)

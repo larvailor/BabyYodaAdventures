@@ -55,7 +55,7 @@ void Shtormtrooper::calculateVelocity(const sf::Vector2f& currPos, const sf::Vec
 void Shtormtrooper::updateComponents(const float& frameTime)
 {
 	updateComponentMovement(frameTime);
-	//updateComponentHitbox();
+	updateComponentHitbox();
 }
 
 void Shtormtrooper::updateComponentMovement(const float& frameTime)
@@ -90,6 +90,7 @@ Shtormtrooper::Shtormtrooper(sf::Vector2f startPos, shared<sf::Texture>& texture
 	initSprite(startPos.x, startPos.y);
 
 	createComponentMovement(m_currVelocity);
+	createComponentHitbox(-50.f, -60.f, 100.f, 125.f);
 }
 
 

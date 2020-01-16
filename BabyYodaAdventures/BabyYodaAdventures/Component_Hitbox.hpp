@@ -53,6 +53,14 @@ public:
 	virtual ~Component_Hitbox();
 
 	//-----------------------------------------------
+	//		Constructors
+	//
+
+		// Getters
+
+	sf::FloatRect getHitboxFloatRect() const;
+
+	//-----------------------------------------------
 	//		Update
 	//
 

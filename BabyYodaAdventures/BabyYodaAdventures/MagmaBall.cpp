@@ -98,7 +98,7 @@ void MagmaBall::updateComponentAnimation(const float& frameTime)
 
 MagmaBall::MagmaBall(sf::Vector2f playerPos, sf::Vector2f mousePos, shared<sf::Texture>& textureSheet)
 {
-	calculateVelocity(playerPos, mousePos, 300.f);
+	calculateVelocity(playerPos, mousePos, 700.f);
 	initTextureSheet(textureSheet);
 	initSprite(playerPos.x, playerPos.y);
 
@@ -136,5 +136,5 @@ void MagmaBall::update(const float& frameTime)
 void MagmaBall::render(shared<sf::RenderTarget> renderTarget)
 {
 	renderTarget->draw(*m_sprite);
-	m_componentHitbox->render(renderTarget);
+	//m_componentHitbox->render(renderTarget);
 }

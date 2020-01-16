@@ -92,6 +92,8 @@ public:
 	virtual float getY() const;
 	virtual sf::Vector2f getPos() const;
 
+	virtual sf::FloatRect getHitboxFloatRect() const;
+
 		// Setters
 
 	virtual void setX(const float& x);

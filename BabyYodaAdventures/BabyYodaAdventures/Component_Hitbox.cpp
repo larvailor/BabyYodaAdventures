@@ -42,6 +42,19 @@ Component_Hitbox::~Component_Hitbox()
 
 
 //-----------------------------------------------
+//		Constructors
+//
+
+	// Getters
+
+sf::FloatRect Component_Hitbox::getHitboxFloatRect() const
+{
+	return sf::FloatRect(m_hitbox.getPosition(), m_hitbox.getSize());
+}
+
+
+
+//-----------------------------------------------
 //		Update
 //
 
