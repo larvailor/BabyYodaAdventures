@@ -20,6 +20,7 @@ void Scene_Game::initTextures()
 {
 	TexturesLoader::loadTexture(SCENE_GAME_BABY_YODA_TEXTURESHEET_PATH, "BabyYoda", m_textures);
 	TexturesLoader::loadTexture(SCENE_GAME_MAGMABALL_TEXTURESHEET_PATH, "MagmaBall", m_textures);
+	TexturesLoader::loadTexture(SCENE_GAME_STORMTROOPER_TEXTURESHEET_PATH, "Shtormtrooper", m_textures);
 	TexturesLoader::loadTexture(SCENE_GAME_GUI_HEART_PATH, "Heart", m_textures);
 	TexturesLoader::loadTexture(SCENE_GAME_SMOKE_PATH, "Smoke", m_textures);
 }
@@ -93,6 +94,7 @@ void Scene_Game::updateEntities(const float& frameTime)
 {
 	updateBabyYoda(frameTime);
 	updateMagmaBalls(frameTime);
+	updateShtormtroopers(frameTime);
 }
 
 void Scene_Game::updateBabyYoda(const float& frameTime)
@@ -111,6 +113,25 @@ void Scene_Game::updateMagmaBalls(const float& frameTime)
 		else
 			magmaBallItr++;
 	}
+}
+
+void Scene_Game::updateShtormtroopers(const float& frameTime)
+{
+	auto shtormtrooperItr = m_shtormtroopers.begin();
+	while (shtormtrooperItr != m_shtormtroopers.end())
+	{
+		if (shtormtrooperItr->get()->m_hp <= 0)
+		{
+			shtormtrooperItr = m_shtormtroopers.erase(shtormtrooperItr);
+		}
+		else
+		{
+			shtormtrooperItr->get()->update(frameTime);
+			shtormtrooperItr++;
+		}
+	}
+
+	spawnShtormtrooper();
 }
 
 void Scene_Game::updateGUI(const float& frameTime)
@@ -133,6 +154,7 @@ void Scene_Game::renderEntities(shared<sf::RenderTarget>& renderTarget)
 {
 	renderBabyYoda(renderTarget);
 	renderMagmaBalls(renderTarget);
+	renderShtormtroopers(renderTarget);
 }
 
 void Scene_Game::renderBabyYoda(shared<sf::RenderTarget>& renderTarget)
@@ -145,6 +167,14 @@ void Scene_Game::renderMagmaBalls(shared<sf::RenderTarget>& renderTarget)
 	for (auto& magmaBall : m_magmaBalls)
 	{
 		magmaBall->render(renderTarget);
+	}
+}
+
+void Scene_Game::renderShtormtroopers(shared<sf::RenderTarget>& renderTarget)
+{
+	for (auto& shtormtrooper : m_shtormtroopers)
+	{
+		shtormtrooper->render(renderTarget);
 	}
 }
 
@@ -172,6 +202,29 @@ void Scene_Game::createMagmaBall()
 		m_magmaBalls.push_back(std::move(magmaBall));
 
 		m_magmaBallTimer.restart().asSeconds();
+	}
+}
+
+void Scene_Game::spawnShtormtrooper()
+{
+	//auto x = std::dynamic_pointer_cast<Entity>(m_babyYoda);
+
+	//auto s = new Shtormtrooper(
+	//	sf::Vector2f(300.f, 300.f),
+	//	m_textures.at("Shtormtrooper"),
+	//	x
+	//	);
+	if (m_shtormtrooperClock.getElapsedTime().asSeconds() > 2)
+	{
+		auto castedPtr = std::dynamic_pointer_cast<Entity>(m_babyYoda);
+		auto shtormtrooper = std::make_unique<Shtormtrooper>(
+			sf::Vector2f(300.f, 300.f),
+			m_textures.at("Shtormtrooper"),
+			castedPtr
+			);
+		m_shtormtroopers.push_back(std::move(shtormtrooper));
+
+		m_shtormtrooperClock.restart().asSeconds();
 	}
 }
 

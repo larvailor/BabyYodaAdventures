@@ -91,7 +91,6 @@ public:
 	virtual float getX() const;
 	virtual float getY() const;
 	virtual sf::Vector2f getPos() const;
-	virtual 
 
 		// Setters
 

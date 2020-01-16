@@ -144,6 +144,7 @@
     <ClCompile Include="MagmaBall.cpp" />
     <ClCompile Include="Scene_Game.cpp" />
     <ClCompile Include="Scene_MainMenu.cpp" />
+    <ClCompile Include="Shtormtrooper.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -171,6 +172,7 @@
     <ClInclude Include="Scene_Game.hpp" />
     <ClInclude Include="Scene_MainMenu.hpp" />
     <ClInclude Include="Scene.hpp" />
+    <ClInclude Include="Shtormtrooper.hpp" />
     <ClInclude Include="stdafx.hpp" />
     <ClInclude Include="TexturesLoader.hpp" />
     <ClInclude Include="Types.hpp" />

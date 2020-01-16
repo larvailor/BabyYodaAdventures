@@ -13,7 +13,7 @@
 //		Initialization
 //
 
-void MagmaBall::calculateSpeed(const sf::Vector2f& playerPos, const sf::Vector2f& mousePos, float startVelocity)
+void MagmaBall::calculateVelocity(const sf::Vector2f& playerPos, const sf::Vector2f& mousePos, float startVelocity)
 {
 	float deltaX = mousePos.x - playerPos.x;
 	float deltaY = mousePos.y - playerPos.y;
@@ -98,7 +98,7 @@ void MagmaBall::updateComponentAnimation(const float& frameTime)
 
 MagmaBall::MagmaBall(sf::Vector2f playerPos, sf::Vector2f mousePos, shared<sf::Texture>& textureSheet)
 {
-	calculateSpeed(playerPos, mousePos, 300.f);
+	calculateVelocity(playerPos, mousePos, 300.f);
 	initTextureSheet(textureSheet);
 	initSprite(playerPos.x, playerPos.y);
 

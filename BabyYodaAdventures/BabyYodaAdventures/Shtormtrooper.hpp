@@ -1,33 +1,33 @@
-#ifndef MAGMABALL_HPP
-#define MAGMABALL_HPP
+#ifndef SHTORMTROOPER_HPP
+#define SHTORMTROOPER_HPP
 
 #include "Entity.hpp"
 
-class MagmaBall : public Entity
+class Shtormtrooper : public Entity
 {
 private:
 	/////////////////////////////////////////////////
 	// 
-	//		VARIABLES
+	//		METHODS
 	//
 	/////////////////////////////////////////////////
 
-	float m_velocityX;
-	float m_velocityY;
-	float m_alpha;
+	shared<Entity> m_goalEntity;
+
+	sf::Vector2f m_currVelocity;
 
 	/////////////////////////////////////////////////
 	// 
-	//		Methods
+	//		METHODS
 	//
 	/////////////////////////////////////////////////
 
 	//-----------------------------------------------
-	//		Initialization
+	//		Update
 	//
 
-	void calculateVelocity(const sf::Vector2f& playerPos, const sf::Vector2f& mousePos, float startVelocity);
 	void initSprite(const float& startX, const float& startY);
+	void calculateVelocity(const sf::Vector2f& currPos, const sf::Vector2f& goalPos, float maxVelocity);
 
 	//-----------------------------------------------
 	//		Update
@@ -36,26 +36,34 @@ private:
 	void updateComponents(const float& frameTime);
 	void updateComponentMovement(const float& frameTime);
 	void updateComponentHitbox();
-	void updateComponentAnimation(const float& frameTime);
 
 public:
 	/////////////////////////////////////////////////
 	// 
-	//		Methods
+	//		VARIABLES
 	//
 	/////////////////////////////////////////////////
+
+	unsigned m_hp; // TODO: add to Component_Attributes
+
+	/////////////////////////////////////////////////
+	// 
+	//		METHODS
+	//
+	/////////////////////////////////////////////////
+
 
 	//-----------------------------------------------
 	//		Constructors
 	//
 
-	MagmaBall(sf::Vector2f playerPos, sf::Vector2f mousePos, shared<sf::Texture>& textureSheet);
+	Shtormtrooper(sf::Vector2f startPos, shared<sf::Texture>& textureSheet, shared<Entity>& goalEntity);
 
 	//-----------------------------------------------
 	//		Destructors
 	//
 
-	~MagmaBall();
+	~Shtormtrooper();
 
 	//-----------------------------------------------
 	//		Update

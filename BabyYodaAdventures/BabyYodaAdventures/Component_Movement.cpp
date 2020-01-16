@@ -54,6 +54,11 @@ Component_Movement::~Component_Movement()
 
 	// Getters
 
+float Component_Movement::getMaxVelocity() const
+{
+	return m_maxVelocity;
+}
+
 sf::Vector2f Component_Movement::getVelocity() const
 {
 	return m_currVelocity;
@@ -176,4 +181,10 @@ void Component_Movement::move(const DirectionX& dirX, const DirectionY& dirY, co
 			m_currVelocity.y = m_maxVelocity;
 		break;
 	}
+}
+
+void Component_Movement::move(sf::Vector2f newVelocity, const float& frameTime)
+{
+	m_currVelocity = newVelocity;
+	m_sprite->move(m_currVelocity * frameTime);
 }

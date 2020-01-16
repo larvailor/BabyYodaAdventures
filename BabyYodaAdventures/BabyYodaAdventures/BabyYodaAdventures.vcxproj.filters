@@ -73,6 +73,9 @@
     <ClCompile Include="MagmaBall.cpp">
       <Filter>Core\Entities</Filter>
     </ClCompile>
+    <ClCompile Include="Shtormtrooper.cpp">
+      <Filter>Core\Entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.hpp">
@@ -128,6 +131,9 @@
     </ClInclude>
     <ClInclude Include="stdafx.hpp" />
     <ClInclude Include="MagmaBall.hpp">
+      <Filter>Core\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Shtormtrooper.hpp">
       <Filter>Core\Entities</Filter>
     </ClInclude>
   </ItemGroup>

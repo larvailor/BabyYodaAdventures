@@ -82,6 +82,7 @@ public:
 
 		// Getters
 
+	float getMaxVelocity() const;
 	sf::Vector2f getVelocity() const;
 	DirectionX getCurrDirectionX() const;
 	DirectionY getCurrDirectionY() const;
@@ -93,7 +94,6 @@ public:
 	/**
 		Sets current velocity X or Y using deceleration algorythm if 
 		there is no user input.
-		Sets m_movedManuallyX and m_movedManuallyY to true if needed
 	*/
 	void update(const float& frameTime);
 
@@ -107,6 +107,10 @@ public:
 		Sets m_movedManuallyX and m_movedManuallyY to true if needed
 	*/
 	void move(const DirectionX& dirX, const DirectionY& dirY, const float& frameTime);
-
+	
+	/**
+		Sets new current velocity X and Y and moves the sprite using it
+	*/
+	void move(sf::Vector2f newVelocity, const float& frameTime);
 };
 #endif

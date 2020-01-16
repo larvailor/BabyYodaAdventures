@@ -18,6 +18,10 @@ constexpr auto SCENE_GAME_BABY_YODA_ANIMATIONS_PATH = "Config/Scenes/Game/Scene_
 constexpr auto SCENE_GAME_MAGMABALL_TEXTURESHEET_PATH = "Resources/Images/Game/Textures/MagmaBall/MagmaBall_SpriteSheet.png";
 constexpr auto SCENE_GAME_MAGMABALL_ANIMATIONS_PATH = "Config/Scenes/Game/Scene_Game_MagmaBall_Animations.ini";
 
+// Stormtrooper
+
+constexpr auto SCENE_GAME_STORMTROOPER_TEXTURESHEET_PATH = "Resources/Images/Game/Textures/Shtormtrooper/Shtormtrooper_SpriteSheet.png";
+
 // GUI
 
 constexpr auto SCENE_GAME_GUI_HEART_PATH = "Resources/Images/Game/Textures/GUI/Heart.png";
