@@ -22,6 +22,27 @@ void BabyYodaGUI::initHp()
 	}
 }
 
+void BabyYodaGUI::initKillsCounter()
+{
+	m_killedShtormtrooper.setTexture(*m_killedShtormtrooperTexture);
+	m_killedShtormtrooper.setPosition(
+		sf::Vector2f(
+			static_cast<float>(m_renderWindow->getSize().x - m_killedShtormtrooper.getLocalBounds().width * 2),
+			50.f
+		)
+	);
+
+	m_killsCountText.setFont(*m_font);
+	m_killsCountText.setCharacterSize(64);
+	m_killsCountText.setFillColor(sf::Color::Black);
+	m_killsCountText.setPosition(
+		sf::Vector2f(
+			m_killedShtormtrooper.getGlobalBounds().left - 120,
+			60.f
+		)
+	);
+}
+
 
 
 //-----------------------------------------------
@@ -44,6 +65,11 @@ void BabyYodaGUI::updateHp(const float& frameTime)
 	}
 }
 
+void BabyYodaGUI::updateKillsCounter()
+{
+	 m_killsCountText.setString(std::to_string(m_babyYoda->m_killsCounter));
+}
+
 
 
 //-----------------------------------------------
@@ -58,6 +84,12 @@ void BabyYodaGUI::renderHp(shared<sf::RenderTarget>& renderTarget)
 	}
 }
 
+void BabyYodaGUI::renderKillsCounter(shared<sf::RenderTarget>& renderTarget)
+{
+	renderTarget->draw(m_killedShtormtrooper);
+	renderTarget->draw(m_killsCountText);
+}
+
 
 
 /////////////////////////////////////////////////
@@ -70,11 +102,21 @@ void BabyYodaGUI::renderHp(shared<sf::RenderTarget>& renderTarget)
 //		Constructors
 //
 
-BabyYodaGUI::BabyYodaGUI(shared<BabyYoda>& babyYoda, shared<sf::Texture>& heartTexture) :
+BabyYodaGUI::BabyYodaGUI(
+	shared<sf::RenderWindow>& renderWindow,
+	shared<BabyYoda>& babyYoda,
+	shared<sf::Texture>& heartTexture,
+	shared<sf::Texture>& killedShtormtrooperTexture,
+	shared<sf::Font>& font
+) :
+	m_renderWindow(renderWindow),
 	m_babyYoda(babyYoda),
-	m_heartTexture(heartTexture)
+	m_heartTexture(heartTexture),
+	m_killedShtormtrooperTexture(killedShtormtrooperTexture),
+	m_font(font)
 {
 	initHp();
+	initKillsCounter();
 }
 
 
@@ -95,6 +137,7 @@ BabyYodaGUI::~BabyYodaGUI()
 void BabyYodaGUI::update(const float& frameTime)
 {
 	updateHp(frameTime);
+	updateKillsCounter();
 }
 
 
@@ -106,4 +149,5 @@ void BabyYodaGUI::update(const float& frameTime)
 void BabyYodaGUI::render(shared<sf::RenderTarget>& renderTarget)
 {
 	renderHp(renderTarget);
+	renderKillsCounter(renderTarget);
 }

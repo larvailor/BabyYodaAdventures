@@ -13,6 +13,9 @@ private:
 	/////////////////////////////////////////////////
 
 	shared<BabyYoda> m_babyYoda;
+	shared<sf::RenderWindow> m_renderWindow;
+
+	sf::Text m_killsCountText;
 
 	//-----------------------------------------------
 	//		Inner classes
@@ -56,12 +59,23 @@ private:
 	std::vector<unique<Heart>> m_hearts;
 
 	//-----------------------------------------------
-	//		Attributes
+	//		Sprites
+	//
+
+	sf::Sprite m_killedShtormtrooper;
+
+	//-----------------------------------------------
+	//		Resources
 	//
 
 		// Textures
 
 	shared<sf::Texture> m_heartTexture;
+	shared<sf::Texture> m_killedShtormtrooperTexture;
+
+		// Fonts
+
+	shared<sf::Font> m_font;
 
 	/////////////////////////////////////////////////
 	// 
@@ -74,18 +88,21 @@ private:
 	//
 
 	void initHp();
+	void initKillsCounter();
 
 	//-----------------------------------------------
 	//		Update
 	//
 
 	void updateHp(const float& frameTime);
+	void updateKillsCounter();
 
 	//-----------------------------------------------
 	//		Render
 	//
 
 	void renderHp(shared<sf::RenderTarget>& renderTarget);
+	void renderKillsCounter(shared<sf::RenderTarget>& renderTarget);
 
 public:
 	/////////////////////////////////////////////////
@@ -98,7 +115,13 @@ public:
 	//		Constructors
 	//
 
-	BabyYodaGUI(shared<BabyYoda>& babyYoda, shared<sf::Texture>& heartTexture);
+	BabyYodaGUI(
+		shared<sf::RenderWindow>& renderWindow,
+		shared<BabyYoda>& babyYoda,
+		shared<sf::Texture>& heartTexture,
+		shared<sf::Texture>& killedShtormtrooperTexture,
+		shared<sf::Font>& font
+	);
 
 	//-----------------------------------------------
 	//		Destructors

@@ -123,6 +123,6 @@ void Shtormtrooper::update(const float& frameTime)
 void Shtormtrooper::render(shared<sf::RenderTarget> renderTarget)
 {
 	renderTarget->draw(*m_sprite);
-	//m_componentHitbox->render(renderTarget);
+	// m_componentHitbox->render(renderTarget);
 }
 

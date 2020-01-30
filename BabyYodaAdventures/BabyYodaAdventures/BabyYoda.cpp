@@ -84,6 +84,7 @@ void BabyYoda::updateComponentAnimation(const float& frameTime)
 BabyYoda::BabyYoda(const float& startX, const float& startY, shared<sf::Texture>& textureSheet)
 {
 	m_hp = 7; // TODO: move to the attribute component
+	m_killsCounter = 0; // TODO: move to the attribute component
 	initTextureSheet(textureSheet);
 	initSprite(startX, startY);
 
@@ -127,5 +128,5 @@ void BabyYoda::render(shared<sf::RenderTarget> renderTarget)
 {
 	renderTarget->draw(*m_sprite);
 
-	//m_componentHitbox->render(renderTarget);
+	// m_componentHitbox->render(renderTarget);
 }

@@ -48,7 +48,7 @@ void Scene::initButtons(std::string pathToButtonsIni)
 	if (ifs.is_open())
 	{
 		std::string buttonKeyName, text;
-		float x, y, width, height;
+		float xPercent, yPercent, width, height;
 		int r, g, b, a;
 		sf::Color colorIdle, colorHover, colorActive;
 		int fontSize;
@@ -62,7 +62,7 @@ void Scene::initButtons(std::string pathToButtonsIni)
 
 			std::getline(ifs, text);
 
-			ifs >> x >> y >> width >> height;
+			ifs >> xPercent >> yPercent >> width >> height;
 			
 			ifs >> r >> g >> b >> a;
 			colorIdle = sf::Color(r, g, b, a);
@@ -75,7 +75,13 @@ void Scene::initButtons(std::string pathToButtonsIni)
 
 			ifs >> fontSize;
 
-			auto button = std::make_shared<Button>(x, y, width, height, m_font, fontSize, text, colorIdle, colorHover, colorActive);
+			auto button = std::make_shared<Button>(
+				xPercent * m_renderWindow->getSize().x,
+				yPercent * m_renderWindow->getSize().y,
+				width, height,
+				m_font, fontSize, text,
+				colorIdle, colorHover, colorActive
+				);
 			m_buttons[buttonKeyName] = std::move(button);
 		}
 	}

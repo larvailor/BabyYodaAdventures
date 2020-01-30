@@ -30,6 +30,7 @@ private:
 public:
 	// TODO: move to the attribute component
 	unsigned int m_hp;
+	unsigned int m_killsCounter;
 
 	/////////////////////////////////////////////////
 	// 

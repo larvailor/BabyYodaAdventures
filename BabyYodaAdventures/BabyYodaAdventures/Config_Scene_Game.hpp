@@ -20,10 +20,12 @@ constexpr auto SCENE_GAME_MAGMABALL_ANIMATIONS_PATH = "Config/Scenes/Game/Scene_
 
 // Stormtrooper
 
-constexpr auto SCENE_GAME_STORMTROOPER_TEXTURESHEET_PATH = "Resources/Images/Game/Textures/Shtormtrooper/Shtormtrooper_SpriteSheet.png";
+constexpr auto SCENE_GAME_SHTORMTROOPER_TEXTURESHEET_PATH = "Resources/Images/Game/Textures/Shtormtrooper/Shtormtrooper_SpriteSheet.png";
 
 // GUI
 
-constexpr auto SCENE_GAME_GUI_HEART_PATH = "Resources/Images/Game/Textures/GUI/Heart.png";
+constexpr auto SCENE_GAME_GUI_HEART_TEXTURE_PATH = "Resources/Images/Game/Textures/GUI/Heart.png";
+constexpr auto SCENE_GAME_GUI_KILLED_SHTORMTROOPER_TEXTURE_PATH = "Resources/Images/Game/Textures/Shtormtrooper/KilledShtormtrooper_Texture.png";
+constexpr auto SCENE_GAME_GUI_FONT_PATH = "Resources/Fonts/HanSoloOutline-lyn5.otf";
 
 #endif

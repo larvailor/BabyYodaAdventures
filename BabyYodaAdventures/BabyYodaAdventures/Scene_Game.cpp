@@ -20,8 +20,9 @@ void Scene_Game::initTextures()
 {
 	TexturesLoader::loadTexture(SCENE_GAME_BABY_YODA_TEXTURESHEET_PATH, "BabyYoda", m_textures);
 	TexturesLoader::loadTexture(SCENE_GAME_MAGMABALL_TEXTURESHEET_PATH, "MagmaBall", m_textures);
-	TexturesLoader::loadTexture(SCENE_GAME_STORMTROOPER_TEXTURESHEET_PATH, "Shtormtrooper", m_textures);
-	TexturesLoader::loadTexture(SCENE_GAME_GUI_HEART_PATH, "Heart", m_textures);
+	TexturesLoader::loadTexture(SCENE_GAME_SHTORMTROOPER_TEXTURESHEET_PATH, "Shtormtrooper", m_textures);
+	TexturesLoader::loadTexture(SCENE_GAME_GUI_KILLED_SHTORMTROOPER_TEXTURE_PATH, "KilledShtormtrooper", m_textures);
+	TexturesLoader::loadTexture(SCENE_GAME_GUI_HEART_TEXTURE_PATH, "Heart", m_textures);
 	TexturesLoader::loadTexture(SCENE_GAME_SMOKE_PATH, "Smoke", m_textures);
 }
 
@@ -60,7 +61,13 @@ void Scene_Game::initSmoke()
 
 void Scene_Game::initGUI()
 {
-	m_babyYodaGUI = std::make_unique<BabyYodaGUI>(m_babyYoda, m_textures.at("Heart"));
+	m_babyYodaGUI = std::make_unique<BabyYodaGUI>(
+		m_renderWindow,
+		m_babyYoda,
+		m_textures.at("Heart"),
+		m_textures.at("KilledShtormtrooper"),
+		m_font
+		);
 }
 
 
@@ -147,6 +154,7 @@ void Scene_Game::updateShtormtroopers(const float& frameTime)
 		if (shtormtrooperItr->get()->m_hp <= 0)
 		{
 			shtormtrooperItr = m_shtormtroopers.erase(shtormtrooperItr);
+			m_babyYoda->m_killsCounter++;
 		}
 		else
 		{
@@ -300,6 +308,7 @@ Scene_Game::Scene_Game(
 	: Scene(renderWindow, scenes, supportedKeys)
 {
 	initKeyBinds(SCENE_GAME_KEY_BINDS_PATH);
+	initFont(SCENE_GAME_GUI_FONT_PATH);
 	initTextures();
 	initBackground();
 	initEntities();
