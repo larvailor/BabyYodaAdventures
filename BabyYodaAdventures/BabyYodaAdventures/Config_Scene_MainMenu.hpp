@@ -6,8 +6,8 @@
 #define CONFIG_SCENE_MAIN_MENU_HPP
 
 constexpr auto SCENE_MAIN_MENU_KEY_BINDS_PATH = "Config/Scenes/MainMenu/Scene_MainMenu_KeyBinds.ini";
-constexpr auto SCENE_MAIN_MENU_FONT_PATH = "Resources/Fonts/Polybius1981.ttf";
+constexpr auto SCENE_MAIN_MENU_FONT_PATH = "Resources/Fonts/HanSoloOutline-lyn5.otf";
 constexpr auto SCENE_MAIN_MENU_BUTTONS_PATH = "Config/Scenes/MainMenu/Scene_MainMenu_Buttons.ini";
-constexpr auto SCENE_MAIN_MENU_BACKGROUND_PATH = "Resources/Images/MainMenu/Scene_MainMenu_Background_space.png";
+constexpr auto SCENE_MAIN_MENU_BACKGROUND_PATH = "Resources/Images/MainMenu/Scene_MainMenu_Background_dark.png";
 
 #endif

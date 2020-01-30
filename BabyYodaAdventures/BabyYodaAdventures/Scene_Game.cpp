@@ -157,6 +157,11 @@ void Scene_Game::updateShtormtroopers(const float& frameTime)
 			{
 				m_babyYoda->m_hp--;
 				shtormtrooperItr = m_shtormtroopers.erase(shtormtrooperItr);
+				if (m_babyYoda->m_hp == 0)
+				{
+					quitScene();
+					return;
+				}
 			}
 			else
 			{
