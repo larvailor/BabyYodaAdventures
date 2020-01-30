@@ -188,3 +188,8 @@ void Component_Movement::move(sf::Vector2f newVelocity, const float& frameTime)
 	m_currVelocity = newVelocity;
 	m_sprite->move(m_currVelocity * frameTime);
 }
+
+void Component_Movement::stop()
+{
+	m_currVelocity = sf::Vector2f(0.f, 0.f);
+}

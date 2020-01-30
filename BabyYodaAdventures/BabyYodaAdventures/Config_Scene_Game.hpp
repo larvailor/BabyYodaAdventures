@@ -21,6 +21,7 @@ constexpr auto SCENE_GAME_MAGMABALL_ANIMATIONS_PATH = "Config/Scenes/Game/Scene_
 // Stormtrooper
 
 constexpr auto SCENE_GAME_SHTORMTROOPER_TEXTURESHEET_PATH = "Resources/Images/Game/Textures/Shtormtrooper/Shtormtrooper_SpriteSheet.png";
+constexpr auto SCENE_GAME_SHTORMTROOPER_ANIMATIONS_PATH = "Config/Scenes/Game/Scene_Game_Shtormtrooper_Animations.ini";
 
 // GUI
 

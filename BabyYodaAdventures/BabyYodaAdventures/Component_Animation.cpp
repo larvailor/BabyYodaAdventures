@@ -61,3 +61,8 @@ void Component_Animation::update(const std::string key, const float& frameTime)
 	m_prevAnimationKey = key;
 }
 
+bool Component_Animation::animationFinished(const std::string key) const
+{
+	return m_animations.at(key)->m_animationFinished;
+}
+

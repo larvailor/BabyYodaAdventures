@@ -16,6 +16,12 @@ private:
 
 	sf::Vector2f m_currVelocity;
 
+	sf::Clock m_lastHitTime;
+	bool m_hitten;
+	
+	bool m_playingDeathAnimation;
+	bool m_dead;
+
 	/////////////////////////////////////////////////
 	// 
 	//		METHODS
@@ -36,6 +42,7 @@ private:
 	void updateComponents(const float& frameTime);
 	void updateComponentMovement(const float& frameTime);
 	void updateComponentHitbox();
+	void updateComponentAnimation(const float& frameTime);
 
 public:
 	/////////////////////////////////////////////////
@@ -66,6 +73,15 @@ public:
 	~Shtormtrooper();
 
 	//-----------------------------------------------
+	//		Accessors
+	//
+
+		// Getters
+
+	bool dead() const;
+	bool playingDeathAnimation() const;
+
+	//-----------------------------------------------
 	//		Update
 	//
 
@@ -76,6 +92,12 @@ public:
 	//
 
 	void render(shared<sf::RenderTarget> renderTarget = nullptr);
+
+	//-----------------------------------------------
+	//		Else
+	//
+
+	void processHit();
 };
 
 #endif

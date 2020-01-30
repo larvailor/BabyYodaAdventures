@@ -33,6 +33,8 @@ private:
 		sf::IntRect m_currRect;
 		sf::IntRect m_endRect;
 
+		bool m_animationFinished;
+
 		/////////////////////////////////////////////////
 		// 
 		//		METHODS
@@ -51,7 +53,8 @@ private:
 			m_oneFrameAnimationTime(animationTime / framesX),
 			m_width(width),
 			m_height(height),
-			m_timer(0.f)
+			m_timer(0.f),
+			m_animationFinished(false)
 		{
 			m_startRect = sf::IntRect(startFrameX * width, startFrameY * height, width, height);
 			m_currRect = m_startRect;
@@ -67,6 +70,8 @@ private:
 
 		void update(const float& frameTime)
 		{
+
+			m_animationFinished = false;
 			m_timer += frameTime;
 			if (m_timer > m_oneFrameAnimationTime)
 			{
@@ -79,6 +84,7 @@ private:
 				else
 				{
 					reset();
+					m_animationFinished = true;
 				}
 
 				m_sprite->setTextureRect(m_currRect);
@@ -140,6 +146,12 @@ public:
 	);
 
 	void update(const std::string key, const float& frameTime);
+
+	//-----------------------------------------------
+	//		Status
+	//
+
+	bool animationFinished(const std::string key) const;
 };
 
 #endif

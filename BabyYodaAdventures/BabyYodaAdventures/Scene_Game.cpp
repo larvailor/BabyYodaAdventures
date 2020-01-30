@@ -123,19 +123,24 @@ void Scene_Game::updateMagmaBalls(const float& frameTime)
 		}
 		else
 		{
+
 			static bool intersects;
 			intersects = false;
 
 			// Check if magmaball intersects with shtormtrooper
 			for (auto& shtormtrooper : m_shtormtroopers)
 			{
-				if (magmaBallItr->get()->intersects(shtormtrooper->getHitboxFloatRect()))
+				if (!shtormtrooper->playingDeathAnimation())
 				{
-					intersects = true;
+					if (magmaBallItr->get()->intersects(shtormtrooper->getHitboxFloatRect()))
+					{
+						intersects = true;
 
-					shtormtrooper->m_hp--;
-					magmaBallItr = m_magmaBalls.erase(magmaBallItr);
-					break;
+						shtormtrooper->m_hp--;
+						shtormtrooper->processHit();
+						magmaBallItr = m_magmaBalls.erase(magmaBallItr);
+						break;
+					}
 				}
 			}
 			if (!intersects)
@@ -151,7 +156,7 @@ void Scene_Game::updateShtormtroopers(const float& frameTime)
 	while (shtormtrooperItr != m_shtormtroopers.end())
 	{
 		// Check if a shtormtrooper alive
-		if (shtormtrooperItr->get()->m_hp <= 0)
+		if (shtormtrooperItr->get()->dead())
 		{
 			shtormtrooperItr = m_shtormtroopers.erase(shtormtrooperItr);
 			m_babyYoda->m_killsCounter++;
@@ -254,7 +259,7 @@ void Scene_Game::createMagmaBall()
 
 void Scene_Game::spawnShtormtrooper()
 {
-	if (m_shtormtrooperClock.getElapsedTime().asSeconds() > 1.2)
+	if (m_shtormtrooperClock.getElapsedTime().asSeconds() > 1.f)
 	{
 		sf::Vector2f startPos;
 		char side = 1 + rand() % 4;

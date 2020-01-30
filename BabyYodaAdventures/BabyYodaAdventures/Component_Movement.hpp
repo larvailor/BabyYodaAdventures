@@ -112,5 +112,10 @@ public:
 		Sets new current velocity X and Y and moves the sprite using it
 	*/
 	void move(sf::Vector2f newVelocity, const float& frameTime);
+
+	/**
+		Stops the sprite
+	*/
+	void stop();
 };
 #endif
