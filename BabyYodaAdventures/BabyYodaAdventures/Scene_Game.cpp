@@ -165,15 +165,22 @@ void Scene_Game::updateShtormtroopers(const float& frameTime)
 		{
 			shtormtrooperItr->get()->update(frameTime);
 
-			// Check if a shtormtrooper intersects with BabyYoda
-			if (shtormtrooperItr->get()->intersects(m_babyYoda->getHitboxFloatRect()))
+			if (!shtormtrooperItr->get()->playingDeathAnimation())
 			{
-				m_babyYoda->m_hp--;
-				shtormtrooperItr = m_shtormtroopers.erase(shtormtrooperItr);
-				if (m_babyYoda->m_hp == 0)
+				// Check if a shtormtrooper intersects with BabyYoda
+				if (shtormtrooperItr->get()->intersects(m_babyYoda->getHitboxFloatRect()))
 				{
-					quitScene();
-					return;
+					m_babyYoda->m_hp--;
+					shtormtrooperItr = m_shtormtroopers.erase(shtormtrooperItr);
+					if (m_babyYoda->m_hp == 0)
+					{
+						quitScene();
+						return;
+					}
+				}
+				else
+				{
+					shtormtrooperItr++;
 				}
 			}
 			else

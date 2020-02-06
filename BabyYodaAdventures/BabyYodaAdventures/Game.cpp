@@ -41,7 +41,7 @@ void Game::initWindow()
 	if (fullScreen) { style = sf::Style::Fullscreen; }
 
 	// Setting up window
-
+	videoMode = sf::VideoMode::getDesktopMode();
 	m_renderWindow = std::make_shared<sf::RenderWindow>(videoMode, title, style);
 	m_renderWindow->setFramerateLimit(fps);
 	m_renderWindow->setVerticalSyncEnabled(verticalSync);
